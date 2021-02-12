@@ -1,0 +1,19 @@
+{
+  "name": "assignment-canvas",
+  "version": "1.0.0",
+  "description": "Canvas Assignment Tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trylaarsdam/assignment-canvas.git"
+  },
+  "author": "Todd Rylaarsdam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trylaarsdam/assignment-canvas/issues"
+  },
+  "homepage": "https://github.com/trylaarsdam/assignment-canvas#readme"
+}
