@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/trylaarsdam/assignment-canvas/issues"
   },
-  "homepage": "https://github.com/trylaarsdam/assignment-canvas#readme"
+  "homepage": "https://github.com/trylaarsdam/assignment-canvas#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
