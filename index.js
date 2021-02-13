@@ -17,8 +17,16 @@ passport.use(new GoogleStrategy({
         console.log("profile "+JSON.stringify(profile))
         
         await db.getFile('auth','users',{googleID: profile.id}).then((currentUser) =>{
-            if(currentUser){
+            if(currentUser != undefined || currentUser != []){
+                console.log("user found");
                 console.log("currentUser "+currentUser);
+                done(null, currentUser.googleID)
+            }
+            else{
+                console.log("creating new user");
+                await db.insertFile('auth','users',{googleID: profile.id, name: profile.displayName, profilePicture: profile.photos.value, email: profile.emails[0].value}).then((id) => {
+                    done(null, newUser);
+                })
             }
         })
     }
