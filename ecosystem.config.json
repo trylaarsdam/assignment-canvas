@@ -18,7 +18,7 @@
         "ssh_options": "StrictHostKeyChecking=no",
         "ref": "origin/master",
         "repo": "git@github.com:trylaarsdam/assignment-canvas.git",
-        "path": "/home/trylaarsdam/app",
+        "path": "/home/github/app",
         "pre-setup": "apt-get install git ; ls -la ; git checkout master ; git pull",
         "post-setup": "ls -la",
         "pre-deploy-local": "echo 'Executed from host'",
