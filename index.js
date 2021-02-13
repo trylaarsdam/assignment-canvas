@@ -17,7 +17,7 @@ function(request, accessToken, refreshToken, profile, done){
     //passport.user.findOrCreate({googleId: profile.id}, function(err, user){
     //    return done(err, user);
     // })
-    return done(null, user);
+    return done(null, profile);
 }))
 
 app.get('/auth/google',
