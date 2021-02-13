@@ -1,0 +1,31 @@
+name: deploy-master
+# Delpoy to develop instance if push to develop
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v2
+      # - uses: actions/setup-node@v1
+      - run: mkdir ~/.ssh
+      - run: sudo apt install ssh -y
+      - run: eval `ssh-agent -s`
+      - run: echo '${{ secrets.TARGET_SERVER_SECRET_KEY }}' >> ~/.ssh/id_rsa
+      - run: chmod 600 ~/.ssh/id_rsa && chmod 700 ~/.ssh -R
+      - run: git clone git@github.com:trylaarsdam/assignment-canvas.git
+      - run: sudo npm install pm2 -g
+      - run: cd ./assignment-canvas && git pull
+      - run: ls ./assignment-canvas
+      - run: pm2 deploy ./assignment-canvas/ecosystem.config.json production --force # force bypasses some checks we don't need
+      # - uses: fifsky/ssh-action@master
+      #   with:
+      #     command: |
+      #       cd /home/gitlab-runner/develop_app/current
+      #       git pull -f     
+      #       npm install
+      #     host: ${{ secrets.TARGET_SERVER_DEVELOP_HOST }}
+      #     user: ${{ secrets.TARGET_SERVER_USER }}
+      #     key: ${{ secrets.TARGET_SERVER_SECRET_KEY }}
