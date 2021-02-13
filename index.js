@@ -13,16 +13,17 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
 },
 function(request, accessToken, refreshToken, profile, done){
-    User.findOrCreate({googleId: profile.id}, function(err, user){
+    console.log()
+    passport.user.findOrCreate({googleId: profile.id}, function(err, user){
         return done(err, user);
     })
 }))
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+  passport.authenticate('google', { scope: ['email','profile'] }));
 
 app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/auth/google/failure' }),
   function(req, res) {
     res.redirect('/');
   });
