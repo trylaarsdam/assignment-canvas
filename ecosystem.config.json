@@ -13,7 +13,7 @@
     "deploy": {
       "production": {
         "key": "~/.ssh/id_rsa",
-        "user": "trylaarsdam",
+        "user": "github",
         "host": ["canvas.toddr.org"],
         "ssh_options": "StrictHostKeyChecking=no",
         "ref": "origin/master",
