@@ -14,6 +14,8 @@ passport.use(new GoogleStrategy({
     callbackURL: "https://canvas.toddr.org/auth/google/redirect",
     passReqToCallback: true
     }, async (req, accessToken, refreshToken, profile, done) => {
+        console.log("profile "+profile)
+        
         await db.getFile('auth','users',{googleID: profile.id}).then((currentUser) =>{
             if(currentUser){
                 console.log("currentUser "+currentUser);
