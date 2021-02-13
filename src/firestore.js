@@ -54,7 +54,7 @@ async function getFileById(inputDatabase, inputCollection, inputID, inputOptions
 
 module.exports = {insertFile, getFile, getFileById}
 
-insertFile("test","test",{data: 'test34'})
+//insertFile("test","test",{data: 'test34'})
 //getFile('trek', 'auth', {username: 'testing'}); //6
 
 //getFile('trek','api-assembled', {id: 'bf1919f1-354d-4324-af5a-e4f39e27451c'})
