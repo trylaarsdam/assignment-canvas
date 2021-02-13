@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "assignment-canvas",
+  "private_key_id": "f09e7172910c3971f65b96ac6770f1b944250e15",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCwZaNPwLVnIG/U\n1Jw4i6ktDyxlmJrinckl8sv5vE7gV00Ein6x/wpIL3XRLfXVybLa6Bn47iaXY5Vd\nVszdSvhEndydjz8vbZpBUNvezgQqKe7miLE9qJ8xfq4i4mM5Lm6i6Lcqyf7lG5rz\nbcNQSQOLqiY1cfJKar8vI3CqmD8eMGtV/hLI7funZDoBr/DCi4YMtgP/mDQZ0Lat\ny5LAT47sKb0eZRysmm/h8I2u+JLRaJMaCjUirhQ1ChUDSYOuNOAlA/0Ip7HIwiY6\nze07DOmCRQFDAUzFWn/66rWOYpMUrzYhfjahKCbNuOtwQd214wtYD6q43bnbNFEg\nUkzdXGjJAgMBAAECggEAHTjpQigRpUD5Zc/HBZMVdrKBz17loc8z6IZ9hiTNCFtO\nFgd/j6tJn8XFBd9QT5d3es5ipxuE5yWHNAxSKgLmeC+SwcNeW1QT7ugfVJzakcWa\nnzRb8HQD02ZCIONSPsHTcEePOJZ4FKprFBLF/YHrBXMtm0MCOZPPklaTrp9ELZLf\nevcdBDICV1Pn1NAGtW3wLlInRlmVKiU8S6Yo/Xc8P3NrxU8M1bAs1EtFb5ClfjbI\nJuzzNeTN2qLNVZQSMOUoGuwu+BJwT7LALqoVK1vrW2Ftx5AZURwflvxMgggiigyR\nB58YanxQLIsb9bOMLqesf90yGlww6edMmuGBGCIIUQKBgQDXcVviIfIb0yCZNucZ\n9cBk9c+yle9A+B6QKx+OEGqXmQmFr6XYPkMYv4+pbIUivuVwzmdifilSr3OEdML8\nxGXHT6ARw2haUoqBljfrOqp9Jp3MANe5Ur0Ow9yj22MSymRYthp9qNtx2lz+02Pj\nhThL93H1AkO99/kGbP8Q0hW/dQKBgQDRmpSn7rYdPsQPgN3uIfhXAlSnp17H5Mf/\nfU8HvNWHSJH1KF4F564HcuxAXTAYE+um9ZG/jBEI7tqjgWfnKiYIofsQixRfBwop\nXFtAkggM+Qy8jnG1L0ktU+spAuSbeQYnMc5Y2N/3otpSID0fUpnWbNxiXv9kUWON\nnTqSPBsNhQKBgHjG7//Bj/zRS0EZak0/W/A9bYZsT4hYkKm5wyLdSSRbgt8TLSIh\nJXRGT79nOuvToMSwsXyhxYC5I0VqP7V8VKJ7nPzYUzPvef5TvF1+sf0fHO80ubsH\nCz2vx42Ee/IYzFB/JjKz6vHUvLWOxDzUfk74FUaJUni4/z3+9K71V4PRAoGBAJdN\nirmeq39463Z1g75+bxH/8LQFMXoCQAzBm+bt/QVm8VWTCiwhDZL69meP3UPEPXuM\nEOXAahuUr+cPZr2Lw2C/7MgIXXArWL56mLSHtaAHt5X1DUfJFn3N8hbsq7E/L53j\nahzgkOvldsuJ0hVmPv52HrAz+w+jYMW9FaayFKUxAoGBAK4TagX/EBXyzhZ53BZm\n93hZjRhEUYHdi3Hf/U4GnQw9ux76jcbROxNgj1VU7DgLIce6oJdmwR8Fs4gqCP/v\nw4LQpgp1HSWukHj6PVPx4c0FDY8eyfINSS6rhpmUCcExr83Cu1szgkhe+FokHC3H\n3ixGg3DTyLG3kw+rRawl9Cx1\n-----END PRIVATE KEY-----\n",
+  "client_email": "nodejs@assignment-canvas.iam.gserviceaccount.com",
+  "client_id": "100251998404945349483",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nodejs%40assignment-canvas.iam.gserviceaccount.com"
+}
