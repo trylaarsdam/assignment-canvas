@@ -11,7 +11,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
     clientID: '130171068509-trjlgvmuuvs1kdu1g1kg8v5nv8cgv0k0.apps.googleusercontent.com',
     clientSecret: 'XwXE0C6swYLxoxmA7PdkYE17',
-    callbackURL: "https://canvas.toddr.org/auth/google/callback",
+    callbackURL: "https://canvas.toddr.org/auth/google/redirect",
     passReqToCallback: true
     }, (accessToken, refreshToken, profile, done) => {
         db.getFile('auth','users',{googleID: profile.id}).then((currentUser) =>{
