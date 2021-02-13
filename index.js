@@ -13,10 +13,11 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
 },
 function(request, accessToken, refreshToken, profile, done){
-    console.log()
-    passport.user.findOrCreate({googleId: profile.id}, function(err, user){
-        return done(err, user);
-    })
+    console.log(profile);
+    //passport.user.findOrCreate({googleId: profile.id}, function(err, user){
+    //    return done(err, user);
+    // })
+    return done(null, user);
 }))
 
 app.get('/auth/google',
