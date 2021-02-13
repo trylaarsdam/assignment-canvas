@@ -16,7 +16,7 @@
         "user": "github",
         "host": ["canvas.toddr.org"],
         "ssh_options": "StrictHostKeyChecking=no",
-        "ref": "origin/master",
+        "ref": "origin/main",
         "repo": "git@github.com:trylaarsdam/assignment-canvas.git",
         "path": "/home/github/app",
         "pre-setup": "apt-get install git ; ls -la ; git checkout master ; git pull",
