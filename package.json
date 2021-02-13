@@ -22,6 +22,7 @@
     "gcp-metadata": "^4.2.1",
     "google-auth-library": "^6.1.6",
     "googleapis": "^67.0.0",
+    "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0"
   }
