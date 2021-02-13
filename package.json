@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/trylaarsdam/assignment-canvas#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "googleapis": "^67.0.0"
   }
 }
