@@ -1,71 +1,28 @@
-/*var express = require('express');
+var express = require('express');
 var app = express();
 app.listen(3000);
 app.use(express.static('public'))
-*/
 
-const express = require('express');
-const metadata = require('gcp-metadata');
-const {OAuth2Client} = require('google-auth-library');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
-const app = express();
-const oAuth2Client = new OAuth2Client();
+passport.use(new GoogleStrategy({
+    clientID: '130171068509-trjlgvmuuvs1kdu1g1kg8v5nv8cgv0k0.apps.googleusercontent.com',
+    clientSecret: 'XwXE0C6swYLxoxmA7PdkYE17',
+    callbackURL: "https://canvas.toddr.org/auth/google/callback",
+    passReqToCallback: true
+},
+function(request, accessToken, refreshToken, profile, done){
+    UserRefreshClient.findOrCreate({googleId: profile.id}, function(err, user){
+        return done(err, user);
+    })
+}))
 
-// Cache externally fetched information for future invocations
-let aud;
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
-async function audience() {
-  if (!aud && (await metadata.isAvailable())) {
-    let project_number = await metadata.project('130171068509');
-    let project_id = await metadata.project('assignment-canvas');
-
-    aud = '/projects/' + project_number + '/apps/' + project_id;
-  }
-
-  return aud;
-}
-
-async function validateAssertion(assertion) {
-  if (!assertion) {
-    return {};
-  }
-
-  // Check that the assertion's audience matches ours
-  const aud = await audience();
-
-  // Fetch the current certificates and verify the signature on the assertion
-  const response = await oAuth2Client.getIapPublicKeys();
-  const ticket = await oAuth2Client.verifySignedJwtWithCertsAsync(
-    assertion,
-    response.pubkeys,
-    aud,
-    ['https://cloud.google.com/iap']
-  );
-  const payload = ticket.getPayload();
-
-  // Return the two relevant pieces of information
-  return {
-    email: payload.email,
-    sub: payload.sub,
-  };
-}
-
-app.get('/', async (req, res) => {
-  const assertion = req.header('X-Goog-IAP-JWT-Assertion');
-  let email = 'None';
-  try {
-    const info = await validateAssertion(assertion);
-    email = info.email;
-  } catch (error) {
-    console.log(error);
-  }
-  res.status(200).send(`Hello ${email}`).end();
-});
-
-
-// Start the server
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-  console.log('Press Ctrl+C to quit.');
-});
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
