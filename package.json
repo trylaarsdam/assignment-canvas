@@ -4,7 +4,8 @@
   "description": "Canvas Assignment Tracker",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "node ./tests/testmain.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
