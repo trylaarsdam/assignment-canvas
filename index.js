@@ -3,15 +3,14 @@ var app = express();
 app.listen(3000);
 //app.use(express.static('public'))
 
-app.configure(function() {
-    app.use(express.static('public'));
-    app.use(express.cookieParser());
-    app.use(express.bodyParser());
-    app.use(express.session({secret: 'keyboard cat'}));
-    app.use(passport.initialize());
-    app.use(passport.session());
-    app.use(app.router);
-})
+var session = require("express-session"),
+    bodyParser = require("body-parser");
+
+app.use(express.static("public"));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
