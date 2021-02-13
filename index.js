@@ -13,8 +13,8 @@ passport.use(new GoogleStrategy({
     clientSecret: 'XwXE0C6swYLxoxmA7PdkYE17',
     callbackURL: "https://canvas.toddr.org/auth/google/redirect",
     passReqToCallback: true
-    }, (accessToken, refreshToken, profile, done) => {
-        db.getFile('auth','users',{googleID: profile.id}).then((currentUser) =>{
+    }, async (accessToken, refreshToken, profile, done) => {
+        await db.getFile('auth','users',{googleID: profile.id}).then((currentUser) =>{
             if(currentUser){
                 console.log("currentUser "+currentUser);
             }
