@@ -77,7 +77,7 @@ app.get("/auth/logout", (req,res) => {
 })
 
 app.get("/user", (req,res) => {
-    if(typeof(req.user) == 'undefined'){
+    if(typeof(req.user) !== 'undefined'){
         console.log("googleID: " + req.user.googleID);
         res.send(req.user);
     }
