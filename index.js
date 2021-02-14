@@ -82,6 +82,6 @@ app.get("/user", (req,res) => {
         res.send(req.user);
     }
     else{
-        req.redirect('/auth/google');
+        res.redirect('/auth/google');
     }
 })
