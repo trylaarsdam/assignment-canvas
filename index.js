@@ -47,6 +47,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser( async (id, done) => {
+    console.log('id' +id);
     await db.getFile('auth','users',{googleID: id}).then(async (currentUser) => {
         if(typeof(currentUser[0]) !== "undefined"){
             console.log("user found");
