@@ -58,8 +58,9 @@ passport.deserializeUser( async (id, done) => {
 })
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ['email','profile'] })
-    res.redirect("/templates/user.html")
+    passport.authenticate('google', { scope: ['email','profile'] }), (req,res) => {
+        res.redirect("/templates/user.html")
+    }
 );
 
 app.get("/auth/google/redirect", passport.authenticate('google'),(req,res) => {
