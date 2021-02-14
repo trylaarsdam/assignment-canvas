@@ -82,7 +82,7 @@ app.get("/auth/logout", (req,res) => {
 app.get("/user", (req,res) => {
     if(typeof(req.user) !== 'undefined'){
         console.log("googleID: " + req.user.googleID);
-        res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture})
+        res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePiture, googleID: req.user.googleID})
     }
     else{
         res.redirect('/auth/google');
