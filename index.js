@@ -72,8 +72,8 @@ app.get("/auth/google/redirect", passport.authenticate('google', {
 
 app.get("/auth/logout", (req,res) => {
     req.logout();
-    req.session.destroy();
-    res.send(req.user);
+    //req.session.destroy();
+    res.send('/');
 })
 
 app.get("/user", (req,res) => {
