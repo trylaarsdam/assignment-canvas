@@ -17,7 +17,7 @@ passport.use(new GoogleStrategy({
         console.log("profile "+JSON.stringify(profile))
         
         await db.getFile('auth','users',{googleID: profile.id}).then(async (currentUser) => {
-            if(typeof(currentUser[0]) !== undefined){
+            if(typeof(currentUser[0]) !== "undefined"){
                 console.log("user found");
                 //console.log(typeof(currentUser[0]))
                 console.log("currentUser "+currentUser[0]);
