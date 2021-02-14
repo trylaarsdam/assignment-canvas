@@ -29,7 +29,7 @@ passport.use(new GoogleStrategy({
                 console.log("user found");
                 //console.log(typeof(currentUser[0]))
                 console.log("currentUser "+currentUser[0]);
-                done(null, currentUser[0])
+                done(null, profile.id)
             }
             else{
                 console.log("creating new user");
@@ -62,13 +62,17 @@ app.get('/auth/google',
     passport.authenticate('google', { scope: ['email','profile'] })
 );
 
-app.get("/auth/google/redirect", passport.authenticate('google'),(req,res) => {
-    res.send('/user/' + req.user.googleID);
+app.get("/auth/google/redirect", passport.authenticate('google', {
+    successRedirect: '/user/'+req.user.googleID,
+    failureRedirect: '/'
+}),(req,res) => {
+    //res.send('/user/' + req.user.googleID);
     //res.send("you reached the redirect URI");
 });
 
 app.get("/auth/logout", (req,res) => {
     req.logout();
+    req.session.destroy();
     res.send(req.user);
 })
 
