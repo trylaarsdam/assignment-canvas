@@ -21,6 +21,13 @@ async function insertFile(inputDatabase, inputCollection, inputDoc){
     return docUUID;
 }
 
+async function updateFile(inputDatabase, inputCollection, inputDoc, inputUUID){
+    const dbID = db.collection(inputDatabase).doc('default').collection(inputCollection).doc(inputUUID);
+    await dbID.set(document);
+    console.log(inputUUID);
+    return inputUUID;
+}
+
 async function getFile(inputDatabase, inputCollection, inputQuery, inputOptions){
     const collection = db.collection(inputDatabase).doc('default').collection(inputCollection);
     var snapshot = collection;

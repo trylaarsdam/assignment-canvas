@@ -20,7 +20,11 @@
     |}
     |
     |h1 {
-    |font-family: Arial, Helvetica, sans-serif;    
+    |font-family: Arial, Helvetica, sans-serif; 
+    |display: flex;
+    |justify-content: center;
+    |align-content: center;
+    |flex-direction: column;   
     |}
     |p {
     |font-family: Arial, Helvetica, sans-serif;    
@@ -32,25 +36,33 @@
     |font-family: Arial, Helvetica, sans-serif;    
     |}
     |button {
-    |    float:right;
     |      border-radius: 4px;
     |background-color: #f4511e;
     |border: none;
     |color: #FFFFFF;
     |text-align: center;
     |font-size: 17px;
-    |padding: 20px;
+    |padding: 10px;
     |width: 100px;
     |cursor: pointer;
     |margin: 5px;
     |}
+    |button.right{
+    |float:right;
+    |}
     |table{
     |width: 100%
+    |}
+    |input[type=text] {
+    |width: 30%;
+    |padding: 12px 20px;
+    |margin: 8px 0;
+    |box-sizing: border-box;
     |}
 </style>
 
 <div class="topnav">
-    |<a href="https://canvas.todd.org" class="">Home</a>
+    |<a href="https://canvas.toddr.org" class="">Home</a>
     |<a href="https://canvas.toddr.org/feed">Feed</a>
     |<a style="float: right" href="https://canvas.toddr.org/user" class="active"><div class="image-cropper"><img float="right" src="#{profilePictureURL}" class="rounded"></div></a>
 </div>
@@ -60,7 +72,12 @@
     |</tr>
     |<tr>
     |<th><h1 style="text-align: left; padding: 5px 5px; display: flex; justify-content: center; align-content: center; flex-direction: column;">Hello, #{name}</h1></th>
-    |<th><button onclick="location.href = 'https:\/\/canvas.toddr.org/auth/logout';" id="logout" class="float-right submit-button" >Logout</button></th>
+    |<th><button onclick="location.href = 'https:\/\/canvas.toddr.org/auth/logout';" id="logout" class="right submit-button" >Logout</button></th>
 </table>
 </span>
 h2 Canvas Settings
+p For more help: <a href="https://canvas.toddr.org/onboarding">see the onboarding guide</a>
+<form>
+    |<input name="canvasAPI" style="width:40%" type="text" value="" placeholder="Canvas API Key" />
+    |<button type="submit" style="width:10%" value="Submit key">Load</button>
+</form>
