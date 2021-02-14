@@ -62,7 +62,7 @@ app.get('/auth/google',
 );
 
 app.get("/auth/google/redirect", passport.authenticate('google'),(req,res) => {
-    res.redirect('/user/' + req.user.googleID);
+    res.send('/user/' + req.user.googleID);
     //res.send("you reached the redirect URI");
 });
 
