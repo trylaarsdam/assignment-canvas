@@ -26,7 +26,7 @@ passport.use(new GoogleStrategy({
             else{
                 console.log("creating new user");
                 await db.insertFile('auth','users', {googleID: profile.id, name: profile.displayName, profilePicture: profile.photos[0].value, email: profile.emails[0].value}).then(async (id) => {
-                    done(null, newUser);
+                    done(null, id);
                 })
             }
         })
