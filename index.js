@@ -54,7 +54,7 @@ passport.deserializeUser( async (id, done) => {
             console.log("currentUser "+currentUser[0]);
             done(null, currentUser[0])
         }
-    }
+    })
 })
 
 app.get('/auth/google',
