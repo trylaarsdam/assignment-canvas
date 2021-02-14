@@ -29,12 +29,12 @@ passport.use(new GoogleStrategy({
                 console.log("user found");
                 //console.log(typeof(currentUser[0]))
                 console.log("currentUser "+currentUser[0]);
-                done(null, JSON.stringify(profile))
+                done(null, profile.id)
             }
             else{
                 console.log("creating new user");
                 await db.insertFile('auth','users', {googleID: profile.id, name: profile.displayName, profilePicture: profile.photos[0].value, email: profile.emails[0].value}).then(async (id) => {
-                    done(null, JSON.stringify(profile));
+                    done(null, profile.id);
                 })
             }
         })
@@ -43,7 +43,7 @@ passport.use(new GoogleStrategy({
 
 passport.serializeUser((user, done) => {
     console.log('user ' + user);
-    done(null, user.googleID);
+    done(null, user);
 })
 
 passport.deserializeUser( async (id, done) => {
