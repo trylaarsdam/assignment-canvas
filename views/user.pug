@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="https://canvas.toddr.org/css/navigation.css">
+<link rel="stylesheet" href="https://canvas.toddr.org/css/navigation.scss">
 <script src="https://canvas.toddr.org/js/navigation.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
 
 <style>
     |.image-cropper {
@@ -19,11 +20,16 @@
     |}
 </style>
 
-<nav id='menu'>
-    |<input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
-    |<ul>
-    |<li><a href='https://canvas.toddr.org/feed'>Feed</a></li>
-    |<li><a href='https://canvas.toddr.org/settings'>Canvas Settings</a></li>
-    |<li class="right"><a href='https://canvas.toddr.org/user'><div class="image-cropper"><img src="#{profilePictureURL}" alt="Your Account"></div></a></li>
-    |</ul>
+<nav>
+  <ul>
+    <li><a href="#0">Home</a></li>
+    <li><a href="#0">Feed</a></li>
+    <li>
+      <a href="#0">Account</a>
+      <ul>
+        <li><a href="#0">Canvas Settings</a></li>
+        <li><a href="#0">Logout</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
