@@ -3,6 +3,7 @@ var app = express();
 const cookieSession = require('cookie-session');
 const keys = require('./src/keys.js');
 const db = require('./src/firestore.js');
+const path = require('path')
 app.listen(3000);
 app.use(express.static('public'))
 
@@ -15,6 +16,8 @@ app.use(cookieSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
@@ -79,7 +82,7 @@ app.get("/auth/logout", (req,res) => {
 app.get("/user", (req,res) => {
     if(typeof(req.user) !== 'undefined'){
         console.log("googleID: " + req.user.googleID);
-        res.send(req.user);
+        res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePiture})
     }
     else{
         res.redirect('/auth/google');

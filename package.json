@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./tests/testmain.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "gcp-metadata": "^4.2.1",
     "google-auth-library": "^6.1.6",
     "googleapis": "^67.0.0",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0",
