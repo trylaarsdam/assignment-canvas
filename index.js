@@ -72,5 +72,5 @@ app.get("/auth/logout", (req,res) => {
 })
 
 app.get("/user/:username", passport.authenticate('google'), (req,res) => {
-    res.send('username profile';
+    res.send('username profile');
 })
