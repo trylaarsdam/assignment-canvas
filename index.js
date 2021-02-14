@@ -63,7 +63,7 @@ app.get('/auth/google',
 );
 
 app.get("/auth/google/redirect", passport.authenticate('google', {
-    successRedirect: '/user/'+ 'test',
+    successRedirect: '/user',
     failureRedirect: '/'
 }),(req,res) => {
     //res.send('/user/' + req.user.googleID);
@@ -76,6 +76,12 @@ app.get("/auth/logout", (req,res) => {
     res.send(req.user);
 })
 
-app.get("/user/:username", (req,res) => {
-    res.send('username profile');
+app.get("/user", (req,res) => {
+    if(req.user.googleID){
+        console.log("googleID: " + req.user.googleID);
+        res.send(req.user);
+    }
+    else{
+        req.redirect('/auth/google');
+    }
 })
