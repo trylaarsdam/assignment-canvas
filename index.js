@@ -43,7 +43,7 @@ passport.use(new GoogleStrategy({
 
 passport.serializeUser((user, done) => {
     console.log(user);
-    done(null, user.id);
+    done(null, user.googleID);
 })
 
 passport.deserializeUser( async (id, done) => {
@@ -67,7 +67,7 @@ app.get("/auth/google/redirect", passport.authenticate('google', {
     failureRedirect: '/'
 }),(req,res) => {
     //res.send('/user/' + req.user.googleID);
-    //res.send("you reached the redirect URI");
+    res.send("you reached the redirect URI");
 });
 
 app.get("/auth/logout", (req,res) => {
