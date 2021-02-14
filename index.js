@@ -80,19 +80,33 @@ app.get("/auth/logout", (req,res) => {
 })
 
 app.get("/user", (req,res) => {
-    if(typeof(req.user) !== 'undefined'){
-        console.log("googleID: " + req.user.googleID);//req.user.googleID);
-        res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, googleID: req.user.googleID})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+    var toggle = true;
+    if(toggle){
+        if(typeof(req.user) !== 'undefined'){
+            console.log("googleID: " + req.user.googleID);//req.user.googleID);
+            res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, googleID: req.user.googleID})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+        }
+        else{
+            res.redirect('/auth/google');
+        }
     }
     else{
-        res.redirect('/auth/google');
+        if(typeof(req.user) !== 'undefined'){
+            console.log("googleID: " + "test");//req.user.googleID);
+            res.render('user', {name: "todd", profilePictureURL: "https://toddr.org/assets/images/t-transparent-114x108.png", googleID: "1358273572893"})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+        }
+        else{
+            res.redirect('/auth/google');
+        }
     }
 })
 
 app.post("/api/setCanvasAPI", async (req,res) => {
     if(typeof(req.body.google) != "undefined"){
         await db.getFile('auth', 'users', {googleID: req.body.google}).then(async (dbFile) => {
+            console.log("dbFile + " + dbFile[0])
             if(dbFile.length() == 1){
+                console.log("dbFile length was 1")
                 dbFile[0].canvasKey = req.body.canvas;
                 await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
                 return res.send({status: "updated"})
