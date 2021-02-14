@@ -34,12 +34,28 @@ passport.use(new GoogleStrategy({
             else{
                 console.log("creating new user");
                 await db.insertFile('auth','users', {googleID: profile.id, name: profile.displayName, profilePicture: profile.photos[0].value, email: profile.emails[0].value}).then(async (id) => {
-                    done(null, id);
+                    done(null, profile.id);
                 })
             }
         })
     }
 ))
+
+passport.serializeUser((user, done) => {
+    console.log(user);
+    done(null, user.id);
+})
+
+passport.deserializeUser( async (id, done) => {
+    await db.getFile('auth','users',{googleID: id}).then(async (currentUser) => {
+        if(typeof(currentUser[0]) !== "undefined"){
+            console.log("user found");
+            //console.log(typeof(currentUser[0]))
+            console.log("currentUser "+currentUser[0]);
+            done(null, currentUser[0])
+        }
+    }
+})
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['email','profile'] })
