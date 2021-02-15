@@ -101,15 +101,15 @@ app.get("/user", (req,res) => {
     }
 })
 
-app.post("/api/setCanvasAPI", async (req,res) => {
+app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
     console.log('REQUEST BODY '+req.body);
-    console.log("google id from api " + req.body.google)
-    if(typeof(req.body.google) != "undefined"){
-        await db.getFile('auth', 'users', {googleID: req.body.google}).then(async (dbFile) => {
+    console.log("google id from api " + req.params.google)
+    if(typeof(req.params.google) != "undefined"){
+        await db.getFile('auth', 'users', {googleID: req.params.google}).then(async (dbFile) => {
             console.log("dbFile + " + dbFile[0])
             if(dbFile.length() == 1){
                 console.log("dbFile length was 1")
-                dbFile[0].canvasKey = req.body.canvas;
+                dbFile[0].canvasKey = req.params.canvas;
                 await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
                 return res.send({status: "updated"})
             }

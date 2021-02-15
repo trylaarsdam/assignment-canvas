@@ -6,8 +6,8 @@ window.onload = function() {
 async function setCanvasAPI(googleID){
   //var xhttp = new XMLHttpRequest();
   console.log(googleID);
-  console.log(inputField.innerText);
-  await fetch("/api/setCanvasAPI", {
+  console.log(inputField.value);
+  await fetch("/api/setCanvasAPI/" + googleID + "/" + inputField.value, {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
