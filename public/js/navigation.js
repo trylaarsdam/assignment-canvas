@@ -4,6 +4,6 @@ function setCanvasAPI(googleID){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/api/setCanvasAPI", true);
   console.log(googleID);
-  console.log(inputField);
-  xhttp.send(JSON.stringify({google: googleID, canvas: inputField}));
+  console.log(inputField.innerText);
+  xhttp.send(JSON.stringify({google: googleID, canvas: inputField.innerText}));
 }
