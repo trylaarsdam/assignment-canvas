@@ -107,7 +107,7 @@ app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
     if(typeof(req.params.google) != "undefined"){
         console.log("getting file for user")
         await db.getFile('auth', 'users', {googleID: req.params.google}).then(async (dbFile) => {
-            console.log("dbFile + " + dbFile[0])
+            console.log("dbFile + " + dbFile)
             if(dbFile.length == 1){
                 console.log("dbFile length was 1")
                 dbFile[0].canvasKey = req.params.canvas;
