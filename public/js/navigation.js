@@ -9,6 +9,6 @@ function setCanvasAPI(googleID){
   console.log(inputField.innerText);
   fetch("/api/setCanvasAPI", {
     method: "POST",
-    body: JSON.stringify({google: googleID, canvas: inputField.value})
+    body: JSON.stringify({google: googleID, canvas: "inputField.value"})
   })
 }
