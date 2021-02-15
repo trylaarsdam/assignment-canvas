@@ -102,7 +102,7 @@ app.get("/user", (req,res) => {
 })
 
 app.post("/api/setCanvasAPI", async (req,res) => {
-    console.log(req);
+    console.log(req.body);
     console.log("google id from api " + req.body.google)
     if(typeof(req.body.google) != "undefined"){
         await db.getFile('auth', 'users', {googleID: req.body.google}).then(async (dbFile) => {
