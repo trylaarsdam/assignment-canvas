@@ -91,7 +91,7 @@ app.get("/user", (req,res) => {
         }
     }
     else{
-        if(typeof(req.user) !== 'undefined'){
+        if(typeof(req.user) == 'undefined'){
             console.log("googleID: " + "test");//req.user.googleID);
             res.render('user', {name: "todd", profilePictureURL: "https://toddr.org/assets/images/t-transparent-114x108.png", googleID: "1358273572893"})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
         }
