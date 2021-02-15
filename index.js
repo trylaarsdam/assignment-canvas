@@ -115,7 +115,7 @@ app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
                 return res.send({status: "updated"})
             }
             else{
-                console.log("db file length was not one" + dbFile.length
+                console.log("db file length was not one" + dbFile.length)
                 return res.send({error: "multiple users returned with that id"});
             }
         })
