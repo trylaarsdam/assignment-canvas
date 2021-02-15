@@ -5,8 +5,7 @@ const keys = require('./src/keys.js');
 const db = require('./src/firestore.js');
 const path = require('path')
 app.listen(3000);
-app.use(express.static('public'))
-
+app.use(express.static('public'));
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
@@ -106,6 +105,8 @@ app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
     console.log("google id from api " + req.params.google)
     if(typeof(req.params.google) != "undefined"){
         console.log("getting file for user")
+        console.log("googleID - " + req.params.google);
+        console.log("canvaskey - " + req.params.canvas)
         var dbFile = await db.getFile('auth', 'users', {googleID: req.params.google})
         console.log("dbFile + " + dbFile)
         if(dbFile.length == 1){
