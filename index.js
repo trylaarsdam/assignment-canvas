@@ -106,18 +106,17 @@ app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
     console.log("google id from api " + req.params.google)
     if(typeof(req.params.google) != "undefined"){
         console.log("getting file for user")
-        await db.getFile('auth', 'users', {googleID: req.params.google}).then(async (dbFile) => {
-            console.log("dbFile + " + dbFile)
-            if(dbFile.length == 1){
-                console.log("dbFile length was 1")
-                dbFile[0].canvasKey = req.params.canvas;
-                await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
-                return res.send({status: "updated"})
-            }
-            else{
-                console.log("db file length was not one" + dbFile.length)
-                return res.send({error: "multiple users returned with that id"});
-            }
-        })
+        var dbFile = await db.getFile('auth', 'users', {googleID: req.params.google})
+        console.log("dbFile + " + dbFile)
+        if(dbFile.length == 1){
+            console.log("dbFile length was 1")
+            dbFile[0].canvasKey = req.params.canvas;
+            await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
+            return res.send({status: "updated"})
+        }
+        else{
+            console.log("db file length was not one" + dbFile.length)
+            return res.send({error: "multiple users returned with that id"});
+        }
     }
 })
