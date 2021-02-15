@@ -108,8 +108,8 @@ app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
         console.log("googleID - " + req.params.google);
         console.log("canvaskey - " + req.params.canvas)
         var dbFile = await db.getFile('auth', 'users', {googleID: req.params.google})
-        console.log("dbFile + " + dbFile)
-        if(dbFile.length == 1){
+        console.log("dbFile + " + await dbFile)
+        if(await dbFile.length == 1){
             console.log("dbFile length was 1")
             dbFile[0].canvasKey = req.params.canvas;
             await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
