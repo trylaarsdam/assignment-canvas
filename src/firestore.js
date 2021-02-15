@@ -44,7 +44,7 @@ async function getFile(inputDatabase, inputCollection, inputQuery, inputOptions)
         console.log(doc.id, '=>', doc.data());
         data.push(doc.data());
     })
-    //console.log(data);
+    console.log(data);
     return data //(await snapshot.get()).data();
 }
 
@@ -67,3 +67,5 @@ module.exports = {insertFile, getFile, getFileById}
 //getFile('trek','api-assembled', {id: 'bf1919f1-354d-4324-af5a-e4f39e27451c'})
 
 //getFileById('trek', 'api-assembled', 'bf1919f1-354d-4324-af5a-e4f39e27451c')
+
+//getFile('auth', 'users', {googleID: "104354463581195748352"})
