@@ -10,7 +10,7 @@ async function setCanvasAPI(googleID){
   await fetch("/api/setCanvasAPI", {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: JSON.stringify({google: googleID, canvas: "inputField.value"})
   })
