@@ -59,7 +59,7 @@ async function getFileById(inputDatabase, inputCollection, inputID, inputOptions
     return data;
 }
 
-module.exports = {insertFile, getFile, getFileById}
+module.exports = {insertFile, getFile, getFileById, updateFile}
 
 //insertFile("test","test",{data: 'test34'})
 //getFile('trek', 'auth', {username: 'testing'}); //6
