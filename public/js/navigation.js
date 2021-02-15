@@ -1,4 +1,7 @@
-const inputField = document.getElementById('canvasAPI');
+var inputField;
+window.onload = function() {
+  inputField = document.getElementById('canvasAPI');
+}
 
 function setCanvasAPI(googleID){
   var xhttp = new XMLHttpRequest();
