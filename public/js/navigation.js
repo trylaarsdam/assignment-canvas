@@ -7,7 +7,7 @@ async function setCanvasAPI(googleID){
   //var xhttp = new XMLHttpRequest();
   console.log(googleID);
   console.log(inputField.value);
-  await fetch("/api/setCanvasAPI/" + googleID + "/" + inputField.value, {
+  await fetch("https://canvas.toddr.org/api/setCanvasAPI/" + googleID.toString() + "/" + inputField.value.toString(), {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
