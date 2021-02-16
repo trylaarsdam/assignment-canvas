@@ -83,7 +83,7 @@ app.get("/user", (req,res) => {
     if(toggle){
         if(typeof(req.user) !== 'undefined'){
             console.log("googleID: " + req.user.googleID);//req.user.googleID);
-            res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.uuid.toString()})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+            res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
         }
         else{
             res.redirect('/auth/google');
