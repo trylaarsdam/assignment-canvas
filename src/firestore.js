@@ -23,7 +23,7 @@ async function insertFile(inputDatabase, inputCollection, inputDoc){
 
 async function updateFile(inputDatabase, inputCollection, inputDoc, inputUUID){
     const dbID = db.collection(inputDatabase).doc('default').collection(inputCollection).doc(inputUUID);
-    await dbID.set(document);
+    await dbID.set(inputDoc);
     console.log(inputUUID);
     return inputUUID;
 }
