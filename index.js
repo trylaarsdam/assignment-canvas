@@ -83,7 +83,7 @@ app.get("/user", (req,res) => {
     if(toggle){
         if(typeof(req.user) !== 'undefined'){
             console.log("googleID: " + req.user.googleID);//req.user.googleID);
-            res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, googleID: req.user.googleID.toString()})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+            res.render('user', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.uuid.toString()})//{name: req.user.name, profilePictureURL: req.user.profilePiture})
         }
         else{
             res.redirect('/auth/google');
@@ -100,15 +100,15 @@ app.get("/user", (req,res) => {
     }
 })
 
-app.post("/api/setCanvasAPI/:google/:canvas", async (req,res) => {
+app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     console.log('REQUEST BODY '+req.body);
-    console.log("google id from api " + req.params.google)
-    if(typeof(req.params.google) != "undefined"){
+    console.log("uuid from api " + req.params.uuid)
+    if(typeof(req.params.uuid) != "undefined"){
         console.log("getting file for user")
-        console.log("googleID - " + req.params.google);
+        console.log("googleID - " + req.params.uuid);
         console.log("canvaskey - " + req.params.canvas);
         console.log(typeof(req.params.google))
-        var dbFile = await db.getFile('auth', 'users', {googleID: req.params.google})
+        var dbFile = await db.getFile('auth', 'users', {uuid: req.params.uuid})
         console.log("dbFile + " + dbFile)
         if(dbFile.length == 1){
             console.log("dbFile length was 1")
