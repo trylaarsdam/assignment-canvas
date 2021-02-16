@@ -135,7 +135,9 @@ app.get('/feed', async (req,res) => {
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
             console.log("user entry was found")
-            res.send(canvas.getClasses(userEntry[0].canvasKey))
+            var apiReturn = canvas.getClasses(userEntry[0].canvasKey);
+            console.log(apiReturn)
+            res.send(apiReturn)
         }
         else{
             res.send({error: "user not found in database"})
