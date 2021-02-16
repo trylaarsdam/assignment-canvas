@@ -5,7 +5,7 @@ window.onload = function() {
 
 async function setCanvasAPI(databaseUUID){
   //var xhttp = new XMLHttpRequest();
-  console.log(googleID);
+  console.log(databaseUUID);
   console.log(inputField.value);
   await fetch("https://canvas.toddr.org/api/setCanvasAPI/" + databaseUUID + "/" + inputField.value.toString(), {
     method: "POST",
