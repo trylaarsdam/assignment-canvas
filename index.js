@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const keys = require('./src/keys.js');
 const db = require('./src/firestore.js');
 const path = require('path')
+const canvas = require('./src/canvas.js');
 app.listen(3000);
 app.use(express.static('public'));
 var passport = require('passport');
@@ -101,24 +102,38 @@ app.get("/user", (req,res) => {
 })
 
 app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
-    console.log('REQUEST BODY '+req.body);
-    console.log("uuid from api " + req.params.uuid)
-    if(typeof(req.params.uuid) != "undefined"){
-        console.log("getting file for user")
-        console.log("uuid - " + req.params.uuid);
-        console.log("canvaskey - " + req.params.canvas);
-        console.log(typeof(req.params.uuid))
-        var dbFile = await db.getFile('auth', 'users', {id: req.params.uuid})
-        console.log("dbFile + " + dbFile)
-        if(dbFile.length == 1){
-            console.log("dbFile length was 1")
-            dbFile[0].canvasKey = req.params.canvas;
-            await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
-            return res.send({status: "updated"})
+    if(req.user.id == req.params.uuid){
+        console.log('REQUEST BODY '+req.body);
+        console.log("uuid from api " + req.params.uuid)
+        if(typeof(req.params.uuid) != "undefined"){
+            console.log("getting file for user")
+            console.log("uuid - " + req.params.uuid);
+            console.log("canvaskey - " + req.params.canvas);
+            console.log(typeof(req.params.uuid))
+            var dbFile = await db.getFile('auth', 'users', {id: req.params.uuid})
+            console.log("dbFile + " + dbFile)
+            if(dbFile.length == 1){
+                console.log("dbFile length was 1")
+                dbFile[0].canvasKey = req.params.canvas;
+                await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
+                return res.send({status: "updated"})
+            }
+            else{
+                console.log("db file length was not one" + dbFile.length)
+                return res.send({error: "multiple users returned with that id"});
+            }
         }
-        else{
-            console.log("db file length was not one" + dbFile.length)
-            return res.send({error: "multiple users returned with that id"});
-        }
+    }
+    else{
+        return res.send({error: "unauthorized"})
+    }
+})
+
+app.get('/feed', async (req,res) => {
+    if(typeof(req.user) !== "undefined"){
+        res.send(canvas.getClasses(req.user.canvasKey))
+    }
+    else{
+        res.redirect("https://canvas.toddr.org/auth/google")
     }
 })
