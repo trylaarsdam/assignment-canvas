@@ -1,5 +1,6 @@
 module.exports = {getClasses}
 const request = require('request');
+const fetch = require('node-fetch')
 const baseURL = 'https://timothy.instructure.com/api/v1/'
 
 function getClasses(api) {
