@@ -4,6 +4,7 @@ const baseURL = 'https://timothy.instructure.com/api/vi/'
 
 function getClasses(api) {
     if(api != null){
+        console.log("canvas.js - api key not null")
         request({
             url: baseURL + 'courses',
             headers: {
@@ -15,6 +16,7 @@ function getClasses(api) {
                 console.error(err);
             }
             else {
+                console.log("canvas.js - " + res.body)
                 return res.body
             }
         })
