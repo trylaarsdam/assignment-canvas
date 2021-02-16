@@ -131,8 +131,10 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
 
 app.get('/feed', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
+        console.log("user is not undefined")
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
+            console.log("user entry was found")
             res.send(canvas.getClasses(userEntry[0].canvasKey))
         }
         else{
