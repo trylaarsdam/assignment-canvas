@@ -131,7 +131,13 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
 
 app.get('/feed', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
-        res.send(canvas.getClasses(req.user.canvasKey))
+        userEntry = await db.getFile('auth', 'users', {id: req.user.id});
+        if(typeof(userEntry[0]) !== "undefined"){
+            res.send(canvas.getClasses(userEntry[0].canvasKey))
+        }
+        else{
+            res.send({error: "user not found in database"})
+        }
     }
     else{
         res.redirect("https://canvas.toddr.org/auth/google")
