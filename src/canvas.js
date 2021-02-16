@@ -1,6 +1,6 @@
 module.exports = {getClasses}
 const request = require('request');
-const baseURL = 'https://timothy.instructure.com/api/vi/'
+const baseURL = 'https://timothy.instructure.com/api/v1/'
 
 function getClasses(api) {
     if(api != null){
