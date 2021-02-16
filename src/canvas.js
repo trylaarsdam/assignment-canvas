@@ -12,6 +12,8 @@ async function getClasses(api) {
             headers: {
                 'Authorization': 'Bearer ' + api
             }
+        }).then((res) => {
+            console.log(res);
         })
     }
 }
