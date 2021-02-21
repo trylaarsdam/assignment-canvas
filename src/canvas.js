@@ -1,19 +1,26 @@
 module.exports = {getClasses, getAnnouncements, getAssignments}
-const request = require('request');
-const fetch = require('node-fetch')
+const https = require('https');
 const baseURL = 'https://timothy.instructure.com/api/v1/'
+const options = {
+    hostname: 'timothy.instructure.com',
+    port: 443,
+    method: 'GET'
+}
 
 async function getClasses(api) {
     if(api != null){
         console.log("canvas.js - api key not null")
-        var apiResponse;
-        return await fetch(baseURL + "courses", {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + api
-            }
-        }).then((res) => {
-            console.log(res);
+        var apiResponse = undefined;
+        var status;
+        var functionOptions = options;
+        functionOptions.headers = {Authorization: ' Bearer ' + api};
+        functionOptions.path = baseURL + 'courses'
+        var req = https.request(functionOptions, res => {
+            console.log(`statusCode: ${res.statusCode}`)
+            res.on('data', d => {
+                apiResponse = d;
+                return apiResponse
+            })
         })
     }
 }
