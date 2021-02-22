@@ -10,8 +10,12 @@ const options = {
 async function getClasses(api) {
     if(api != null){
         console.log("canvas.js - api key not null")
-        return fetch(baseURL + "courses", {
+        fetch(baseURL + "courses", {
             'Authorization': ' Bearer ' + api
+        }).then(res => {
+            res.json()
+        }).then(json =>{
+            console.log(json);
         })
     }
 }
