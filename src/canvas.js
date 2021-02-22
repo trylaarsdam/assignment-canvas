@@ -1,5 +1,6 @@
 module.exports = {getClasses, getAnnouncements, getAssignments}
 const baseURL = 'https://timothy.instructure.com/api/v1/'
+const fetch = require('node-fetch');
 const options = {
     hostname: 'timothy.instructure.com',
     port: 443,
