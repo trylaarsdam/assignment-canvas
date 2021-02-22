@@ -139,7 +139,7 @@ app.get('/feed', async (req,res) => {
             canvas.getClasses(req.user.canvasKey).then(apiRes =>
                 apiRes.json()
             ).then(data => {
-                res.send({data});
+                res.render('feed', {result: data})
             })
         }
         else{
