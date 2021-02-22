@@ -11,7 +11,7 @@ async function getClasses(api) {
     if(api != null){
         console.log("canvas.js - api key not null")
         return fetch(baseURL + "courses", {
-            'Authorization': ' Bearer ' + api
+            'Authorization': 'Bearer ' + api
         })
     }
 }
