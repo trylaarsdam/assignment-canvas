@@ -137,7 +137,7 @@ app.get('/feed', async (req,res) => {
             console.log("user entry was found")
             console.log(userEntry[0])
             canvas.getClasses(req.user.canvasKey).then(apiRes =>
-                res.send(apiRes)
+                res.send(apiRes.json())
             )
         }
         else{
