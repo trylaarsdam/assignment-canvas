@@ -71,9 +71,9 @@ title Feed | #{name}
 </div>
 h1 Feed
 <br>
-- var data = #{course.name}
+- var data = "#{course.name}"
 each course in data
     <div class="container">
-        <p><span>#{course.name}</span> </p> <p style="float:right">#{course.id}</p>
+        <p><span>!{course.name}</span> </p> <p style="float:right">!{course.id}</p>
         <p>#{course.course_code}</p>
     </div>
