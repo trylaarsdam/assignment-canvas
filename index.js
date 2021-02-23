@@ -103,7 +103,7 @@ app.get("/user", (req,res) => {
 
 app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     if(req.user.id == req.params.uuid){
-        console.log('REQUEST BODY '+req.body);
+        console.log('REQUEST BODY ' + req.body);
         console.log("uuid from api " + req.params.uuid)
         if(typeof(req.params.uuid) != "undefined"){
             console.log("getting file for user")
