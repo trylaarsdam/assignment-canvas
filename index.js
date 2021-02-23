@@ -139,7 +139,8 @@ app.get('/feed', async (req,res) => {
             canvas.getClasses(req.user.canvasKey).then(apiRes =>
                 apiRes.json()
             ).then(data => {
-                res.render('feed', {result: {data}.toString(), name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                console.log('data type ' + typeof(data))
+                res.render('feed', {result: data.toString(), name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
