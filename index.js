@@ -140,7 +140,7 @@ app.get('/feed', async (req,res) => {
                 apiRes.json()
             ).then(data => {
                 console.log('data type ' + typeof(data))
-                var returnData;
+                var returnData = [];
                 for(i = 0; i < data.length; i++){
                     returnData.push(i.toString())
                 }
