@@ -70,8 +70,9 @@ title Feed | #{name}
     |<a style="float: right" href="https://canvas.toddr.org/user"><div class="image-cropper"><img float="right" src="#{profilePictureURL}" class="rounded"></div></a>
 </div>
 h1 Feed
-
-each course in '#{result}'
+<br>
+- var data = #{course.name}
+each course in data
     <div class="container">
         <p><span>#{course.name}</span> </p> <p style="float:right">#{course.id}</p>
         <p>#{course.course_code}</p>
