@@ -34,7 +34,3 @@ async function getAnnouncements(api, classID) {
 function getAssignments(api, classID) {
 
 }
-
-function getAnnouncements(api, classID) {
-
-}
