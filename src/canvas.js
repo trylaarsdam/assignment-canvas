@@ -19,6 +19,18 @@ async function getClasses(api) {
     }
 }
 
+async function getAnnouncements(api, classID) {
+    if(api != null){
+        console.log("canvas.js - api key not null")
+        return fetch(baseURL + "announcements?context_codes[]=course_" + classID, {
+            withCredentials: true,
+            headers: {
+                'Authorization': 'Bearer ' + api
+            }
+        })
+    }
+}
+
 function getAssignments(api, classID) {
 
 }
