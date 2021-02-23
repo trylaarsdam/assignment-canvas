@@ -141,7 +141,7 @@ app.get('/feed', async (req,res) => {
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('feed', {result: JSON.stringify(data), name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
