@@ -70,13 +70,9 @@ title Feed | #{name}
     |<a style="float: right" href="https://canvas.toddr.org/user"><div class="image-cropper"><img float="right" src="#{profilePictureURL}" class="rounded"></div></a>
 </div>
 h1 Feed
-p #{result}
-<div class="container">
-  <p><span>Chris Fox.</span> </p> <p style="float:right">CEO at Mighty Schools.</p>
-  <p>John Doe saved us from a web disaster.</p>
-</div>
 
-<div class="container">
-  <p><span >Rebecca Flex.</span> </p> <p style="float:right">CEO at Company.</p>
-  <p>No one is better than John Doe.</p>
-</div>
+each course in #{result}
+    <div class="container">
+        <p><span>course.name</span> </p> <p style="float:right">course.id</p>
+        <p>course.course_code</p>
+    </div>
