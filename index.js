@@ -129,7 +129,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     }
 })
 
-app.get('/feed', async (req,res) => {
+app.get('/classes', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
         console.log("user is not undefined")
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
@@ -141,7 +141,7 @@ app.get('/feed', async (req,res) => {
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                res.render('classes', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
