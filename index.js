@@ -140,11 +140,8 @@ app.get('/feed', async (req,res) => {
                 apiRes.json()
             ).then(data => {
                 console.log('data type ' + typeof(data))
-                var returnData = [];
-                for(i = 0; i < data.length; i++){
-                    returnData.push(data[i].toString())
-                }
-                res.render('feed', {result: returnData.toString(), name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                console.log(data)
+                res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
