@@ -152,3 +152,12 @@ app.get('/classes', async (req,res) => {
         res.redirect("https://canvas.toddr.org/auth/google")
     }
 })
+
+app.get('/onboarding', async (req,res) => {
+    if(typeof(req.user) !== "undefined"){
+        res.render('onboarding', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+    }
+    else{
+        res.redirect("https://canvas.toddr.org/auth/google")
+    }
+})
