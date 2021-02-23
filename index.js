@@ -164,7 +164,7 @@ app.get('/onboarding', async (req,res) => {
 
 app.get('/classes/:class', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
-        res.send({status: "still in progress"})
+        res.send({class: req.params.class})
     }
     else{
         res.redirect('https://canvas.toddr.org/auth/google')
