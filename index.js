@@ -62,6 +62,15 @@ passport.deserializeUser( async (id, done) => {
     })
 })
 
+app.get('/', (req,res) => {
+    if(typeof(req.user) == "undefined"){
+        return res.sendFile('./public/index.html')
+    }
+    else{
+        return res.redirect('/user')
+    }
+})
+
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['email','profile'] })
 );
@@ -188,3 +197,4 @@ app.get('/classes/:class', async (req,res) => {
         res.redirect('https://canvas.toddr.org/auth/google')
     }
 })
+
