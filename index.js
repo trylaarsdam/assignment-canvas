@@ -5,6 +5,7 @@ const keys = require('./src/keys.js');
 const db = require('./src/firestore.js');
 const path = require('path')
 const canvas = require('./src/canvas.js');
+
 app.listen(3000);
 app.use(express.static('public'));
 var passport = require('passport');
@@ -165,16 +166,18 @@ app.get('/onboarding', async (req,res) => {
 app.get('/classes/:class', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
         console.log("user is not undefined")
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString();
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
             console.log("user entry was found")
             console.log(userEntry[0])
-            canvas.getAnnouncements(req.user.canvasKey, req.params.class).then(apiRes =>
+            canvas.getAnnouncements(req.user.canvasKey, req.params.class, formattedDate).then(apiRes =>
                 apiRes.json()
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('class', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), class: req.params.class})
+                res.render('class', {result: data, date: formattedDate, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), class: req.params.class})
             })
         }
         else{
