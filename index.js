@@ -129,7 +129,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
                 if(typeof(dbFile.rss) !== "undefined"){
                     canvas.getClasses(req.user.canvasKey).then(apiRes =>
                         apiRes.json()
-                    ).then(data => {
+                    ).then(async (data) => {
                         console.log('data type ' + typeof(data))
                         console.log(data)
                         var rssList = []
@@ -146,7 +146,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
                 else{
                     canvas.getClasses(req.user.canvasKey).then(apiRes =>
                         apiRes.json()
-                    ).then(data => {
+                    ).then(async (data) => {
                         console.log('data type ' + typeof(data))
                         console.log(data)
                         var rssList = []
