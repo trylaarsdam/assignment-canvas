@@ -1,4 +1,4 @@
-module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements, createExternalFeed}
+module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements}
 const baseURL = 'https://timothy.instructure.com/api/v1/'
 const fetch = require('node-fetch');
 const options = {
@@ -44,20 +44,7 @@ async function getFeedAnnouncements(api, perPage) {
         var yyyy = today.getFullYear();
         var formattedDate = yyyy + '-' + mm + '-' + dd
         console.log("canvas.js - api key not null")
-        return fetch(baseURL + "announcements?per_page=" + perPage + '&start_date=2018-01-01&end_date=' + formattedDate, {
-            withCredentials: true,
-            headers: {
-                'Authorization': 'Bearer ' + api
-            }
-        })
-    }
-}
-
-async function createExternalFeed(api, course_id){
-    if(api != null && classID != null){
-        console.log("canvas.js - api key and classID not null")
-        return fetch(baseURL + "courses/" + classID + '/external_feeds', {
-            method: 'POST',
+        return fetch(baseURL + "users/self/activity_stream?start_date=2018-01-01&end_date=" + formattedDate, {
             withCredentials: true,
             headers: {
                 'Authorization': 'Bearer ' + api
