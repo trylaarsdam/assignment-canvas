@@ -80,7 +80,7 @@ app.get("/auth/google/redirect", passport.authenticate('google', {
     failureRedirect: '/'
 }),(req,res) => {
     //res.send('/user/' + req.user.googleID);
-    res.send("you reached the redirect URI");
+    res.render('error', {errorText: "You've reached the page of the Google OAuth Redirect, but you should have been redirected. Check that your browser allows redirects and try to sign in again."})
 });
 
 app.get("/auth/logout", (req,res) => {
@@ -130,7 +130,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
             }
             else{
                 console.log("db file length was not one" + dbFile.length)
-                return res.send({error: "multiple users returned with that id"});
+                return res.render('error', {errorText: 'Multiple users with matching UUIDs were found in our database.'})
             }
         }
     }
@@ -155,7 +155,7 @@ app.get('/classes', async (req,res) => {
             })
         }
         else{
-            res.send({error: "user not found in database"})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
         }
     }
     else{
@@ -190,7 +190,7 @@ app.get('/classes/:class', async (req,res) => {
             })
         }
         else{
-            res.send({error: "user not found in database"})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
         }
     }
     else{
@@ -225,7 +225,7 @@ app.get('/feed', async (req,res) => {
             })
         }
         else{
-            res.send({error: "user not found in database"})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
         }
     }
     else{
