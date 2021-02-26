@@ -186,7 +186,7 @@ app.get('/classes/:class', async (req,res) => {
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('class', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), class: "test"})
+                res.render('class', {result: data, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
