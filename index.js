@@ -135,7 +135,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
         }
     }
     else{
-        return res.send({error: "unauthorized"})
+        return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again."})
     }
 })
 
