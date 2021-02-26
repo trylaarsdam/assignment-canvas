@@ -126,6 +126,40 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
                 console.log("dbFile length was 1")
                 dbFile[0].canvasKey = req.params.canvas;
                 await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
+                if(typeof(dbFile.rss) !== "undefined"){
+                    canvas.getClasses(req.user.canvasKey).then(apiRes =>
+                        apiRes.json()
+                    ).then(data => {
+                        console.log('data type ' + typeof(data))
+                        console.log(data)
+                        var rssList = []
+                        for(var course; course < data.length; course++){
+                            //make RSS call https://canvas.instructure.com/doc/api/announcement_external_feeds.html
+                            rssList[course] = await canvas.createExternalFeed(req.params.canvas, data[course].id)
+                        }
+                        console.log('rsslist ' + rssList);
+                        dbFile[0].rss = rssList;
+                        db.updateFile('auth', 'users', dbFile[0], dbFile[0].id);
+
+                    })
+                }
+                else{
+                    canvas.getClasses(req.user.canvasKey).then(apiRes =>
+                        apiRes.json()
+                    ).then(data => {
+                        console.log('data type ' + typeof(data))
+                        console.log(data)
+                        var rssList = []
+                        for(var course; course < data.length; course++){
+                            //make RSS call https://canvas.instructure.com/doc/api/announcement_external_feeds.html
+                            rssList[course] = await canvas.createExternalFeed(req.params.canvas, data[course].id)
+                        }
+                        console.log('rsslist ' + rssList);
+                        dbFile[0].rss = rssList;
+                        db.updateFile('auth', 'users', dbFile[0], dbFile[0].id);
+
+                    })
+                }
                 return res.send({status: "updated"})
             }
             else{
