@@ -112,7 +112,10 @@ app.get("/user", (req,res) => {
 })
 
 app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
-    if(req.user.id == req.params.uuid){
+    if(typeof(req.user.id).toString() == "undefined"){
+        return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again."})
+    }
+    else if(req.user.id == req.params.uuid){
         console.log('REQUEST BODY ' + req.body);
         console.log("uuid from api " + req.params.uuid)
         if(typeof(req.params.uuid) != "undefined"){
