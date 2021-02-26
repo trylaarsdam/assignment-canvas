@@ -181,7 +181,7 @@ app.get('/classes/:class', async (req,res) => {
         if(typeof(userEntry[0]) !== "undefined"){
             console.log("user entry was found")
             console.log(userEntry[0])
-            canvas.getAnnouncements(req.user.canvasKey, req.params.class, formattedDate).then(apiRes =>
+            canvas.getAnnouncements(req.user.canvasKey, req.params.class).then(apiRes =>
                 apiRes.json()
             ).then(data => {
                 console.log('data type ' + typeof(data))
@@ -198,3 +198,37 @@ app.get('/classes/:class', async (req,res) => {
     }
 })
 
+app.get('/classes/:class/announcement/:announcement', async (req,res) => {
+    if(typeof(req.user) !== "undefined"){
+        res.send({message: "page in development"})
+    }
+    else{
+        res.redirect('https://canvas.toddr.org/auth/google')
+    }
+})
+
+app.get('/feed', async (req,res) => {
+    if(typeof(req.user) !== "undefined"){
+        console.log("user is not undefined")
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString();
+        userEntry = await db.getFile('auth', 'users', {id: req.user.id});
+        if(typeof(userEntry[0]) !== "undefined"){
+            console.log("user entry was found")
+            console.log(userEntry[0])
+            canvas.getFeedAnnouncements(req.user.canvasKey, 20).then(apiRes =>
+                apiRes.json()
+            ).then(data => {
+                console.log('data type ' + typeof(data))
+                console.log(data)
+                res.render('feed', {result: data, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+            })
+        }
+        else{
+            res.send({error: "user not found in database"})
+        }
+    }
+    else{
+        res.redirect('https://canvas.toddr.org/auth/google')
+    }
+})
