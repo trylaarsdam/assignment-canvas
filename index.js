@@ -142,6 +142,10 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     }
 })
 
+app.get("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
+    return res.render('error', {errorText: "You cannot GET /api/setCanvasAPI. This endpoint currently supports POST requests."})
+})
+
 app.get('/classes', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
         console.log("user is not undefined")
