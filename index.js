@@ -138,7 +138,13 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
         }
     }
     else{
-        return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again."})
+        if(typeof(req.user.id).toString() == "undefined"){
+            return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again."})
+
+        }
+        else{
+            return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again.", profilePictureURL: req.user.profilePicture})
+        }
     }
 })
 
@@ -162,7 +168,7 @@ app.get('/classes', async (req,res) => {
             })
         }
         else{
-            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
         }
     }
     else{
@@ -197,7 +203,7 @@ app.get('/classes/:class', async (req,res) => {
             })
         }
         else{
-            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
         }
     }
     else{
@@ -232,7 +238,7 @@ app.get('/feed', async (req,res) => {
             })
         }
         else{
-            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again."})
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
         }
     }
     else{
