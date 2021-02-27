@@ -50,6 +50,7 @@ async function getFeedAnnouncements(api, courseList) {
                 courseIDs[course] = courseList[course].id;
             }
             console.log("canvas.js - api key not null, courseList provided")
+            console.log(courseIDs);
             for(var id; id < courseIDs.length; id++){
                 courseString += "context_codes[]=course_" + courseIDs[id] + "&"
             }
