@@ -14,7 +14,7 @@
   }
   
   .container:hover {
-    background-color: #949494;
+    background-color: #333;
   }
 
   /* Clear floats after containers */
@@ -85,8 +85,15 @@
   a {
     color: black;
     text-decoration: none;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
   }
 
   a:hover {
     text-decoration: underline;
+    color: white;
   }
