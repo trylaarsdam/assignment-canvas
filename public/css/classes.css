@@ -5,8 +5,18 @@
     border-radius: 5px;
     padding: 16px;
     margin: 16px 0;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
   }
   
+  .container:hover {
+    background-color: #949494;
+  }
+
   /* Clear floats after containers */
   .container::after {
     content: "";
