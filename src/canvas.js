@@ -46,6 +46,7 @@ async function getFeedAnnouncements(api, courseList) {
         var courseIDs = [];
         var courseString;
         if(courseList != null){
+            console.log(courseList);
             for(var course; course < courseList.length; course++){
                 console.log(courseList.length);
                 console.log(course);
