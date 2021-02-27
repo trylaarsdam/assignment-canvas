@@ -85,15 +85,14 @@
   a {
     color: black;
     text-decoration: none;
-    -o-transition:.5s;
-    -ms-transition:.5s;
-    -moz-transition:.5s;
-    -webkit-transition:.5s;
+    -o-transition:.2s;
+    -ms-transition:.2s;
+    -moz-transition:.2s;
+    -webkit-transition:.2s;
     /* ...and now for the proper property */
-    transition:.5s;
+    transition:.2s;
   }
 
   a:hover {
-    text-decoration: underline;
     color: white;
   }
