@@ -79,10 +79,8 @@ body
 <hr>
 
 each course in result
-    <a href="https://canvas.toddr.org/classes/#{name}/announcment/#{course.id}">
         <div class="container">
             <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
             p
                 != course.message
         </div>
-    </a>
