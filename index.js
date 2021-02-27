@@ -229,12 +229,16 @@ app.get('/feed', async (req,res) => {
         if(typeof(userEntry[0]) !== "undefined"){
             console.log("user entry was found")
             console.log(userEntry[0])
-            canvas.getFeedAnnouncements(req.user.canvasKey).then(apiRes =>
+            canvas.getClasses(req.user.canvasKey).then(apiRes =>
                 apiRes.json()
-            ).then(data => {
-                console.log('data type ' + typeof(data))
-                console.log(data)
-                res.render('feed', {result: data, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+            ).then(courseList =>{
+                canvas.getFeedAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
+                    apiRes.json()
+                ).then(data => {
+                    console.log('data type ' + typeof(data))
+                    console.log(data)
+                    res.render('feed', {result: data, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                })
             })
         }
         else{
