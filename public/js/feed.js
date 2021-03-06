@@ -6,8 +6,8 @@ function loadData(canvasKey) {
     }).then(async data => {
         return data.text()
     }).then(text => {
-        return document.body.innerHTML = document.body.innerHTML + text
-    }).then(
-        document.getElementById("loader").style.display = 'none'
-    )
+        return document.body.innerHTML = (document.body.innerHTML + text).then(
+            document.getElementsById("loaded").style.display = 'none'
+        )
+    })
 }
