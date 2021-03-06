@@ -7,7 +7,7 @@ function loadData(canvasKey) {
         return data.text()
     }).then(text => {
         return document.body.innerHTML = (document.body.innerHTML + text).then(
-            document.getElementById("loaded").style.display = 'none'
+            document.getElementById("loader").style.display = 'none'
         )
     })
 }
