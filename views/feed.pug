@@ -63,7 +63,7 @@ title Feed | #{name}
     |    border: 1px solid red;
     |}
 </style>
-body
+<body onload="loadData(#{canvasKey})">
 <div class="topnav">
     |<a href="https://canvas.toddr.org/feed" class="active">Feed</a>
     |<a href="https://canvas.toddr.org/classes" class="">Classes</a>
@@ -78,12 +78,4 @@ body
 <br>
 <hr>
 
-each course in result
-    <div class="container">
-        <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
-        p
-            != course.message
-        br
-        p
-            != course.user_name
-    </div>
+<div id="loader"></div>
