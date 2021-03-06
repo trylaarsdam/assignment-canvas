@@ -60,7 +60,7 @@ async function getFeedAnnouncements(api, courseList) {
                 courseString += "context_codes[]=course_" + courseIDs[id] + "&"
             }
             console.log(courseString);
-            return fetch(baseURL + "announcements?" + courseString + 'start_date=2018-01-01&end_date=' + formattedDate, {
+            return fetch(baseURL + "announcements?per_page=25&" + courseString + 'start_date=2018-01-01&end_date=' + formattedDate, {
                 withCredentials: true,
                 headers: {
                     'Authorization': 'Bearer ' + api
