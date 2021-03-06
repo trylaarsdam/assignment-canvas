@@ -1,6 +1,6 @@
 console.log('placeholder')
 
-function loadData(canvasKey) {
+async function loadData(canvasKey) {
     var data = await fetch("https://canvas.toddr.org/api/html/feed/" + canvasKey, {
         method: "GET",
     }).then(
