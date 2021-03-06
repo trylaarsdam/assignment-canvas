@@ -258,22 +258,7 @@ app.get('/feed', async (req,res) => {
         var formattedDate = currentDate.toISOString();
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
-            console.log("user entry was found")
-            console.log(userEntry[0])
-            canvas.getClasses(req.user.canvasKey).then(apiRes =>
-                apiRes.json()
-            ).then(courseList =>{
-                canvas.getFeedAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
-                    apiRes.json()
-                ).then(data => {
-                    console.log('data type ' + typeof(data))
-                    //console.log(data)
-                    res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey})
-                })
-            })
-        }
-        else{
-            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
+            res.render('feed', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey})
         }
     }
     else{
