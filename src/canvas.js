@@ -48,7 +48,7 @@ async function getFeedAnnouncements(api, courseList) {
         if(courseList != null){
             console.log(courseList);
             console.log(courseList.length);
-            for(var course; course < courseList.length; course++){
+            for(var course = 0; course < courseList.length; course++){
                 console.log(courseList.length);
                 //console.log(course);
                 console.log(courseList[course].id)
@@ -56,7 +56,7 @@ async function getFeedAnnouncements(api, courseList) {
             }
             console.log("canvas.js - api key not null, courseList provided")
             console.log(courseIDs);
-            for(var id; id < courseIDs.length; id++){
+            for(var id = 0; id < courseIDs.length; id++){
                 courseString += "context_codes[]=course_" + courseIDs[id] + "&"
             }
             console.log(courseString);
