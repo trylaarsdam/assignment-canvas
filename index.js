@@ -199,7 +199,7 @@ app.get('/classes/:class', async (req,res) => {
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('class', {result: data, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                res.render('class', {result: data, classID: req.params.class, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
             })
         }
         else{
@@ -213,7 +213,37 @@ app.get('/classes/:class', async (req,res) => {
 
 app.get('/classes/:class/announcement/:announcement', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
-        res.send({message: "page in development"})
+        res.redirect('https://canvas.toddr.org/announcements/' + req.params.class + '/' + req.params.announcement);
+    }
+    else{
+        res.redirect('https://canvas.toddr.org/auth/google')
+    }
+})
+
+app.get('/announcements/:class/:announcement', async (req, res) => {
+    if(typeof(req.user) !== "undefined"){
+        console.log("user is not undefined")
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString();
+        userEntry = await db.getFile('auth', 'users', {id: req.user.id});
+        if(typeof(userEntry[0]) !== "undefined"){
+            console.log("user entry was found")
+            console.log(userEntry[0])
+            canvas.getClasses(req.user.canvasKey).then(apiRes =>
+                apiRes.json()
+            ).then(courseList =>{
+                canvas.getFeedAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
+                    apiRes.json()
+                ).then(data => {
+                    console.log('data type ' + typeof(data))
+                    console.log(data)
+                    res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                })
+            })
+        }
+        else{
+            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
+        }
     }
     else{
         res.redirect('https://canvas.toddr.org/auth/google')
