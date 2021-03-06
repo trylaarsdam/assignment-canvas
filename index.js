@@ -5,6 +5,7 @@ const keys = require('./src/keys.js');
 const db = require('./src/firestore.js');
 const path = require('path')
 const canvas = require('./src/canvas.js');
+const pug = require('pug')
 
 app.listen(3000);
 app.use(express.static('public'));
@@ -266,7 +267,7 @@ app.get('/feed', async (req,res) => {
                     apiRes.json()
                 ).then(data => {
                     console.log('data type ' + typeof(data))
-                    console.log(data)
+                    //console.log(data)
                     res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
                 })
             })
@@ -277,5 +278,23 @@ app.get('/feed', async (req,res) => {
     }
     else{
         res.redirect('https://canvas.toddr.org/auth/google')
+    }
+})
+
+app.get('/api/html/feed/:userid', async (req,res) => {
+    var userEntry = await db.getFile('auth', 'users', {canvasKey: req.params.userid});
+    if(typeof(userEntry[0]) !== "undefined"){
+        canvas.getClasses(req.params.userid).then(apiRes => 
+            apiRes.json()
+        ).then(courseList => {
+            canvas.getFeedAnnouncements(req.user.canvasKey, courseList).then(apiRes => 
+                apiRes.json()
+            ).then(data => {
+                res.send(pug.renderFile('./views/feed.pug'))
+            })
+        })
+    }
+    else{
+        res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
     }
 })
