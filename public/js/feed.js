@@ -1,7 +1,7 @@
 console.log('placeholder')
 
-function loadData(canvasKey) {
-    fetch("https://canvas.toddr.org/api/html/feed/" + canvasKey, {
+async function loadData(canvasKey) {
+    await fetch("https://canvas.toddr.org/api/html/feed/" + canvasKey, {
         method: "GET",
     }).then(data => {
         return data.text()
