@@ -44,7 +44,7 @@ async function getFeedAnnouncements(api, courseList) {
         var yyyy = today.getFullYear();
         var formattedDate = yyyy + '-' + mm + '-' + dd
         var courseIDs = [];
-        var courseString;
+        var courseString = "";
         if(courseList != null){
             console.log(courseList);
             console.log(courseList.length);
