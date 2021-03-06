@@ -275,7 +275,7 @@ app.get('/api/html/feed/:userid', async (req,res) => {
             canvas.getFeedAnnouncements(req.params.userid, courseList).then(apiRes => 
                 apiRes.json()
             ).then(data => {
-                res.send(pug.renderFile('./views/feed-loaded.pug', {result: data.toString()}))
+                res.send(pug.renderFile('./views/feed-loaded.pug', {result: data}))
             })
         })
     }
