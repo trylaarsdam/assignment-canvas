@@ -83,7 +83,7 @@
   }
 
   a {
-    color: black;
+    color: red;
     text-decoration: none;
     -o-transition:.2s;
     -ms-transition:.2s;
@@ -94,7 +94,7 @@
   }
 
   a:hover {
-    color: white;
+    color: #ff7b00;
   }
 
   #loader {
