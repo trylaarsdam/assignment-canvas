@@ -294,7 +294,7 @@ app.get('/api/html/classes/:userid', async (req,res) => {
         ).then(data => {
             console.log('data type ' + typeof(data))
             console.log(data)
-            res.send(pug.renderFile('./views/classes-loaded.pug', {result: data})
+            res.send(pug.renderFile('./views/classes-loaded.pug', {result: data}))
         })
     }
     else{
