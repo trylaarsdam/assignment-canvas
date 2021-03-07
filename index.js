@@ -301,3 +301,11 @@ app.get('/api/html/classes/:userid', async (req,res) => {
         res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
     }
 })
+
+app.get('/api/html/classes', async(req,res) => {
+    res.render('headless-error', {error: "A canvas API key was not specified in /api/html/classes/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
+})
+
+app.get('/api/html/feed', async(req,res) => {
+    res.render('headless-error', {error: "A canvas API key was not specified in /api/html/classes/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
+})
