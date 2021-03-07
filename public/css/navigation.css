@@ -35,4 +35,9 @@
 
 .main {
   margin-top: 80px; /* Add a top margin to avoid content overlay */
+  margin-left: 8px;
+}
+
+body {
+  margin-left: 0px;
 }
