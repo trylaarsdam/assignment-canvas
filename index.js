@@ -149,6 +149,44 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     }
 })
 
+app.post("/api/setCanvasURL/:uuid/:canvas", async (req,res) => {
+    if(typeof(req.user.id).toString() == "undefined"){
+        return res.render('error', {errorText: "You aren't authorized to set the Canvas URL for the selected user. Try logging out and signing in again."})
+    }
+    else if(req.user.id == req.params.uuid){
+        console.log('REQUEST BODY ' + req.body);
+        console.log("uuid from api " + req.params.uuid)
+        if(typeof(req.params.uuid) != "undefined"){
+            console.log("getting file for user")
+            console.log("uuid - " + req.params.uuid);
+            console.log("url - " + req.params.canvas);
+            console.log(typeof(req.params.uuid))
+            var dbFile = await db.getFile('auth', 'users', {id: req.params.uuid})
+            console.log("dbFile + " + dbFile)
+            if(dbFile.length == 1){
+                console.log("dbFile length was 1")
+                dbFile[0].canvasURL = req.params.canvas;
+                await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
+                return res.send({status: "updated"})
+            }
+            else{
+                console.log("db file length was not one" + dbFile.length)
+                return res.render('error', {errorText: 'Multiple users with matching UUIDs were found in our database.'})
+            }
+        }
+    }
+    else{
+        if(typeof(req.user.id).toString() == "undefined"){
+            return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again."})
+
+        }
+        else{
+            return res.render('error', {errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again.", profilePictureURL: req.user.profilePicture})
+        }
+    }
+})
+
+
 app.get("/api/setCanvasAPI/:uuid/:canvas", async (req,res) => {
     return res.render('error', {errorText: "You cannot GET /api/setCanvasAPI. This endpoint currently supports POST requests."})
 })
@@ -299,5 +337,9 @@ app.get('/api/html/classes', async(req,res) => {
 })
 
 app.get('/api/html/feed', async(req,res) => {
-    res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/classes/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
+    res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/feed/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
+})
+
+app.get('/api/html/class', async(req,res) => {
+    res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/class/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
 })

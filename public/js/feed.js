@@ -1,5 +1,3 @@
-console.log('placeholder')
-
 function loadData(canvasKey) {
     fetch("https://canvas.toddr.org/api/html/feed/" + canvasKey, {
         method: "GET",
