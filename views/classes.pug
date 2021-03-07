@@ -69,13 +69,14 @@ title Classes | #{name}
     |<a href="https://canvas.toddr.org/classes" class="active">Classes</a>
     |<a style="float: right" href="https://canvas.toddr.org/user"><div class="image-cropper"><img float="right" src="#{profilePictureURL}" class="rounded"></div></a>
 </div>
+<div class="main">
+
 <h1>Classes</h1>
 <br>
 <br>
 <br>
 <br>
 <hr>
-
 each course in result
     <a href="https://canvas.toddr.org/classes/!{course.id}">
         <div class="container">
@@ -83,3 +84,4 @@ each course in result
             <p>#{course.course_code}</p>
         </div>
     </a>
+</div>
