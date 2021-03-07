@@ -14,7 +14,7 @@
 }
 
 .container:hover {
-  background-color: #333;
+  background-color: #eee;
 }
 
 /* Clear floats after containers */
@@ -96,7 +96,7 @@
   }
 
   a:hover {
-    color: white;
+    color: rgb(255, 0, 0);
   }
 
   .main {
