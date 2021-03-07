@@ -43,6 +43,9 @@
   .topnav {
     background-color: #333;
     overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
   }
   
   .topnav a {
@@ -70,4 +73,8 @@
   .topnav a.active {
     border-bottom: 3px solid red;
     text-align:center;
+  }
+
+  .main {
+    margin-top: 30px; /* Add a top margin to avoid content overlay */
   }
