@@ -3,8 +3,6 @@
 <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="https://toddr.org/images/favicon.png"/>
 
-title Classes | #{name}
-
 <style>
     |.image-cropper {
     |width: 40px;
@@ -64,17 +62,11 @@ title Classes | #{name}
     |}
 </style>
 
-<div class="topnav">
-    |<a href="https://canvas.toddr.org/feed" class="">Feed</a>
-    |<a href="https://canvas.toddr.org/classes" class="active">Classes</a>
-    |<a style="float: right" href="https://canvas.toddr.org/user"><div class="image-cropper"><img float="right" src="#{profilePictureURL}" class="rounded"></div></a>
+each course in result
+    <a href="https://canvas.toddr.org/classes/!{course.id}">
+        <div class="container">
+            <p><span>!{course.name}</span> </p> <p style="float:right">!{course.id}</p>
+            <p>#{course.course_code}</p>
+        </div>
+    </a>
 </div>
-<div class="main">
-
-<h1>Classes</h1>
-<br>
-<br>
-<br>
-<br>
-<hr>
-<div id="loader"></div>

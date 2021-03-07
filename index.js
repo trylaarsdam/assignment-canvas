@@ -283,3 +283,21 @@ app.get('/api/html/feed/:userid', async (req,res) => {
         res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
     }
 })
+
+app.get('/api/html/classes/:userid', async (req,res) => {
+    var userEntry = await db.getFile('auth', 'users', {canvasKey: req.params.userid});
+    if(typeof(userEntry[0]) !== "undefined"){
+        console.log("user entry was found")
+        console.log(userEntry[0])
+        canvas.getClasses(req.user.canvasKey).then(apiRes =>
+            apiRes.json()
+        ).then(data => {
+            console.log('data type ' + typeof(data))
+            console.log(data)
+            res.send(pug.renderFile('./views/classes-loaded.pug', {result: data})
+        })
+    }
+    else{
+        res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
+    }
+})
