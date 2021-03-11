@@ -77,7 +77,7 @@ app.get('/auth/google',
 );
 
 app.get("/auth/google/redirect", passport.authenticate('google', {
-    successRedirect: '/user',
+    successRedirect: '/feed',
     failureRedirect: '/'
 }),(req,res) => {
     //res.send('/user/' + req.user.googleID);
@@ -263,7 +263,7 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
             canvas.getClasses(req.user.canvasKey).then(apiRes =>
                 apiRes.json()
             ).then(courseList =>{
-                canvas.getFeedAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
+                canvas.getAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
                     apiRes.json()
                 ).then(data => {
                     console.log('data type ' + typeof(data))
