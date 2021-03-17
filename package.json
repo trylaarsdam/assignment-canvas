@@ -34,6 +34,6 @@
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
-    "pug": "^3.0.0"
+    "pug": "^3.0.1"
   }
 }
