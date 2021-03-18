@@ -6,8 +6,7 @@ const db = require('./src/firestore.js');
 const path = require('path')
 const canvas = require('./src/canvas.js');
 const pug = require('pug');
-const logRocket = require('logrocket');
-LogRocket.init('hrsajy/assignment-canvas');
+
 
 app.listen(3000);
 app.use(express.static('public'));
