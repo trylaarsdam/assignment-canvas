@@ -243,7 +243,7 @@ app.get('/classes/:class', async (req,res) => {
     }
 })
 
-app.get('/classes/:class/announcement/:announcement', async (req,res) => {
+app.get('/classes/:class/announcement/:announcement', async (req,res) => { //use depreciated, use /announcments/:class/:announcement
     if(typeof(req.user) !== "undefined"){
         res.redirect('https://canvas.toddr.org/announcements/' + req.params.class + '/' + req.params.announcement);
     }
@@ -259,22 +259,7 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
         var formattedDate = currentDate.toISOString();
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
-            console.log("user entry was found")
-            console.log(userEntry[0])
-            canvas.getClasses(req.user.canvasKey).then(apiRes =>
-                apiRes.json()
-            ).then(courseList =>{
-                canvas.getAnnouncements(req.user.canvasKey, courseList).then(apiRes =>
-                    apiRes.json()
-                ).then(data => {
-                    console.log('data type ' + typeof(data))
-                    console.log(data)
-                    res.render('feed', {result: data, name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
-                })
-            })
-        }
-        else{
-            res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
+            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcment})
         }
     }
     else{
@@ -343,4 +328,8 @@ app.get('/api/html/feed', async(req,res) => {
 
 app.get('/api/html/class', async(req,res) => {
     res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/class/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
+})
+
+app.get('/api/html/announcement', async(req,res) => {
+    res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/announcement/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
 })
