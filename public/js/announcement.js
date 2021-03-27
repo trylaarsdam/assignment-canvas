@@ -1,5 +1,5 @@
 function loadData(canvasKey, announcement) {
-    fetch("https://canvas.toddr.org/api/html/announcement" + announcement + "/" + canvasKey, {
+    fetch("https://canvas.toddr.org/api/html/announcement/" + announcement + "/" + canvasKey, {
         method: "GET",
     }).then(async data => {
         return data.text()

@@ -259,7 +259,7 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
         var formattedDate = currentDate.toISOString();
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
-            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcment})
+            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement})
         }
     }
     else{
