@@ -328,7 +328,7 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
         ).then(data => {
             console.log('data type ' + typeof(data))
             console.log(data)
-            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data}))
+            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[announcement]}))
         })
     }
     else{
