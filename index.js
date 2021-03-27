@@ -259,7 +259,7 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
         var formattedDate = currentDate.toISOString();
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
-            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement})
+            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement, classID: req.params.class})
         }
     }
     else{
@@ -317,6 +317,25 @@ app.get('/api/html/classes/:userid', async (req,res) => {
         res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
     }
 })
+
+app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res) => {
+    var userEntry = await db.getFile('auth', 'users', {canvasKey: req.params.canvasKey});
+    if(typeof(userEntry[0]) !== "undefined"){
+        console.log("user entry was found")
+        console.log(userEntry[0])
+        canvas.getAnnouncements(req.user.canvasKey, req.params.class).then(apiRes =>
+            apiRes.json()
+        ).then(data => {
+            console.log('data type ' + typeof(data))
+            console.log(data)
+            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data}))
+        })
+    }
+    else{
+        res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
+    }
+})
+
 
 app.get('/api/html/classes', async(req,res) => {
     res.render('headless-error', {errorText: "A canvas API key was not specified in /api/html/classes/{canvasAPIkey}. Please make sure you have a canvas API linked to your account. See the onboarding guide at https://canvas.toddr.org/onboarding for more details."})
