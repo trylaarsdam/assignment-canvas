@@ -328,7 +328,12 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
         ).then(data => {
             console.log('data type ' + typeof(data))
             console.log(data)
-            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
+            for(var i; i < data.length; i++){
+                if(data[i].id == res.params.announcement.parseInt()){
+                    res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+                }
+            }
+            //res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
         })
     }
     else{
