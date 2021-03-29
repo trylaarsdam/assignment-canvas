@@ -352,8 +352,8 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                         console.log('rendering announcement view')
                         canvas.getAnnouncementReplies(req.user.canvasKey, req.params.class, req.params.announcement).then(apiRes =>
                             apiRes.json()
-                        ).then(data => {
-                            console.log(data);
+                        ).then(data1 => {
+                            console.log(data1);
                             console.log('got replies');
                             res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
 
