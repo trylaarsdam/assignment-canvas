@@ -39,7 +39,7 @@ async function getAnnouncements(api, classID) {
 async function getAnnouncementReplies(api, classID, announcementID){
     if(api != null) {
         console.log("canvas.js - getAnnouncementReplies api key not null");
-        return fetch(baseURL + "courses/" + classID + "/discussion_topics/" + announcementID + "/entry_list", {
+        return fetch(baseURL + "courses/" + classID + "/discussion_topics/" + announcementID + "/view", {
             withCredentials: true,
             headers: {
                 'Authorization': 'Bearer ' + api
