@@ -68,10 +68,16 @@ h1 #{result.title}
 <br>
 <br>
 <hr>
+<div class="container">
+<span><p style="float:right">#{result.user_name}</p></span>
 p
     != result.message
+</div>
+each reply in replies
+    <div class="container">
+    p
+        != reply
+    </div>
 
-p
-    != replies
 
 <script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
