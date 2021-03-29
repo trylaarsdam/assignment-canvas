@@ -329,7 +329,9 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
             console.log('data type ' + typeof(data))
             console.log(data)
             console.log('starting for loop to find announcement')
+            console.log(data.length);
             for(var i; i < data.length; i++){
+                console.log("compare: " + data[i].id + " " + res.params.announcement.parseInt())
                 if(data[i].id == res.params.announcement.parseInt()){
                     console.log('rendering announcement view')
                     res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
