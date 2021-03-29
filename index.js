@@ -359,7 +359,7 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                         ).then(data1 => {
                             console.log(data1);
                             console.log('got replies');
-                            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: renderingData[i]}));
+                            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: renderingData[announcementPosition]}));
 
                         })
                     }
