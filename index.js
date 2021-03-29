@@ -255,11 +255,20 @@ app.get('/classes/:class/announcement/:announcement', async (req,res) => { //use
 app.get('/announcements/:class/:announcement', async (req, res) => {
     if(typeof(req.user) !== "undefined"){
         console.log("user is not undefined")
-        var currentDate = new Date();
-        var formattedDate = currentDate.toISOString();
-        userEntry = await db.getFile('auth', 'users', {id: req.user.id});
-        if(typeof(userEntry[0]) !== "undefined"){
-            res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement, classID: req.params.class})
+
+        if(typeof(req.params.class) == "undefined"){
+            res.render('headless-error', {errorText: "A class ID was not specified in /announcements/:class/:announcement. This was probably an internal issue, try reloading your classes page and try again."})
+        }
+        else if(typeof(req.params.announcement) == "undefined"){
+            res.render('headless-error', {errorText: "An announcement ID was not specified in /announcements/:class/:announcement. This was probably an internal issue, try reloading your classes page and try again."})
+        }
+        else{
+            var currentDate = new Date();
+            var formattedDate = currentDate.toISOString();
+            userEntry = await db.getFile('auth', 'users', {id: req.user.id});
+            if(typeof(userEntry[0]) !== "undefined"){
+                res.render('announcement', {name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement, classID: req.params.class})
+            }
         }
     }
     else{
