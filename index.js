@@ -328,8 +328,10 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
         ).then(data => {
             console.log('data type ' + typeof(data))
             console.log(data)
+            console.log('starting for loop to find announcement')
             for(var i; i < data.length; i++){
                 if(data[i].id == res.params.announcement.parseInt()){
+                    console.log('rendering announcement view')
                     res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
                 }
             }
