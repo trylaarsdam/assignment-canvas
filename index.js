@@ -332,22 +332,31 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
     if(typeof(userEntry[0]) !== "undefined"){
         console.log("user entry was found")
         console.log(userEntry[0])
-        canvas.getAnnouncements(req.user.canvasKey, req.params.class).then(apiRes =>
-            apiRes.json()
-        ).then(data => {
-            console.log('data type ' + typeof(data))
-            console.log(data)
-            console.log('starting for loop to find announcement')
-            console.log(data.length);
-            for(var i = 0; i < data.length; i++){
-                console.log("compare: " + data[i].id + " " + res.params.announcement.parseInt())
-                if(data[i].id == res.params.announcement.parseInt()){
-                    console.log('rendering announcement view')
-                    res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+        if(typeof(req.params.class) == "undefined"){
+            res.render('headless-error', {errorText: "A class ID was not specified in /announcements/:class/:announcement. This was probably an internal issue, try reloading your classes page and try again."})
+        }
+        else if(typeof(req.params.announcement) == "undefined"){
+            res.render('headless-error', {errorText: "An announcement ID was not specified in /announcements/:class/:announcement. This was probably an internal issue, try reloading your classes page and try again."})
+        }
+        else{
+            canvas.getAnnouncements(req.user.canvasKey, req.params.class).then(apiRes =>
+                apiRes.json()
+            ).then(data => {
+                console.log('data type ' + typeof(data))
+                console.log(data)
+                console.log('starting for loop to find announcement')
+                console.log(data.length);
+                for(var i = 0; i < data.length; i++){
+                    console.log("compare: " + data[i].id + " " + res.params.announcement.parseInt())
+                    if(data[i].id == res.params.announcement.parseInt()){
+                        console.log('rendering announcement view')
+                        res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+                    }
                 }
-            }
-            //res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
-        })
+                //res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
+            })
+        }
+        
     }
     else{
         res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
