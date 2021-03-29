@@ -329,6 +329,7 @@ app.get('/api/html/classes/:userid', async (req,res) => {
 
 app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res) => {
     var userEntry = await db.getFile('auth', 'users', {canvasKey: req.params.canvasKey});
+    var renderingData;
     if(typeof(userEntry[0]) !== "undefined"){
         console.log("user entry was found")
         console.log(userEntry[0])
@@ -349,13 +350,14 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                 for(var i = 0; i < data.length; i++){
                     console.log("compare: " + data[i].id + " " + req.params.announcement)
                     if(data[i].id == req.params.announcement){
+                        renderingData = data;
                         console.log('rendering announcement view')
                         canvas.getAnnouncementReplies(req.user.canvasKey, req.params.class, req.params.announcement).then(apiRes =>
                             apiRes.json()
                         ).then(data1 => {
                             console.log(data1);
                             console.log('got replies');
-                            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+                            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: renderingData[i]}));
 
                         })
                     }
