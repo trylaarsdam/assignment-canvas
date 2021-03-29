@@ -350,7 +350,14 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                     console.log("compare: " + data[i].id + " " + req.params.announcement)
                     if(data[i].id == req.params.announcement){
                         console.log('rendering announcement view')
-                        res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+                        canvas.getAnnouncementReplies(req.user.canvasKey, req.params.class, req.params.announcement).then(apiRes =>
+                            apiRes.json()
+                        ).then(data => {
+                            console.log(data);
+                            console.log('got replies');
+                            res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[i]}));
+
+                        })
                     }
                 }
                 //res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
