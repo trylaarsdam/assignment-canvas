@@ -1,4 +1,4 @@
-module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements}
+module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements, getAnnouncementReplies}
 const baseURL = 'https://timothy.instructure.com/api/v1/'
 const fetch = require('node-fetch');
 const options = {
