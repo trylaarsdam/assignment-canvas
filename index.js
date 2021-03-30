@@ -65,11 +65,11 @@ passport.deserializeUser( async (id, done) => {
 })
 
 app.get('/', (req,res) => {
-    if(typeof(req.user) == "undefined"){
-        return res.sendFile('./public/index.html')
+    if(typeof(req.user) !== "undefined"){
+        return res.redirect('/feed')
     }
     else{
-        return res.redirect('/user')
+        return res.sendFile('./public/index.html')
     }
 })
 
@@ -359,6 +359,7 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                         ).then(data1 => {
                             console.log(data1);
                             console.log('got replies');
+                            // TODO ing make own object with better formatted data
                             res.send(pug.renderFile('./views/announcement-loaded.pug', {result: renderingData[announcementPosition], replies: data1.view}));
 
                         })
