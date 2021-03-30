@@ -72,7 +72,7 @@ h1 #{result.title}
 <span><p style="float:right">#{result.user_name}</p></span>
 p
     != result.message
-<a href="#{result.attachment.url}"><p>#{result.attachment.display_name}</p></a>
+<a href="#{result.attachment.url}"><p>#{result.attachments[0].display_name}</p></a>
 </div>
 each reply in replies
     <div class="container">
