@@ -360,26 +360,22 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                             console.log(data1);
                             console.log('got replies');
                             // TODO ing make own object with better formatted data
-                            var formattedParticipants = {}
-                            for(var participant = 0; participant < data1.participants.length; participant++){
-                                formattedParticipants[(data1.participant[participant].id).toString()] = data1.participant[participant]
-                            }
-                            console.log(formattedParticipants)
-                            for(var reply = 0; reply < data1.view.length; reply++){
-                                data1.view[reply].author = (formattedParticipants[data1.view[reply].toString()])
+                            for(var q = 0; q < data.view.length; q++){
+                                for(var i = 0; i < data.participants.length; i++){
+                                    if(data1.participants[i].id = data1.view[q].user_id){
+                                        data1.view[q].author = data1.participants[i];
+                                    }
+                                }
                             }
                             console.log("data1")
                             console.log(data1);
                             console.log("data1");
                             res.send(pug.renderFile('./views/announcement-loaded.pug', {result: renderingData[announcementPosition], replies: data1.view}));
-
                         })
                     }
                 }
-                //res.send(pug.renderFile('./views/announcement-loaded.pug', {result: data[res.params.announcement.parseInt()]}))
             })
         }
-        
     }
     else{
         res.render('error', {errorText: "User not found in database, but login session is still active. Try clearing cookies and loading this page again.", profilePictureURL: req.user.profilePicture})
