@@ -76,7 +76,7 @@ p
 </div>
 each reply in replies
     <div class="container">
-    <span><p style="float:right">#{reply.user_id}</p></span>
+    <span><p style="float:right">#{reply.author.display_name}</p></span>
     p
         != reply.message
     //- <a href="#{reply.attachment.url}"><p>#{reply.attachment.display_name}</p></a>
