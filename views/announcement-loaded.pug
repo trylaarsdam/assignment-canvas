@@ -3,6 +3,7 @@
 <script src="https://canvas.toddr.org/js/announcement.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="https://toddr.org/images/favicon.png"/>
+<title>#{result.title}</title>
 <style>
     |.image-cropper {
     |width: 40px;
@@ -72,8 +73,9 @@ h1 #{result.title}
 <span><p style="float:right">#{result.user_name}</p></span>
 p
     != result.message
-if result.attachment
-    <a href="#{result.attachments[0].url}"><p>#{result.attachments[0].display_name}</p></a>
+if result.attachments
+    each attachment in result.attachments
+        <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
 </div>
 <div style="margin-left: 20px">
 each reply in replies
