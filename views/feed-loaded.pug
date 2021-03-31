@@ -67,7 +67,6 @@ each course in result
         <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
         p
             != course.message
-        br
         if course.attachments
             each attachment in course.attachments
                 <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
