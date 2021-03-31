@@ -68,6 +68,10 @@ each course in result
         p
             != course.message
         br
+        if course.attachments
+            each attachment in course.attachments
+                <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
+        br
         p
             != course.user_name
     </div>
