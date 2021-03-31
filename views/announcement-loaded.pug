@@ -74,6 +74,7 @@ p
     != result.message
 //- <a href="#{result.attachments[0].url}"><p>#{result.attachments[0].display_name}</p></a>
 </div>
+<div style="margin-left: 20px">
 each reply in replies
     <div class="container">
     <span><p style="float:right">#{reply.author.display_name}</p></span>
@@ -82,5 +83,5 @@ each reply in replies
     //- <a href="#{reply.attachment.url}"><p>#{reply.attachment.display_name}</p></a>
     </div>
 
-
+</div>
 <script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
