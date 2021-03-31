@@ -72,7 +72,8 @@ h1 #{result.title}
 <span><p style="float:right">#{result.user_name}</p></span>
 p
     != result.message
-//- <a href="#{result.attachments[0].url}"><p>#{result.attachments[0].display_name}</p></a>
+if result.attachment
+    <a href="#{result.attachments[0].url}"><p>#{result.attachments[0].display_name}</p></a>
 </div>
 <div style="margin-left: 20px">
 each reply in replies
@@ -80,7 +81,8 @@ each reply in replies
     <span><p style="float:right">#{reply.author.display_name}</p></span>
     p
         != reply.message
-    //- <a href="#{reply.attachment.url}"><p>#{reply.attachment.display_name}</p></a>
+    if reply.attachment
+        <a href="#{reply.attachment.url}"><p>#{reply.attachment.display_name}</p></a>
     </div>
 
 </div>
