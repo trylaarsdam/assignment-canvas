@@ -360,8 +360,8 @@ app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req,res
                             console.log(data1);
                             console.log('got replies');
                             // TODO ing make own object with better formatted data
-                            for(var q = 0; q < data.view.length; q++){
-                                for(var i = 0; i < data.participants.length; i++){
+                            for(var q = 0; q < data1.view.length; q++){
+                                for(var i = 0; i < data1.participants.length; i++){
                                     if(data1.participants[i].id = data1.view[q].user_id){
                                         data1.view[q].author = data1.participants[i];
                                     }
