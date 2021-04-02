@@ -78,6 +78,7 @@
   .topnav a:hover {
     border-bottom: 3px solid red;
     text-align:center;
+    color: white;
   }
   
   .topnav a.active {
