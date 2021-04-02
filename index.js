@@ -221,7 +221,7 @@ app.get('/classes/:class', async (req,res) => {
     if(typeof(req.user) !== "undefined"){
         console.log("user is not undefined")
         var currentDate = new Date();
-        var formattedDate = currentDate.toISOString();
+        var returnResult;
         userEntry = await db.getFile('auth', 'users', {id: req.user.id});
         if(typeof(userEntry[0]) !== "undefined"){
             console.log("user entry was found")
@@ -231,7 +231,12 @@ app.get('/classes/:class', async (req,res) => {
             ).then(data => {
                 console.log('data type ' + typeof(data))
                 console.log(data)
-                res.render('class', {result: data, classID: req.params.class, name: req.params.class, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                returnResult = data;
+                canvas.getCourseName(req.user.canvasKey, req.params.class).then(apiRes => 
+                    apiRes.json()
+                ).then(data1 => {
+                    res.render('class', {result: returnResult, classID: req.params.class, courseInfo: data1, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString()})
+                })
             })
         }
         else{

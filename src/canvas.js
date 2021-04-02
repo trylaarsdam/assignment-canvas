@@ -1,4 +1,4 @@
-module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements, getAnnouncementReplies}
+module.exports = {getClasses, getAnnouncements, getAssignments, getFeedAnnouncements, getAnnouncementReplies, getCourseName}
 const baseURL = 'https://timothy.instructure.com/api/v1/'
 const fetch = require('node-fetch');
 const options = {
@@ -11,6 +11,18 @@ async function getClasses(api) {
     if(api != null){
         console.log("canvas.js - api key not null")
         return fetch(baseURL + "courses", {
+            withCredentials: true,
+            headers: {
+                'Authorization': 'Bearer ' + api
+            }
+        })
+    }
+}
+
+async function getCourseName(api, classID){
+    if(api != null){
+        console.log("canvas.js - getCourseName")
+        return fetch(baseURL + "courses/" + classID, {
             withCredentials: true,
             headers: {
                 'Authorization': 'Bearer ' + api
