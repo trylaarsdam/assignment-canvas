@@ -84,6 +84,10 @@
     text-align:center;
   }
 
+  .attachment {
+    color: red;
+  }
+
   a {
     color: black;
     text-decoration: none;
