@@ -98,6 +98,11 @@
 
   a {
     color: black;
+    text-decoration: none;
+  }
+
+  .attachment {
+    color: red;
   }
 
   a:hover {

@@ -70,7 +70,7 @@ each course in result
                 != course.message
             if course.attachments
                 each attachment in course.attachments
-                    <a class="item" href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
+                    <a class="attachment" href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
             br
             p
                 != course.user_name
