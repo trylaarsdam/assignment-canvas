@@ -1,41 +1,4 @@
 /* Style the container with a rounded border, grey background and some padding and margin */
-p {
-  padding: 1em;
-  position: relative;
-}
-.text {
-  position: relative;
-  z-index: 3;
-}
-a { color: black; }
-a:first-child::before {
-  content: ' ';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-}
-a:last-child::before {
-  content: ' ';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-}
-
-a:first-child:hover,
-a:first-child:hover + a {
-  color: blue;
-}
-p:hover a:first-child:not(:hover) {
-  color: rgba(0,0,0,0.4);
-}
-
-
 .container {
     border: 2px solid #ccc;
     background-color: #eee;
@@ -141,6 +104,9 @@ p:hover a:first-child:not(:hover) {
     color: black;
   }
 
+  a:hover {
+    color: #ffffff;
+  }
 
   #loader {
     position: absolute;
