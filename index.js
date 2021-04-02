@@ -300,7 +300,11 @@ app.get('/api/html/feed/:userid', async (req,res) => {
             canvas.getFeedAnnouncements(req.params.userid, courseList).then(apiRes => 
                 apiRes.json()
             ).then(data => {
-                res.send(pug.renderFile('./views/feed-loaded.pug', {result: data}))
+                var modData = data;
+                for (var i = 0; i < modData.length; i++){
+                    modData[i].courseID = modData[i].context_code.split("_").pop();
+                }
+                res.send(pug.renderFile('./views/feed-loaded.pug', {result: modData}))
             })
         })
     }

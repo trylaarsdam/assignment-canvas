@@ -96,6 +96,14 @@
     transition:.2s;
   }
 
+  .item a {
+    color: black;
+  }
+
+  .item a:hover {
+    color: black;
+  }
+
   a:hover {
     color: #ffffff;
   }

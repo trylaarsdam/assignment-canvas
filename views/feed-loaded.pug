@@ -63,18 +63,19 @@
 </style>
 <div style="margin-left:8px;">
 each course in result
-    <div class="container">
-        <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
-        p
-            != course.message
-        if course.attachments
-            each attachment in course.attachments
-                <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
-        br
-        p
-            != course.user_name
-    </div>
-
+    <a class="item" href="https://canvas.toddr.org/announcements/#{course.courseID}/#{course.id}">
+        <div class="container">
+            <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
+            p
+                != course.message
+            if course.attachments
+                each attachment in course.attachments
+                    <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
+            br
+            p
+                != course.user_name
+        </div>
+    </a>
 </div>
 
 <script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
