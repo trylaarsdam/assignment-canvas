@@ -63,14 +63,14 @@
 </style>
 <div style="margin-left:8px;">
 each course in result
-    <a class="item" href="https://canvas.toddr.org/announcements/#{course.courseID}/#{course.id}">
+    <a href="https://canvas.toddr.org/announcements/#{course.courseID}/#{course.id}">
         <div class="container">
             <p><span>!{course.title}</span> </p> <p style="float:right">!{course.id}</p>
             p
                 != course.message
             if course.attachments
                 each attachment in course.attachments
-                    <a href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
+                    <a class="item" href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
             br
             p
                 != course.user_name

@@ -85,7 +85,7 @@
     text-align:center;
   }
 
-  a {
+  .item a {
     color: red;
     text-decoration: none;
     -o-transition:.2s;
@@ -96,15 +96,15 @@
     transition:.2s;
   }
 
-  .item a {
-    color: black;
-  }
-
-  .item:hover a {
+  a {
     color: black;
   }
 
   a:hover {
+    color: black;
+  }
+
+  .item a:hover {
     color: #ffffff;
   }
 
