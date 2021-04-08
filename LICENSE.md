@@ -1,2 +1,1 @@
-
-Copyright (C) 2021 Todd Rylaarsdam
+(C) 2021 Todd Rylaarsdam
