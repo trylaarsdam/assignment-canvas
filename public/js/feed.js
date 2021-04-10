@@ -21,12 +21,12 @@ function announcements() {
   var elements = document.getElementsByClassName("announcment");
   if (announcementToggle) {
     for (var i = 0; i < elements.length; i++) {
-      elements[i].display = "none";
+      elements[i].style.display = "none";
     }
   }
   else {
     for (var i = 0; i < elements.length; i++) {
-      elements[i].display = "block"
+      elements[i].style.display = "block"
     }
   }
 }
@@ -35,12 +35,12 @@ function assignments() {
   var elements = document.getElementsByClassName("assignment");
   if (assignmentToggle) {
     for (var i = 0; i < elements.length; i++) {
-      elements[i].display = "none";
+      elements[i].style.display = "none";
     }
   }
   else {
     for (var i = 0; i < elements.length; i++) {
-      elements[i].display = "block"
+      elements[i].style.display = "block"
     }
   }
 }
