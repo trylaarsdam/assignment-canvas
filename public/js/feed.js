@@ -18,7 +18,7 @@ function updateBody(text) {
 }
 
 function announcements() {
-  var elements = document.getElementsByClassName("container announcment");
+  var elements = document.getElementsByClassName("container announcement");
   if (announcementToggle) {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
