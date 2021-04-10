@@ -18,7 +18,7 @@ function updateBody(text) {
 }
 
 function announcements() {
-  var elements = document.getElementsByClassName("announcment");
+  var elements = document.getElementsByClassName("container announcment");
   if (announcementToggle) {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
@@ -32,7 +32,7 @@ function announcements() {
 }
 
 function assignments() {
-  var elements = document.getElementsByClassName("assignment");
+  var elements = document.getElementsByClassName("container assignment");
   if (assignmentToggle) {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
