@@ -26,7 +26,7 @@ function announcements() {
   }
   else {
     for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "block"
+      elements[i].style.display = ""
     }
   }
 }
