@@ -42,7 +42,7 @@ function assignments(button) {
       elements[i].style.display = "none";
     }
     button.style.background = '#555555';
-    assignemntToggle = false;
+    assignmentToggle = false;
   }
   else {
     for (var i = 0; i < elements.length; i++) {
