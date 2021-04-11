@@ -4,22 +4,6 @@
 <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="https://toddr.org/images/favicon.png"/>
 <style>
-    |.image-cropper {
-    |width: 40px;
-    |height: 40px;
-    |position: relative;
-    |overflow: hidden;
-    |border-radius: 50%;
-    |}
-    |
-    |img {
-    |display: inline;
-    |margin: 0 auto;
-    |height: 100%;
-    |width: auto;
-    |float: right;
-    |}
-    |
     |h1 {
     |font-family: Arial, Helvetica, sans-serif; 
     |float:left;
@@ -71,7 +55,7 @@ each course in result
       if course.attachments
           each attachment in course.attachments
               <a class="attachment" href="#{attachment.url}"><p>#{attachment.display_name}</p></a>
-      br
+      hr
       p
           != course.user_name
     </div>
