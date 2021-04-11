@@ -25,12 +25,12 @@
 
 .topnav a:hover {
   border-bottom: 3px solid red;
-  text-align:center;
+  text-align: center;
 }
 
 .topnav a.active {
   border-bottom: 3px solid red;
-  text-align:center;
+  text-align: center;
 }
 
 .main {
@@ -40,4 +40,23 @@
 
 body {
   margin-left: 0px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
