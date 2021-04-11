@@ -17,6 +17,7 @@ hr {
   width: 100%;
   background-color: gray;
   height: 1px;
+  border: none;
 }
 
 .container:hover {
@@ -198,5 +199,6 @@ body {
 }
 img {
   max-width: 300px;
+  padding: 10px;
   max-height: 300px;
 }
