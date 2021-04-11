@@ -1,673 +1,1184 @@
-<!doctype html>
-<html style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;height: auto;min-height: 100vh;box-sizing: border-box !important;">
-    <head style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;"><script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/2360979bd62c6a163cb67485c/c087be733afb1ffe3e473dc5a.js");</script>
-        <meta charset="UTF-8" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        <link rel="shortcut icon" type="image/png" href="https://toddr.org/images/favicon.png"/>
-        <link rel='manifest' href='/manifest.json'>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        <title style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">Assignment Canvas | toddr.org</title>
-        <script type="module">// This is the "Background Sync" service worker
+<!DOCTYPE html>
+<html
+  style="
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box !important;
+  "
+>
+  <head
+    style="
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box !important;
+    "
+  >
+    <script id="mcjs">
+      !(function (c, h, i, m, p) {
+        (m = c.createElement(h)),
+          (p = c.getElementsByTagName(h)[0]),
+          (m.async = 1),
+          (m.src = i),
+          p.parentNode.insertBefore(m, p);
+      })(
+        document,
+        "script",
+        "https://chimpstatic.com/mcjs-connected/js/users/2360979bd62c6a163cb67485c/c087be733afb1ffe3e473dc5a.js"
+      );
+    </script>
+    <meta
+      charset="UTF-8"
+      style="
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box !important;
+      "
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://toddr.org/images/favicon.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+      style="
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box !important;
+      "
+    />
+    <title
+      style="
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box !important;
+      "
+    >
+      Assignment Canvas | toddr.org
+    </title>
+    <script type="module">
+      // This is the "Background Sync" service worker
 
-        // Add this below content to your HTML page inside a <script type="module"></script> tag, or add the js file to your page at the very top to register service worker
-        // If you get an error about not being able to import, double check that you have type="module" on your <script /> tag
-        
-        /*
+      // Add this below content to your HTML page inside a <script type="module"> tag, or add the js file to your page at the very top to register service worker
+      // If you get an error about not being able to import, double check that you have type="module" on your <script /> tag
+
+      /*
          This code uses the pwa-update web component https://github.com/pwa-builder/pwa-update to register your service worker,
          tell the user when there is an update available and let the user know when your PWA is ready to use offline.
         */
-        
-        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-        
-        const el = document.createElement('pwa-update');
-        document.body.appendChild(el);</script>
-    <style type="text/css" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-		html,body{
-			height:100%;
-		}
-		p{
-			margin:10px 0;
-			padding:0;
-		}
-		h1,h2,h3,h4,h5,h6{
-			display:block;
-			margin:0;
-			padding:0;
-		}
-		img,a img{
-			border:0;
-			height:auto;
-			outline:none;
-			text-decoration:none;
-		}
-		body{
-			margin:0 !important;
-			padding:0 !important;
-			width:100%;
-		}
-		.mcnTextBlock:after,.mcnTextBlockInner:after{
-			display:table;
-			clear:both;
-		}
-		*{
-			-webkit-box-sizing:border-box;
-			-moz-box-sizing:border-box;
-			box-sizing:border-box !important;
-		}
-		html,body,.wrapper{
-			height:auto;
-			min-height:100vh;
-		}
-		body{
-			position:relative;
-		}
-		.wrapper{
-			display:flex;
-			flex-direction:column;
-		}
-		.templateSection{
-			display:flex;
-			flex-shrink:0;
-			justify-content:center;
-		}
-		.templateSection:last-of-type{
-			flex-grow:2;
-			min-height:1px;
-		}
-		.sectionFlexColumn{
-			align-items:center;
-			display:flex;
-			flex-direction:column;
-			width:100%;
-		}
-		a.mcnButton{
-			display:block;
-		}
-		.mcnImage{
-			vertical-align:bottom;
-		}
-		.mcnTextContent{
-			word-break:break-word;
-			flex-flow:column;
-		}
-		.mcnTextContent img{
-			max-width:100%;
-			height:auto !important;
-		}
-		.mcnDividerBlock{
-			table-layout:fixed !important;
-		}
-		.mcPrivacyBadge{
-			opacity:0.6;
-		}
-		.mcPrivacyBadge:hover{
-			opacity:1;
-		}
-		.mcPrivacyBadge a.privacyLink{
-			text-decoration:none;
-		}
-		.mcPrivacyBadge a.privacyLink:hover{
-			text-decoration:underline;
-		}
-		.mcnTemplatePageBanner{
-			position:fixed;
-			padding:18px;
-			bottom:0;
-			top:unset;
-			left:0;
-			right:0;
-			box-sizing:border-box;
-			z-index:1;
-		}
-		.mcnPageBannerContainer{
-			position:relative;
-			display:flex;
-			justify-content:center;
-			padding:18px;
-			box-shadow:0px 2px 3px rgba(36, 28, 21, 0.1);
-			border:1px solid #dedddc;
-		}
-		.mcnPageBannerContentContainer{
-			padding:0 24px 0 0;
-		}
-		.mcnCloseButton{
-			opacity:.4;
-			background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAEVQTFRFAAAA////////////////////////////////////////////////////////AAAACwsLlpaWv7+/wMDAwcHB5+fn////js+8jgAAAA90Uk5TABkaT2lvcJi1ttny8/v+KMQKuwAAAJdJREFUKM91UuEawiAIRGdp6pZzi/d/1HDo11bd/RAFTk6QSGFdiDnH4CydYfzMHbM3H/+U+IQ0Df994QuWW8//8kvk4JjEP0itjtf962K86FQ9a6nN1LKqNktOE8uzbMybGOU4eii3imvfZal6DhR7vZastAOR8lAi6UIap4wD8KqAikO58IGwJbiJsO14UHi0+DP8+z5v3a8i3EEOD1IAAAAASUVORK5CYII=); position:absolute;
-			top:18px;
-			right:18px;
-			height:24px;
-			width:24px;
-		}
-		.mcnCloseButton:hover{
-			opacity:.9;
-		}
-		.sr-only{
-			position:absolute;
-			width:1px;
-			height:1px;
-			padding:0;
-			margin:-1px;
-			overflow:hidden;
-			clip:rect(0,0,0,0);
-			border:0;
-		}
-		.mcnPaymentTextContent{
-			min-width:284px;
-		}
-		body{
-			background-color:#F7F7F7;
-			background-image:none;
-			background-repeat:no-repeat;
-			background-position:center;
-			background-size:cover;
-		}
-		.templateSection{
-			padding-right:0px;
-			padding-left:0px;
-		}
-		.contentContainer{
-			max-width:780px;
-			width:100%;
-			flex:0 0 auto;
-		}
-		h1{
-			color:#222222;
-			font-family:Helvetica;
-			font-size:40px;
-			font-style:normal;
-			font-weight:bold;
-			line-height:150%;
-			letter-spacing:normal;
-			text-align:center;
-		}
-		h2{
-			color:#222222;
-			font-family:Helvetica;
-			font-size:34px;
-			font-style:normal;
-			font-weight:bold;
-			line-height:150%;
-			letter-spacing:normal;
-			text-align:left;
-		}
-		h3{
-			color:#444444;
-			font-family:Helvetica;
-			font-size:22px;
-			font-style:normal;
-			font-weight:bold;
-			line-height:150%;
-			letter-spacing:normal;
-			text-align:center;
-		}
-		h4{
-			color:#999999;
-			font-family:Georgia;
-			font-size:20px;
-			font-style:italic;
-			font-weight:normal;
-			line-height:125%;
-			letter-spacing:normal;
-			text-align:left;
-		}
-		.templateHeader{
-			background-color:transparent;
-			background-image:none;
-			background-repeat:no-repeat;
-			background-position:center;
-			background-size:cover;
-			border-top:0;
-			border-bottom:0;
-			padding-top:54px;
-			padding-bottom:0;
-		}
-		.headerContainer{
-			background-color:#FFFFFF;
-			background-image:none;
-			background-repeat:no-repeat;
-			background-position:center;
-			background-size:cover;
-			border-top:0;
-			border-bottom:0;
-			padding-top:36px;
-			padding-bottom:18px;
-			box-shadow:none;
-		}
-		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
-			color:#808080;
-			font-family:Helvetica;
-			font-size:16px;
-			line-height:150%;
-			text-align:left;
-		}
-		.headerContainer .mcnTextContent a,.headerContainer .mcnTextContent p a{
-			color:#00ADD8;
-			font-weight:normal;
-			text-decoration:underline;
-		}
-		.templateBody{
-			background-color:transparent;
-			background-image:none;
-			background-repeat:no-repeat;
-			background-position:center;
-			background-size:cover;
-			border-top:0;
-			border-bottom:0;
-			padding-top:0;
-			padding-bottom:117px;
-		}
-		.bodyContainer{
-			background-color:#FFFFFF;
-			background-image:none;
-			background-repeat:no-repeat;
-			background-position:center;
-			background-size:cover;
-			border-top:0;
-			border-bottom:0;
-			padding-top:0;
-			padding-bottom:45px;
-			box-shadow:none;
-		}
-		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p,.mcnTemplatePageBanner{
-			color:#808080;
-			font-family:Helvetica;
-			font-size:16px;
-			line-height:150%;
-			text-align:left;
-		}
-		.bodyContainer .mcnTextContent a,.bodyContainer .mcnTextContent p a,.mcnTemplatePageBanner a,.mcnTemplatePageBanner p a{
-			color:#00ADD8;
-			font-weight:normal;
-			text-decoration:underline;
-		}
-	@media only screen and (max-width: 480px){
-		body,table,td,p,a,li,blockquote{
-			-webkit-text-size-adjust:none !important;
-		}
 
-}	@media only screen and (max-width: 480px){
-		body{
-			width:100% !important;
-			min-width:100% !important;
-		}
+      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
 
-}	@media only screen and (max-width: 480px){
-		.mcPrivacyBadge{
-			padding:12px 12px !important;
-		}
+      const el = document.createElement("pwa-update");
+      document.body.appendChild(el);
+    </script>
+    <style
+      type="text/css"
+      style="
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box !important;
+      "
+    >
+      html,
+      body {
+        height: 100%;
+      }
+      p {
+        margin: 10px 0;
+        padding: 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      img,
+      a img {
+        border: 0;
+        height: auto;
+        outline: none;
+        text-decoration: none;
+      }
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+      }
+      .mcnTextBlock:after,
+      .mcnTextBlockInner:after {
+        display: table;
+        clear: both;
+      }
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box !important;
+      }
+      html,
+      body,
+      .wrapper {
+        height: auto;
+        min-height: 100vh;
+      }
+      body {
+        position: relative;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .templateSection {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: center;
+      }
+      .templateSection:last-of-type {
+        flex-grow: 2;
+        min-height: 1px;
+      }
+      .sectionFlexColumn {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      a.mcnButton {
+        display: block;
+      }
+      .mcnImage {
+        vertical-align: bottom;
+      }
+      .mcnTextContent {
+        word-break: break-word;
+        flex-flow: column;
+      }
+      .mcnTextContent img {
+        max-width: 100%;
+        height: auto !important;
+      }
+      .mcnDividerBlock {
+        table-layout: fixed !important;
+      }
+      .mcPrivacyBadge {
+        opacity: 0.6;
+      }
+      .mcPrivacyBadge:hover {
+        opacity: 1;
+      }
+      .mcPrivacyBadge a.privacyLink {
+        text-decoration: none;
+      }
+      .mcPrivacyBadge a.privacyLink:hover {
+        text-decoration: underline;
+      }
+      .mcnTemplatePageBanner {
+        position: fixed;
+        padding: 18px;
+        bottom: 0;
+        top: unset;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        z-index: 1;
+      }
+      .mcnPageBannerContainer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 18px;
+        box-shadow: 0px 2px 3px rgba(36, 28, 21, 0.1);
+        border: 1px solid #dedddc;
+      }
+      .mcnPageBannerContentContainer {
+        padding: 0 24px 0 0;
+      }
+      .mcnCloseButton {
+        opacity: 0.4;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAEVQTFRFAAAA////////////////////////////////////////////////////////AAAACwsLlpaWv7+/wMDAwcHB5+fn////js+8jgAAAA90Uk5TABkaT2lvcJi1ttny8/v+KMQKuwAAAJdJREFUKM91UuEawiAIRGdp6pZzi/d/1HDo11bd/RAFTk6QSGFdiDnH4CydYfzMHbM3H/+U+IQ0Df994QuWW8//8kvk4JjEP0itjtf962K86FQ9a6nN1LKqNktOE8uzbMybGOU4eii3imvfZal6DhR7vZastAOR8lAi6UIap4wD8KqAikO58IGwJbiJsO14UHi0+DP8+z5v3a8i3EEOD1IAAAAASUVORK5CYII=);
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        height: 24px;
+        width: 24px;
+      }
+      .mcnCloseButton:hover {
+        opacity: 0.9;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .mcnPaymentTextContent {
+        min-width: 284px;
+      }
+      body {
+        background-color: #f7f7f7;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .templateSection {
+        padding-right: 0px;
+        padding-left: 0px;
+      }
+      .contentContainer {
+        max-width: 780px;
+        width: 100%;
+        flex: 0 0 auto;
+      }
+      h1 {
+        color: #222222;
+        font-family: Helvetica;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+        letter-spacing: normal;
+        text-align: center;
+      }
+      h2 {
+        color: #222222;
+        font-family: Helvetica;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+        letter-spacing: normal;
+        text-align: left;
+      }
+      h3 {
+        color: #444444;
+        font-family: Helvetica;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+        letter-spacing: normal;
+        text-align: center;
+      }
+      h4 {
+        color: #999999;
+        font-family: Georgia;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: normal;
+        line-height: 125%;
+        letter-spacing: normal;
+        text-align: left;
+      }
+      .templateHeader {
+        background-color: transparent;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-top: 0;
+        border-bottom: 0;
+        padding-top: 54px;
+        padding-bottom: 0;
+      }
+      .headerContainer {
+        background-color: #ffffff;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-top: 0;
+        border-bottom: 0;
+        padding-top: 36px;
+        padding-bottom: 18px;
+        box-shadow: none;
+      }
+      .headerContainer .mcnTextContent,
+      .headerContainer .mcnTextContent p {
+        color: #808080;
+        font-family: Helvetica;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: left;
+      }
+      .headerContainer .mcnTextContent a,
+      .headerContainer .mcnTextContent p a {
+        color: #00add8;
+        font-weight: normal;
+        text-decoration: underline;
+      }
+      .templateBody {
+        background-color: transparent;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-top: 0;
+        border-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 117px;
+      }
+      .bodyContainer {
+        background-color: #ffffff;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-top: 0;
+        border-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 45px;
+        box-shadow: none;
+      }
+      .bodyContainer .mcnTextContent,
+      .bodyContainer .mcnTextContent p,
+      .mcnTemplatePageBanner {
+        color: #808080;
+        font-family: Helvetica;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: left;
+      }
+      .bodyContainer .mcnTextContent a,
+      .bodyContainer .mcnTextContent p a,
+      .mcnTemplatePageBanner a,
+      .mcnTemplatePageBanner p a {
+        color: #00add8;
+        font-weight: normal;
+        text-decoration: underline;
+      }
+      @media only screen and (max-width: 480px) {
+        body,
+        table,
+        td,
+        p,
+        a,
+        li,
+        blockquote {
+          -webkit-text-size-adjust: none !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        body {
+          width: 100% !important;
+          min-width: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcPrivacyBadge {
+          padding: 12px 12px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcPrivacyBadgeContent {
+          flex-direction: column;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .monkeyrewards {
+          order: 1;
+          margin-bottom: 18px;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .reportAbuseWrapper {
+          order: 2;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnCaptionBlockInner {
+          flex: 0 0 auto;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnCaptionBlock {
+          flex-direction: column;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnVideoContainer {
+          width: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnRetinaImage {
+          max-width: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnTextBlockInner {
+          padding: 9px 0 !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageGroupContent {
+          padding: 9px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnCaptionColumn {
+          flex-direction: column !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnSignUpFormContentContainer {
+          flex: auto !important;
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnCaptionLeftContentInner,
+        .mcnCaptionRightContentInner {
+          padding: 0 9px 9px 9px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageCardRightContentInner .mcnImageCardImageContent,
+        .mcnImageCardLeftContentInner .mcnImageCardImageContent {
+          padding: 18px 18px 0 18px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnTextBlockInner,
+        .mcnBoxedTextBlockInner,
+        .mcnImageCardLeftContentInner,
+        .mcnImageCardRightContentInner,
+        .mcnCaptionLeftContentInner,
+        .mcnCaptionRightContentInner {
+          flex-direction: column !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnCaptionLeftContentInner .mcnTextContent,
+        .mcnCaptionRightContentInner .mcnTextContent {
+          padding: 9px 9px 0 9px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageCardTopImageContent,
+        .mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent {
+          padding-top: 18px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageCardBottomImageContent {
+          padding-bottom: 9px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageGroupBlockInner {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageGroupBlockOuter {
+          padding-top: 9px !important;
+          padding-bottom: 9px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnTextContent,
+        .mcnBoxedTextContentColumn {
+          padding-right: 18px !important;
+          padding-left: 18px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnImageCardLeftImageContent,
+        .mcnImageCardRightImageContent {
+          padding-right: 18px !important;
+          padding-bottom: 0 !important;
+          padding-left: 18px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcpreview-image-uploader {
+          display: none !important;
+          width: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnRecContentContainer--row {
+          flex: 0 0 50% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnRecContentContainer .mcnProductTitle,
+        .mcnRecContentContainer .mcnButtonBlock,
+        .mcnRecContentContainer .mcnProductPrice {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnPaymentProduct {
+          flex-direction: column !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnPaymentTextContent {
+          min-width: 200px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnPaymentGalleryImages div {
+          width: 100% !important;
+          min-width: 0 !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnGalleryImage:nth-last-child(2):first-child,
+        .mcnGalleryImage:nth-last-child(2):first-child ~ .mcnGalleryImage {
+          height: 90px !important;
+          min-width: 55px !important;
+          max-width: 90px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnGalleryImage:nth-last-child(3):first-child,
+        .mcnGalleryImage:nth-last-child(3):first-child ~ .mcnGalleryImage {
+          height: 60px !important;
+          min-width: 55px !important;
+          max-width: 60px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnGalleryImage:nth-last-child(4):first-child,
+        .mcnGalleryImage:nth-last-child(4):first-child ~ .mcnGalleryImage {
+          height: 60px !important;
+          min-width: 35px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnGalleryImage:nth-last-child(5):first-child,
+        .mcnGalleryImage:nth-last-child(5):first-child ~ .mcnGalleryImage {
+          height: 50px !important;
+          min-width: 35px !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcPrivacyBadge {
+          opacity: 1;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        h1 {
+          font-size: 30px !important;
+          line-height: 125% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        h2 {
+          font-size: 26px !important;
+          line-height: 125% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        h3 {
+          font-size: 20px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        h4 {
+          font-size: 18px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .mcnBoxedTextContentContainer .mcnTextContent,
+        .mcnBoxedTextContentContainer .mcnTextContent p {
+          font-size: 14px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .headerContainer .mcnTextContent,
+        .headerContainer .mcnTextContent p {
+          font-size: 16px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .bodyContainer .mcnTextContent,
+        .bodyContainer .mcnTextContent p,
+        .mcnTemplatePageBanner {
+          font-size: 16px !important;
+          line-height: 150% !important;
+        }
+      }
+      .google-button {
+        height: 40px;
+        border-width: 0;
+        background: white;
+        color: #737373;
+        border-radius: 5px;
+        white-space: nowrap;
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        transition-property: background-color, box-shadow;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in-out;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-}	@media only screen and (max-width: 480px){
-		.mcPrivacyBadgeContent{
-			flex-direction:column;
-		}
+        &:focus,
+        &:hover {
+          box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+        }
 
-}	@media only screen and (max-width: 480px){
-		.monkeyrewards{
-			order:1;
-			margin-bottom:18px;
-		}
+        &:active {
+          background-color: #e5e5e5;
+          box-shadow: none;
+          transition-duration: 10ms;
+        }
+      }
 
-}	@media only screen and (max-width: 480px){
-		.reportAbuseWrapper{
-			order:2;
-		}
+      .google-button__icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 8px 0 8px 8px;
+        width: 18px;
+        height: 18px;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+      }
 
-}	@media only screen and (max-width: 480px){
-		.mcnCaptionBlockInner{
-			flex:0 0 auto;
-		}
+      .google-button__icon--plus {
+        width: 27px;
+      }
 
-}	@media only screen and (max-width: 480px){
-		.mcnCaptionBlock{
-			flex-direction:column;
-		}
+      .google-button__text {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 24px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: "Roboto", arial, sans-serif;
+      }
 
-}	@media only screen and (max-width: 480px){
-		.mcnVideoContainer{
-			width:100% !important;
-		}
+      html,
+      body {
+        height: 100%;
+      }
 
-}	@media only screen and (max-width: 480px){
-		.mcnRetinaImage{
-			max-width:100% !important;
-		}
+      body {
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-}	@media only screen and (max-width: 480px){
-		.mcnTextBlockInner{
-			padding:9px 0 !important;
-		}
+      button ~ button {
+        margin-left: 20px;
+      }
+    </style>
+    <!-- Cookie Consent by https://www.PrivacyPolicies.com -->
+    <script type="text/javascript" src="./cookie-consent.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        cookieconsent.run({
+          notice_banner_type: "interstitial",
+          consent_type: "express",
+          palette: "dark",
+          language: "en",
+          website_name: "toddr.org",
+          change_preferences_selector: "#cookiePreferences",
+          cookies_policy_url: "https://toddr.org/legal",
+        });
+      });
+    </script>
 
-}	@media only screen and (max-width: 480px){
-		.mcnImageGroupContent{
-			padding:9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnCaptionColumn{
-			flex-direction:column !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnSignUpFormContentContainer{
-			flex:auto !important;
-			padding-right:0 !important;
-			padding-left:0 !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnCaptionLeftContentInner,.mcnCaptionRightContentInner{
-			padding:0 9px 9px 9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageCardRightContentInner .mcnImageCardImageContent,.mcnImageCardLeftContentInner .mcnImageCardImageContent{
-			padding:18px 18px 0 18px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnTextBlockInner,.mcnBoxedTextBlockInner,.mcnImageCardLeftContentInner,.mcnImageCardRightContentInner,.mcnCaptionLeftContentInner,.mcnCaptionRightContentInner{
-			flex-direction:column !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnCaptionLeftContentInner .mcnTextContent,.mcnCaptionRightContentInner .mcnTextContent{
-			padding:9px 9px 0 9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageCardTopImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
-			padding-top:18px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageCardBottomImageContent{
-			padding-bottom:9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageGroupBlockInner{
-			padding-top:0 !important;
-			padding-bottom:0 !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageGroupBlockOuter{
-			padding-top:9px !important;
-			padding-bottom:9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnTextContent,.mcnBoxedTextContentColumn{
-			padding-right:18px !important;
-			padding-left:18px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
-			padding-right:18px !important;
-			padding-bottom:0 !important;
-			padding-left:18px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcpreview-image-uploader{
-			display:none !important;
-			width:100% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnRecContentContainer--row{
-			flex:0 0 50% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnRecContentContainer .mcnProductTitle,.mcnRecContentContainer .mcnButtonBlock,.mcnRecContentContainer .mcnProductPrice{
-			padding-left:0 !important;
-			padding-right:0 !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnPaymentProduct{
-			flex-direction:column !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnPaymentTextContent{
-			min-width:200px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnPaymentGalleryImages div{
-			width:100% !important;
-			min-width:0 !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnGalleryImage:nth-last-child(2):first-child,.mcnGalleryImage:nth-last-child(2):first-child ~ .mcnGalleryImage{
-			height:90px !important;
-			min-width:55px !important;
-			max-width:90px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnGalleryImage:nth-last-child(3):first-child,.mcnGalleryImage:nth-last-child(3):first-child ~ .mcnGalleryImage{
-			height:60px !important;
-			min-width:55px !important;
-			max-width:60px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnGalleryImage:nth-last-child(4):first-child,.mcnGalleryImage:nth-last-child(4):first-child ~ .mcnGalleryImage{
-			height:60px !important;
-			min-width:35px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnGalleryImage:nth-last-child(5):first-child,.mcnGalleryImage:nth-last-child(5):first-child ~ .mcnGalleryImage{
-			height:50px !important;
-			min-width:35px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcPrivacyBadge{
-			opacity:1;
-		}
-
-}	@media only screen and (max-width: 480px){
-		h1{
-			font-size:30px !important;
-			line-height:125% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		h2{
-			font-size:26px !important;
-			line-height:125% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		h3{
-			font-size:20px !important;
-			line-height:150% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		h4{
-			font-size:18px !important;
-			line-height:150% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
-			font-size:14px !important;
-			line-height:150% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
-			font-size:16px !important;
-			line-height:150% !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p,.mcnTemplatePageBanner{
-			font-size:16px !important;
-			line-height:150% !important;
-		}
-
-}
-.google-button {
-  height: 40px;
-  border-width: 0;
-  background: white;
-  color: #737373;
-  border-radius: 5px;
-  white-space: nowrap;
-  box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-  transition-property: background-color, box-shadow;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  &:focus,
-  &:hover {
-    box-shadow: 1px 4px 5px 1px rgba(0,0,0,0.1);
-  }
-  
-  &:active {
-    background-color: #e5e5e5;
-    box-shadow: none;
-    transition-duration: 10ms;
-  }
-}
-    
-.google-button__icon {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 8px 0 8px 8px;
-  width: 18px;
-  height: 18px;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-}
-
-.google-button__icon--plus {
-  width: 27px;
-}
-
-.google-button__text {
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0 24px;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: 'Roboto',arial,sans-serif;
-}
-
-
-html, body {
-  height: 100%;
-}
-
-body {
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button ~ button {
-  margin-left: 20px;
-}
-
-</style><!-- Cookie Consent by https://www.PrivacyPolicies.com -->
-<script type="text/javascript" src="./cookie-consent.js"></script>
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function () {
-cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express","palette":"dark","language":"en","website_name":"toddr.org","change_preferences_selector":"#cookiePreferences","cookies_policy_url":"https://toddr.org/legal"});
-});
-</script>
-
-<!-- End Cookie Consent --></head>
-    <body data-template-page-bg style="background:#F7F7F7 none no-repeat center/cover;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;height: auto;width: 100%;position: relative;background-color: #F7F7F7;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;min-height: 100vh;box-sizing: border-box !important;margin: 0 !important;padding: 0 !important;">
-
-		<div class="wrapper" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;height: auto;min-height: 100vh;display: flex;flex-direction: column;box-sizing: border-box !important;">
-            <div class="templateSection templateHeader" style="background:transparent none no-repeat center/cover;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: flex;flex-shrink: 0;justify-content: center;padding-right: 0px;padding-left: 0px;background-color: transparent;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 54px;padding-bottom: 0;box-sizing: border-box !important;">
-                
-				<div class="headerContainer contentContainer" style="background:#FFFFFF none no-repeat center/cover;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;max-width: 780px;width: 100%;flex: 0 0 auto;background-color: #FFFFFF;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 36px;padding-bottom: 18px;box-shadow: none;box-sizing: border-box !important;"><div class="mcnImageBlock mcnImageBlockInner" style="padding: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-    <div class="mcnImageContent" style="display: flex;padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;justify-content: center;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        
-        
-        <img alt="" src="https://mcusercontent.com/2360979bd62c6a163cb67485c/images/55ea1827-227e-47c8-b85d-6a00e0629721.png" width="auto" style="max-width: 100%;align-self: center;flex: 0 0 auto;box-shadow: none;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;border: 0;height: auto;outline: none;text-decoration: none;vertical-align: bottom;box-sizing: border-box !important;" class="mcnImage">
-        
-        
-    </div>
-</div></div>
+    <!-- End Cookie Consent -->
+  </head>
+  <body
+    data-template-page-bg
+    style="
+      background: #f7f7f7 none no-repeat center/cover;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      height: auto;
+      width: 100%;
+      position: relative;
+      background-color: #f7f7f7;
+      background-image: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      min-height: 100vh;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    "
+  >
+    <div
+      class="wrapper"
+      style="
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box !important;
+      "
+    >
+      <div
+        class="templateSection templateHeader"
+        style="
+          background: transparent none no-repeat center/cover;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          display: flex;
+          flex-shrink: 0;
+          justify-content: center;
+          padding-right: 0px;
+          padding-left: 0px;
+          background-color: transparent;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 0;
+          padding-top: 54px;
+          padding-bottom: 0;
+          box-sizing: border-box !important;
+        "
+      >
+        <div
+          class="headerContainer contentContainer"
+          style="
+            background: #ffffff none no-repeat center/cover;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            max-width: 780px;
+            width: 100%;
+            flex: 0 0 auto;
+            background-color: #ffffff;
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-top: 0;
+            border-bottom: 0;
+            padding-top: 36px;
+            padding-bottom: 18px;
+            box-shadow: none;
+            box-sizing: border-box !important;
+          "
+        >
+          <div
+            class="mcnImageBlock mcnImageBlockInner"
+            style="
+              padding: 9px;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box !important;
+            "
+          >
+            <div
+              class="mcnImageContent"
+              style="
+                display: flex;
+                padding-right: 9px;
+                padding-left: 9px;
+                padding-top: 0;
+                padding-bottom: 0;
+                justify-content: center;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box !important;
+              "
+            >
+              <img
+                alt=""
+                src="https://mcusercontent.com/2360979bd62c6a163cb67485c/images/55ea1827-227e-47c8-b85d-6a00e0629721.png"
+                width="auto"
+                style="
+                  max-width: 100%;
+                  align-self: center;
+                  flex: 0 0 auto;
+                  box-shadow: none;
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  border: 0;
+                  height: auto;
+                  outline: none;
+                  text-decoration: none;
+                  vertical-align: bottom;
+                  box-sizing: border-box !important;
+                "
+                class="mcnImage"
+              />
             </div>
-			
-            <div class="templateSection templateBody" style="background:transparent none no-repeat center/cover;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: flex;flex-shrink: 0;justify-content: center;padding-right: 0px;padding-left: 0px;background-color: transparent;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom: 117px;box-sizing: border-box !important;">
-                <div class="sectionFlexColumn" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;align-items: center;display: flex;flex-direction: column;width: 100%;box-sizing: border-box !important;">
-                    <div class="bodyContainer contentContainer" style="background:#FFFFFF none no-repeat center/cover;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;max-width: 780px;width: 100%;flex: 0 0 auto;background-color: #FFFFFF;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom: 45px;box-shadow: none;box-sizing: border-box !important;"><div width="100%" class="mcnTextBlock" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-						<div class="mcnTextBlockInner" style="display: flex;padding: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        
-        <div style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-            <div class="mcnTextContent" style="padding-top: 0;padding-right: 9px;padding-bottom: 9px;padding-left: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;word-break: break-word;flex-flow: column;color: #808080;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;box-sizing: border-box !important;">
-                <span style="align-items:center">
-				
-				</span>
-            </div>
+          </div>
         </div>
-        
-    </div>
-    <div class="mcnTextBlockInner" style="display: flex;padding: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        
-        <div style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-            <div class="mcnTextContent" style="padding-top: 0;padding-right: 9px;padding-bottom: 9px;padding-left: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;word-break: break-word;flex-flow: column;color: #808080;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;box-sizing: border-box !important;">
-                <h1 style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;margin: 0;padding: 0;color: #222222;font-family: Helvetica;font-size: 40px;font-style: normal;font-weight: bold;line-height: 150%;letter-spacing: normal;text-align: center;box-sizing: border-box !important;">Assignment Canvas</h1>
+      </div>
 
-            </div>
-        </div>
-        
-    </div>
-</div><div width="100%" class="mcnTextBlock" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-    <div class="mcnTextBlockInner" style="display: flex;padding: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        
-        <div style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-            <div class="mcnTextContent" style="padding-top: 0;padding-right: 9px;padding-bottom: 9px;padding-left: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;word-break: break-word;flex-flow: column;color: #808080;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;box-sizing: border-box !important;">
-                <p style="text-align: center;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;margin: 10px 0;padding: 0;color: #808080;font-family: Helvetica;font-size: 16px;line-height: 150%;box-sizing: border-box !important;">This is in active development, but most features work. More of my work: <a href="https://toddr.org" target="_blank" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;color: #00ADD8;font-weight: normal;text-decoration: underline;box-sizing: border-box !important;">toddr.org</a>&nbsp;</p>
-
-            </div>
-        </div>
-        
-    </div>
-	
-	<div class="mcnTextBlockInner" style="display: flex;padding: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-        
-        <div style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box !important;">
-            <div class="mcnTextContent" style="padding-top: 0;padding-right: 9px;padding-bottom: 9px;padding-left: 9px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;word-break: break-word;flex-flow: column;color: #808080;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;box-sizing: border-box !important;">
-                <span style="align-items:center">
-				<a type="button" class="google-button" href="https://canvas.toddr.org/auth/google">
-					<span class="google-button__icon">
-					  <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
-					</span>
-					<span class="google-button__text">Sign in with Google</span>
-				</a>
-				</span>
-            </div>
-        </div>
-        
-    </div>
-
-	
-</div></div>
+      <div
+        class="templateSection templateBody"
+        style="
+          background: transparent none no-repeat center/cover;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          display: flex;
+          flex-shrink: 0;
+          justify-content: center;
+          padding-right: 0px;
+          padding-left: 0px;
+          background-color: transparent;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 0;
+          padding-top: 0;
+          padding-bottom: 117px;
+          box-sizing: border-box !important;
+        "
+      >
+        <div
+          class="sectionFlexColumn"
+          style="
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box !important;
+          "
+        >
+          <div
+            class="bodyContainer contentContainer"
+            style="
+              background: #ffffff none no-repeat center/cover;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              max-width: 780px;
+              width: 100%;
+              flex: 0 0 auto;
+              background-color: #ffffff;
+              background-image: none;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: cover;
+              border-top: 0;
+              border-bottom: 0;
+              padding-top: 0;
+              padding-bottom: 45px;
+              box-shadow: none;
+              box-sizing: border-box !important;
+            "
+          >
+            <div
+              width="100%"
+              class="mcnTextBlock"
+              style="
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box !important;
+              "
+            >
+              <div
+                class="mcnTextBlockInner"
+                style="
+                  display: flex;
+                  padding: 9px;
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box !important;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box !important;
+                  "
+                >
+                  <div
+                    class="mcnTextContent"
+                    style="
+                      padding-top: 0;
+                      padding-right: 9px;
+                      padding-bottom: 9px;
+                      padding-left: 9px;
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      word-break: break-word;
+                      flex-flow: column;
+                      color: #808080;
+                      font-family: Helvetica;
+                      font-size: 16px;
+                      line-height: 150%;
+                      text-align: left;
+                      box-sizing: border-box !important;
+                    "
+                  >
+                    <span style="align-items: center"> </span>
+                  </div>
                 </div>
+              </div>
+              <div
+                class="mcnTextBlockInner"
+                style="
+                  display: flex;
+                  padding: 9px;
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box !important;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box !important;
+                  "
+                >
+                  <div
+                    class="mcnTextContent"
+                    style="
+                      padding-top: 0;
+                      padding-right: 9px;
+                      padding-bottom: 9px;
+                      padding-left: 9px;
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      word-break: break-word;
+                      flex-flow: column;
+                      color: #808080;
+                      font-family: Helvetica;
+                      font-size: 16px;
+                      line-height: 150%;
+                      text-align: left;
+                      box-sizing: border-box !important;
+                    "
+                  >
+                    <h1
+                      style="
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        display: block;
+                        margin: 0;
+                        padding: 0;
+                        color: #222222;
+                        font-family: Helvetica;
+                        font-size: 40px;
+                        font-style: normal;
+                        font-weight: bold;
+                        line-height: 150%;
+                        letter-spacing: normal;
+                        text-align: center;
+                        box-sizing: border-box !important;
+                      "
+                    >
+                      Assignment Canvas
+                    </h1>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div
+              width="100%"
+              class="mcnTextBlock"
+              style="
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box !important;
+              "
+            >
+              <div
+                class="mcnTextBlockInner"
+                style="
+                  display: flex;
+                  padding: 9px;
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box !important;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box !important;
+                  "
+                >
+                  <div
+                    class="mcnTextContent"
+                    style="
+                      padding-top: 0;
+                      padding-right: 9px;
+                      padding-bottom: 9px;
+                      padding-left: 9px;
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      word-break: break-word;
+                      flex-flow: column;
+                      color: #808080;
+                      font-family: Helvetica;
+                      font-size: 16px;
+                      line-height: 150%;
+                      text-align: left;
+                      box-sizing: border-box !important;
+                    "
+                  >
+                    <p
+                      style="
+                        text-align: center;
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        margin: 10px 0;
+                        padding: 0;
+                        color: #808080;
+                        font-family: Helvetica;
+                        font-size: 16px;
+                        line-height: 150%;
+                        box-sizing: border-box !important;
+                      "
+                    >
+                      This is in active development, but most features work.
+                      More of my work:
+                      <a
+                        href="https://toddr.org"
+                        target="_blank"
+                        style="
+                          -webkit-box-sizing: border-box;
+                          -moz-box-sizing: border-box;
+                          color: #00add8;
+                          font-weight: normal;
+                          text-decoration: underline;
+                          box-sizing: border-box !important;
+                        "
+                        >toddr.org</a
+                      >&nbsp;
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="mcnTextBlockInner"
+                style="
+                  display: flex;
+                  padding: 9px;
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box !important;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box !important;
+                  "
+                >
+                  <div
+                    class="mcnTextContent"
+                    style="
+                      padding-top: 0;
+                      padding-right: 9px;
+                      padding-bottom: 9px;
+                      padding-left: 9px;
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      word-break: break-word;
+                      flex-flow: column;
+                      color: #808080;
+                      font-family: Helvetica;
+                      font-size: 16px;
+                      line-height: 150%;
+                      text-align: left;
+                      box-sizing: border-box !important;
+                    "
+                  >
+                    <span style="align-items: center">
+                      <a
+                        type="button"
+                        class="google-button"
+                        href="https://canvas.toddr.org/auth/google"
+                      >
+                        <span class="google-button__icon">
+                          <svg
+                            viewBox="0 0 366 372"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z"
+                              id="Shape"
+                              fill="#EA4335"
+                            />
+                            <path
+                              d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z"
+                              id="Shape"
+                              fill="#FBBC05"
+                            />
+                            <path
+                              d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z"
+                              id="Shape"
+                              fill="#4285F4"
+                            />
+                            <path
+                              d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z"
+                              fill="#34A853"
+                            />
+                          </svg>
+                        </span>
+                        <span class="google-button__text"
+                          >Sign in with Google</span
+                        >
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-		<script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
-    <script type="text/javascript" src="https://eep.io/mc-release/1.1.1a7e81ef01d6203c6f480e07be375f95c945751b0/js-legacy/js/dojo/dojo.js" data-dojo-config="parseOnLoad: true, usePlainJson: true, isDebug: false"></script><script type="text/javascript" src="https://eep.io/mc-release/1.1.1a7e81ef01d6203c6f480e07be375f95c945751b0/js-legacy/js/mojo/mclandingpage.js"></script><script type="text/javascript" src="//mc.us7.list-manage.com/pages/track/open?u=2360979bd62c6a163cb67485c&id=0300e8a4e1f0" async></script></body>
+      </div>
+    </div>
+    <script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
+    <script
+      type="text/javascript"
+      src="https://eep.io/mc-release/1.1.1a7e81ef01d6203c6f480e07be375f95c945751b0/js-legacy/js/dojo/dojo.js"
+      data-dojo-config="parseOnLoad: true, usePlainJson: true, isDebug: false"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://eep.io/mc-release/1.1.1a7e81ef01d6203c6f480e07be375f95c945751b0/js-legacy/js/mojo/mclandingpage.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//mc.us7.list-manage.com/pages/track/open?u=2360979bd62c6a163cb67485c&id=0300e8a4e1f0"
+      async
+    ></script>
+  </body>
 </html>
