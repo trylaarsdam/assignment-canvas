@@ -1,172 +1,196 @@
 /* Style the container with a rounded border, grey background and some padding and margin */
 .container {
-    border: 2px solid #ccc;
-    background-color: #eee;
-    border-radius: 5px;
-    padding: 16px;
-    margin: 16px 0;
-    -o-transition:.5s;
-    -ms-transition:.5s;
-    -moz-transition:.5s;
-    -webkit-transition:.5s;
-    /* ...and now for the proper property */
-    transition:.5s;
-  }
-  
-  .container:hover {
-    background-color: #eee;
+  border: 2px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px 0;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  /* ...and now for the proper property */
+  transition: 0.5s;
+}
+
+.container:hover {
+  background-color: #eee;
+}
+
+/* Clear floats after containers */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+.container img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Increase the font-size of a span element */
+.container span {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+/* Add media queries for responsiveness. This will center both the text and the image inside the container */
+@media (max-width: 500px) {
+  .container {
+    text-align: center;
   }
 
-  /* Clear floats after containers */
-  .container::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
   .container img {
-    float: left;
-    margin-right: 20px;
-    border-radius: 50%;
+    margin: auto;
+    float: none;
+    display: block;
   }
-  
-  /* Increase the font-size of a span element */
-  .container span {
-    font-size: 20px;
-    margin-right: 15px;
-  }
-  
-  /* Add media queries for responsiveness. This will center both the text and the image inside the container */
-  @media (max-width: 500px) {
-    .container {
-      text-align: center;
-    }
-  
-    .container img {
-      margin: auto;
-      float: none;
-      display: block;
-    }
-  }
+}
 
-  .topnav {
-    background-color: #333;
-    overflow: hidden;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-  }
-  
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    overflow: auto;
-    padding: 14px 14px;
-    text-decoration: none;
-    font-size: 17px;
-    border-bottom: 3px solid transparent;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-  }
-  
-  .topnav a:hover {
-    border-bottom: 3px solid red;
-    text-align:center;
-    color: white;
-  }
-  
-  .topnav a.active {
-    border-bottom: 3px solid red;
-    text-align:center;
-  }
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
 
-  .item a {
-    color: red;
-    text-decoration: none;
-    -o-transition:.2s;
-    -ms-transition:.2s;
-    -moz-transition:.2s;
-    -webkit-transition:.2s;
-    /* ...and now for the proper property */
-    transition:.2s;
-  }
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  overflow: auto;
+  padding: 14px 14px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 3px solid transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
 
-  a {
-    color: black;
-    text-decoration: none;
-  }
+.topnav a:hover {
+  border-bottom: 3px solid red;
+  text-align: center;
+  color: white;
+}
 
-  .attachment {
-    color: red;
-  }
+.topnav a.active {
+  border-bottom: 3px solid red;
+  text-align: center;
+}
 
-  a:hover {
-    color: black;
-  }
+.item a {
+  color: red;
+  text-decoration: none;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  /* ...and now for the proper property */
+  transition: 0.2s;
+}
 
-  .item a:hover {
-    color: #ffffff;
-  }
+a {
+  color: black;
+  text-decoration: none;
+}
 
-  #loader {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 70px;
-    height: 70px;
-    margin: -76px 0 0 -76px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid red;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
-  #myDiv {
-    display: none;
-    text-align: center;
-  }
+.attachment {
+  color: red;
+}
 
-  .main {
-    margin-top: 80px; /* Add a top margin to avoid content overlay */
-    margin-left: 8px;
+a:hover {
+  color: black;
+}
+
+.item a:hover {
+  color: #ffffff;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid red;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
   }
-  body {
-    margin-left: 0px;
+  100% {
+    -webkit-transform: rotate(360deg);
   }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+.main {
+  margin-top: 80px; /* Add a top margin to avoid content overlay */
+  margin-left: 8px;
+}
+body {
+  margin-left: 0px;
+}
+img {
+  max-width: 300px;
+  max-height: 300px;
+}
