@@ -34,7 +34,6 @@ hr {
 /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
 .container img {
   float: left;
-  margin-right: 20px;
 }
 
 /* Increase the font-size of a span element */
