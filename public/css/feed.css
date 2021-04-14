@@ -204,7 +204,9 @@ img {
 ::-webkit-scrollbar {
   width: 10px;
 }
-
+button {
+  user-select: none;
+}
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
