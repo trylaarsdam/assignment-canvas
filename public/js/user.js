@@ -6,9 +6,9 @@ var span;
 window.onload = function () {
   inputFieldAPI = document.getElementById('canvasAPI');
   inputFieldURL = document.getElementById('canvasURL');
-  var modal = document.getElementById("myModal");
+  modal = document.getElementById("myModal");
 
-  var span = document.getElementsByClassName("close")[0];
+  span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
