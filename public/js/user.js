@@ -41,7 +41,7 @@ async function setCanvasURL(databaseUUID) {
   console.log(databaseUUID);
   console.log(inputFieldURL.value);
   var httpRemoved;
-  if (inputFieldURL.value.startsWith('https://') || inputFieldURL.value.startsWith('http://')) {
+  if (inputFieldURL.value.toLowerCase().startsWith('https://') || inputFieldURL.value.toLowerCase().startsWith('http://')) {
     httpRemoved = inputFieldURL.value.split("://")[1];
   }
   else {
