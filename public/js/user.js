@@ -1,15 +1,16 @@
 var inputFieldAPI;
 var inputFieldURL;
+var modal;
+var span;
 
 window.onload = function () {
   inputFieldAPI = document.getElementById('canvasAPI');
-  inputFieldURL = document.getElementById('canvasURL')
-}
-// Get the modal
-var modal = document.getElementById("myModal");
+  inputFieldURL = document.getElementById('canvasURL');
+  var modal = document.getElementById("myModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("close")[0];
+}
+
 async function setCanvasAPI(databaseUUID) {
   //var xhttp = new XMLHttpRequest();
   console.log(databaseUUID);
