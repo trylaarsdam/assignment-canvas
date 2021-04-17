@@ -65,6 +65,8 @@ async function setCanvasURL(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: httpRemoved })
   })
+
+  return false;
 }
 
 
