@@ -90,7 +90,7 @@ h3 API Key
 </form>
 h3 Canvas URL
 p e.g. timothy.instructure.com (do not include https://)
-<form onsubmit="setCanvasURL('#{databaseUUID}')">
+<form onsubmit="setCanvasURL('#{databaseUUID}'); return false">
     |<input id="canvasURL" style="width:40%" type="text" value="" placeholder="Set Canvas URL" required />
     |<button type="submit" style="width:10%" value="Submit key">Load</button>
 </form>
