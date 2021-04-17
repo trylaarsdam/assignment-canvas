@@ -51,8 +51,13 @@ async function setCanvasURL(databaseUUID) {
   if (httpRemoved.split("/").length > 1) {
     httpRemoved = httpRemoved.split("/")[0];
     //TODO add modal
-    modal.style.display = "none";
   }
+
+  if (httpRemoved != inputFieldURL.value) {
+    document.getElementById("canvasurl").innerHTML = httpRemoved
+    modal.style.display = "block";
+  }
+
   await fetch("https://canvas.toddr.org/api/setCanvasURL/" + databaseUUID + "/" + httpRemoved, {
     method: "POST",
     headers: {
