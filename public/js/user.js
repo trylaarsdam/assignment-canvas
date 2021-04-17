@@ -5,7 +5,11 @@ window.onload = function () {
   inputFieldAPI = document.getElementById('canvasAPI');
   inputFieldURL = document.getElementById('canvasURL')
 }
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 async function setCanvasAPI(databaseUUID) {
   //var xhttp = new XMLHttpRequest();
   console.log(databaseUUID);
@@ -34,6 +38,7 @@ async function setCanvasURL(databaseUUID) {
   if (httpRemoved.split("/").length > 1) {
     httpRemoved = httpRemoved.split("/")[0];
     //TODO add modal
+    modal.style.display = "none";
   }
   await fetch("https://canvas.toddr.org/api/setCanvasURL/" + databaseUUID + "/" + httpRemoved, {
     method: "POST",
@@ -42,4 +47,17 @@ async function setCanvasURL(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: httpRemoved })
   })
+}
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
