@@ -85,13 +85,13 @@ h2 Canvas Settings
 p For more help: <a href="https://canvas.toddr.org/onboarding">see the onboarding guide</a>
 h3 API Key
 <form onsubmit="setCanvasAPI('#{databaseUUID}')">
-    |<input id="canvasAPI" style="width:40%" type="text" value="" placeholder="Set Canvas API Key" required />
+    |<input id="canvasAPI" style="width:40%" type="password" value="" placeholder="Set Canvas API Key" required />
     |<button type="submit" style="width:10%" value="Submit key">Load</button>
 </form>
 h3 Canvas URL
 p e.g. timothy.instructure.com (do not include https://)
 <form onsubmit="setCanvasURL('#{databaseUUID}'); return false">
-    |<input id="canvasURL" style="width:40%" type="text" value="" placeholder="Set Canvas URL" required />
+    |<input id="canvasURL" style="width:40%" type="url" value="" placeholder="Set Canvas URL" required />
     |<button type="submit" style="width:10%" value="Submit key">Load</button>
 </form>
 </div>
