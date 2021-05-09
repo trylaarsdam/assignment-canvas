@@ -100,11 +100,11 @@
   }
 }
 
-.downloadbtn button {
+.downloadbtn {
   background-color: red;
   border: none;
   color: white;
-  padding: 12px 30px;
+  padding: 0px 30px;
   cursor: pointer;
   font-size: 20px;
   width: 400px;
