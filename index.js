@@ -96,6 +96,12 @@ app.get("/user", (req, res) => {
   if (toggle) {
     if (typeof (req.user) !== 'undefined') {
       console.log("googleID: " + req.user.googleID);//req.user.googleID);
+      var userEntry = await db.getFile('auth', 'users', { id: req.user.uuid })
+
+      if (userEntry[0].banned == true) {
+        return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
+      }
+
       res.render('user', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString() })//{name: req.user.name, profilePictureURL: req.user.profilePiture})
     }
     else {
@@ -250,6 +256,9 @@ app.get('/classes', async (req, res) => {
   if (typeof (req.user) !== "undefined") {
     console.log("user is not undefined")
     userEntry = await db.getFile('auth', 'users', { id: req.user.id });
+    if (userEntry[0].banned == true) {
+      return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
+    }
     if (typeof (userEntry[0]) !== "undefined") {
       res.render('classes', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey })
     }
@@ -277,6 +286,9 @@ app.get('/classes/:class', async (req, res) => {
     var currentDate = new Date();
     var returnResult;
     userEntry = await db.getFile('auth', 'users', { id: req.user.id });
+    if (userEntry[0].banned == true) {
+      return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
+    }
     if (typeof (userEntry[0]) !== "undefined") {
       console.log("user entry was found")
       console.log(userEntry[0])
@@ -341,6 +353,9 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
       var currentDate = new Date();
       var formattedDate = currentDate.toISOString();
       userEntry = await db.getFile('auth', 'users', { id: req.user.id });
+      if (userEntry[0].banned == true) {
+        return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
+      }
       if (typeof (userEntry[0]) !== "undefined") {
         res.render('announcement', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey, announcementID: req.params.announcement, classID: req.params.class })
       }
@@ -357,6 +372,9 @@ app.get('/feed', async (req, res) => {
     var currentDate = new Date();
     var formattedDate = currentDate.toISOString();
     userEntry = await db.getFile('auth', 'users', { id: req.user.id });
+    if (userEntry[0].banned == true) {
+      return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
+    }
     if (typeof (userEntry[0]) !== "undefined") {
       res.render('feed', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString(), canvasKey: req.user.canvasKey })
     }
