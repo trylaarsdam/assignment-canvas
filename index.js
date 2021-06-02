@@ -150,6 +150,54 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req, res) => {
   }
 })
 
+app.post("/api/admin/ban/:uuid/:user", async (req, res) => {
+  if (typeof (req.user.id).toString() == "undefined") {
+    return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again." })
+  }
+  else if (req.user.id == req.params.uuid) {
+    console.log('REQUEST BODY ' + req.body);
+    console.log("uuid from api " + req.params.uuid)
+
+    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    console.log("dbFile + " + dbFile)
+    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    if (dbFile.length == 1) {
+      console.log("dbFile length was 1")
+      if (dbFile[0].permissions.admin == false) {
+        return res.render('error', { errorText: "You aren't authorized to use this API endpoint." })
+      }
+    }
+
+    if (typeof (req.params.uuid) != "undefined") {
+      console.log("getting file for user")
+      console.log("uuid - " + req.params.uuid);
+      console.log("canvaskey - " + req.params.canvas);
+      console.log(typeof (req.params.uuid))
+      var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+      console.log("dbFile + " + dbFile)
+      if (dbFile.length == 1) {
+        console.log("dbFile length was 1")
+        dbFile[0].canvasKey = req.params.canvas;
+        await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
+        return res.send({ status: "updated" })
+      }
+      else {
+        console.log("db file length was not one" + dbFile.length)
+        return res.render('error', { errorText: 'Multiple users with matching UUIDs were found in our database.' })
+      }
+    }
+  }
+  else {
+    if (typeof (req.user.id).toString() == "undefined") {
+      return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again." })
+
+    }
+    else {
+      return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again.", profilePictureURL: req.user.profilePicture })
+    }
+  }
+})
+
 app.post("/api/setCanvasURL/:uuid/:canvas", async (req, res) => {
   if (typeof (req.user.id).toString() == "undefined") {
     return res.render('error', { errorText: "You aren't authorized to set the Canvas URL for the selected user. Try logging out and signing in again." })
@@ -254,6 +302,21 @@ app.get('/classes/:class/announcement/:announcement', async (req, res) => { //us
   }
   else {
     res.redirect('https://canvas.toddr.org/auth/google')
+  }
+})
+
+app.get('/admin', async (req, res) => {
+  if (typeof (req.user) !== "undefined") {
+    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    if (dbFile.permissions.admin == true) {
+      res.render('admin', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString() })//{name: req.user.name, profilePictureURL: req.user.profilePiture})
+    }
+    else {
+      res.render('error', { errorText: "You do not have permission to access the administrator panel", profilePictureURL: req.user.profilePicture })
+    }
+  }
+  else {
+    res.render('error', { errorText: "You are not logged in or do not have permission to access the administrator panel.", profilePictureURL: req.user.profilePicture })
   }
 })
 
