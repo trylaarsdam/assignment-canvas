@@ -41,7 +41,7 @@ async function unbanuser(databaseUUID) {
   //var xhttp = new XMLHttpRequest();
   console.log(databaseUUID);
   console.log(banuserText.value);
-  await fetch("https://canvas.toddr.org/api/admin/unban/" + databaseUUID + "/" + banuserText.value.toString(), {
+  await fetch("https://canvas.toddr.org/api/admin/unban/" + databaseUUID + "/" + unbanuserText.value.toString(), {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
