@@ -152,7 +152,7 @@ app.post("/api/setCanvasAPI/:uuid/:canvas", async (req, res) => {
 
 app.post("/api/admin/ban/:uuid/:user", async (req, res) => {
   if (typeof (req.user.id).toString() == "undefined") {
-    return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again." })
+    return res.render('error', { errorText: "You aren't authorized to access this API endpoint." })
   }
   else if (req.user.id == req.params.uuid) {
     console.log('REQUEST BODY ' + req.body);
@@ -160,40 +160,46 @@ app.post("/api/admin/ban/:uuid/:user", async (req, res) => {
 
     var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
     console.log("dbFile + " + dbFile)
-    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
     if (dbFile.length == 1) {
       console.log("dbFile length was 1")
-      if (dbFile[0].permissions.admin == false) {
+      if (dbFile[0].admin == false) {
         return res.render('error', { errorText: "You aren't authorized to use this API endpoint." })
       }
-    }
-
-    if (typeof (req.params.uuid) != "undefined") {
-      console.log("getting file for user")
-      console.log("uuid - " + req.params.uuid);
-      console.log("canvaskey - " + req.params.canvas);
-      console.log(typeof (req.params.uuid))
-      var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
-      console.log("dbFile + " + dbFile)
-      if (dbFile.length == 1) {
-        console.log("dbFile length was 1")
-        dbFile[0].canvasKey = req.params.canvas;
-        await db.updateFile('auth', 'users', dbFile[0], dbFile[0].id)
-        return res.send({ status: "updated" })
-      }
       else {
-        console.log("db file length was not one" + dbFile.length)
-        return res.render('error', { errorText: 'Multiple users with matching UUIDs were found in our database.' })
+        if (dbFile[0].admin == true) {
+          var userEntry = await db.getFile('auth', 'users', { id: req.params.user });
+          userEntry[0].banned = true;
+          await db.updateFile('auth', 'users', userEntry[0], userEntry[0], userEntry[0].id);
+          return res.send({ status: "banned" })
+        }
       }
     }
   }
-  else {
-    if (typeof (req.user.id).toString() == "undefined") {
-      return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again." })
+})
 
-    }
-    else {
-      return res.render('error', { errorText: "You aren't authorized to set the Canvas API Key for the selected user. Try logging out and signing in again.", profilePictureURL: req.user.profilePicture })
+app.post("/api/admin/unban/:uuid/:user", async (req, res) => {
+  if (typeof (req.user.id).toString() == "undefined") {
+    return res.render('error', { errorText: "You aren't authorized to access this API endpoint." })
+  }
+  else if (req.user.id == req.params.uuid) {
+    console.log('REQUEST BODY ' + req.body);
+    console.log("uuid from api " + req.params.uuid)
+
+    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    console.log("dbFile + " + dbFile)
+    if (dbFile.length == 1) {
+      console.log("dbFile length was 1")
+      if (dbFile[0].admin == false) {
+        return res.render('error', { errorText: "You aren't authorized to use this API endpoint." })
+      }
+      else {
+        if (dbFile[0].admin == true) {
+          var userEntry = await db.getFile('auth', 'users', { id: req.params.user });
+          userEntry[0].banned = false;
+          await db.updateFile('auth', 'users', userEntry[0], userEntry[0], userEntry[0].id);
+          return res.send({ status: "banned" })
+        }
+      }
     }
   }
 })
