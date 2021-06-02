@@ -169,7 +169,7 @@ app.post("/api/admin/ban/:uuid/:user", async (req, res) => {
         if (dbFile[0].admin == true) {
           var userEntry = await db.getFile('auth', 'users', { id: req.params.user });
           userEntry[0].banned = true;
-          await db.updateFile('auth', 'users', userEntry[0], userEntry[0], userEntry[0].id);
+          await db.updateFile('auth', 'users', userEntry[0], userEntry[0].id);
           return res.send({ status: "banned" })
         }
       }
