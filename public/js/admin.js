@@ -34,6 +34,7 @@ async function banuser(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: "banuserText.value" })
   })
+  banuserText.value = ""
 }
 
 async function unbanuser(databaseUUID) {
@@ -47,6 +48,7 @@ async function unbanuser(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: "banuserText.value" })
   })
+  unbanuserText.value = ""
   /*
   //var xhttp = new XMLHttpRequest();
   console.log(databaseUUID);

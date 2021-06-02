@@ -196,8 +196,8 @@ app.post("/api/admin/unban/:uuid/:user", async (req, res) => {
         if (dbFile[0].admin == true) {
           var userEntry = await db.getFile('auth', 'users', { id: req.params.user });
           userEntry[0].banned = false;
-          await db.updateFile('auth', 'users', userEntry[0], userEntry[0], userEntry[0].id);
-          return res.send({ status: "banned" })
+          await db.updateFile('auth', 'users', userEntry[0], userEntry[0].id);
+          return res.send({ status: "unbanned" })
         }
       }
     }
