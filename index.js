@@ -323,7 +323,7 @@ app.get('/admin', async (req, res) => {
     }
   }
   else {
-    res.render('error', { errorText: "You are not logged in or do not have permission to access the administrator panel.", profilePictureURL: req.user.profilePicture })
+    res.redirect("https://canvas.toddr.org/auth/google")
   }
 })
 

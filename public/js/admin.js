@@ -4,8 +4,8 @@ var modal;
 var span;
 
 window.onload = function () {
-  banuserText = document.getElementById('canvasAPI');
-  unbanuserText = document.getElementById('canvasURL');
+  banuserText = document.getElementById('banuserText');
+  unbanuserText = document.getElementById('unbanuserText');
   modal = document.getElementById("myModal");
 
   span = document.getElementsByClassName("close")[0];
