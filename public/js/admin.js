@@ -1,11 +1,15 @@
 var banuserText;
 var unbanuserText;
+var addadminText;
+var remadminText;
 var modal;
 var span;
 
 window.onload = function () {
   banuserText = document.getElementById('banuserText');
   unbanuserText = document.getElementById('unbanuserText');
+  addadminText = document.getElementById('addadminText');
+  remadminText = document.getElementById('remadminText');
   modal = document.getElementById("myModal");
 
   span = document.getElementsByClassName("close")[0];
@@ -21,6 +25,34 @@ window.onload = function () {
       modal.style.display = "none";
     }
   }
+}
+
+async function addadmin(databaseUUID) {
+  //var xhttp = new XMLHttpRequest();
+  console.log(databaseUUID);
+  console.log(addadminText.value);
+  await fetch("https://canvas.toddr.org/api/admin/addadmin/" + databaseUUID + "/" + addadminText.value.toString(), {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: JSON.stringify({ uuid: databaseUUID, canvas: "addadminText.value" })
+  })
+  addadminText.value = ""
+}
+
+async function remadmin(databaseUUID) {
+  //var xhttp = new XMLHttpRequest();
+  console.log(databaseUUID);
+  console.log(remadminText.value);
+  await fetch("https://canvas.toddr.org/api/admin/remadmin/" + databaseUUID + "/" + remadminText.value.toString(), {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: JSON.stringify({ uuid: databaseUUID, canvas: "remadminText.value" })
+  })
+  remadminText.value = ""
 }
 
 async function banuser(databaseUUID) {

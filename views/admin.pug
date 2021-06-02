@@ -92,6 +92,17 @@ h3 Unban User by UUID
     |<input id="unbanuserText" style="width:40%; height: 40px" type="text" value="" placeholder="Enter user UUID" required />
     |<button type="submit" style="width:10%" value="Submit key">Unban</button>
 </form>
+h2 Grant/Revoke User Administrator Permissions
+h3 Grant Administrator Permissions
+<form onsubmit="addadmin('#{databaseUUID}')">
+    |<input id="addadminText" style="width:40%" type="text" value="" placeholder="Enter user UUID" required />
+    |<button type="submit" style="width:10%" value="Submit key">Grant</button>
+</form>
+h3 Revoke Administrator Permissions
+<form onsubmit="remadmin('#{databaseUUID}'); return false">
+    |<input id="remadminText" style="width:40%; height: 40px" type="text" value="" placeholder="Enter user UUID" required />
+    |<button type="submit" style="width:10%" value="Submit key">Revoke</button>
+</form>
 h2 Disable Assignment Canvas
 p Pressing this button will toggle all users access to assignment canvas.
 <button class="downloadbtn" disabled=true onclick="location.href='https:\/\/assignmentcanvas.blob.core.windows.net/downloads/assignment-canvas-win64latest.zip'">Toggle Access</button>
