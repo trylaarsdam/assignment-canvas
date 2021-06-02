@@ -96,7 +96,7 @@ app.get("/user", async (req, res) => {
   if (toggle) {
     if (typeof (req.user) !== 'undefined') {
       console.log("googleID: " + req.user.googleID);//req.user.googleID);
-      var userEntry = await db.getFile('auth', 'users', { id: req.user.uuid })
+      var userEntry = await db.getFile('auth', 'users', { id: req.user.id })
 
       if (userEntry[0].banned == true) {
         return res.render('error', { errorText: "You are currently banned from using Assignment Canvas. Contact support at support@toddr.org for more information or to appeal.", profilePictureURL: req.user.profilePicture })
