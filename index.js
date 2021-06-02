@@ -307,8 +307,8 @@ app.get('/classes/:class/announcement/:announcement', async (req, res) => { //us
 
 app.get('/admin', async (req, res) => {
   if (typeof (req.user) !== "undefined") {
-    console.log(req.params.uuid);
-    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    console.log(req.user.id);
+    var dbFile = await db.getFile('auth', 'users', { id: req.user.id })
     if (dbFile[0].permissions.admin == true) {
       res.render('admin', { name: req.user.name, profilePictureURL: req.user.profilePicture, databaseUUID: req.user.id.toString() })//{name: req.user.name, profilePictureURL: req.user.profilePiture})
     }
