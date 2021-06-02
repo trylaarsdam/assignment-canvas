@@ -91,7 +91,7 @@ app.get("/auth/logout", (req, res) => {
   res.redirect('/');
 })
 
-app.get("/user", (req, res) => {
+app.get("/user", async (req, res) => {
   var toggle = true;
   if (toggle) {
     if (typeof (req.user) !== 'undefined') {
