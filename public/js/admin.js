@@ -36,6 +36,7 @@ async function toggleService(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: "" })
   })
+  modal.style.display = "block";
 }
 
 async function addadmin(databaseUUID) {

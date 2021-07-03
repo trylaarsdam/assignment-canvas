@@ -239,6 +239,7 @@ app.post("/api/admin/addadmin/:uuid/:user", async (req, res) => {
 
 app.post('/api/admin/toggle/:uuid', async (req, res) => {
   if (typeof (req.user.id).toString() == "undefined") {
+    console.log("unauth")
     return res.render('error', { errorText: "You aren't authorized to access this API endpoint." })
   }
   else if (req.user.id == req.params.uuid) {
