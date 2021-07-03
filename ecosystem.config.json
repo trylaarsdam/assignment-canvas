@@ -1,28 +1,28 @@
 {
-    "apps": [
-      {
-        "name": "production",
-        "script": "index.js",
-        "autorestart": true,
-        "env": {
-          "NODE_ENV": "production",
-          "PORT": 3000
-        }
-      }
-    ],
-    "deploy": {
-      "production": {
-        "key": "~/.ssh/id_rsa",
-        "user": "github",
-        "host": ["canvas.toddr.org"],
-        "ssh_options": "StrictHostKeyChecking=no",
-        "ref": "origin/main",
-        "repo": "git@github.com:trylaarsdam/assignment-canvas.git",
-        "path": "/home/github/app",
-        "pre-setup": "sudo chown -R $USER:$USER '$(git rev-parse --show-toplevel)/.git' ; apt-get install git ; ls -la ; git checkout master ; git pull",
-        "post-setup": "ls -la",
-        "pre-deploy-local": "echo 'Executed from host'",
-        "post-deploy": "npm install ; NODE_ENV=production pm2 startOrRestart ecosystem.config.json --only production"
+  "apps": [
+    {
+      "name": "production",
+      "script": "index.js",
+      "autorestart": true,
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 3000
       }
     }
+  ],
+  "deploy": {
+    "production": {
+      "key": "~/.ssh/id_rsa",
+      "user": "github",
+      "host": ["1.do.toddr.org"],
+      "ssh_options": "StrictHostKeyChecking=no",
+      "ref": "origin/main",
+      "repo": "git@github.com:trylaarsdam/assignment-canvas.git",
+      "path": "/home/github/app",
+      "pre-setup": "sudo chown -R $USER:$USER '$(git rev-parse --show-toplevel)/.git' ; apt-get install git ; ls -la ; git checkout master ; git pull",
+      "post-setup": "ls -la",
+      "pre-deploy-local": "echo 'Executed from host'",
+      "post-deploy": "npm install ; NODE_ENV=production pm2 startOrRestart ecosystem.config.json --only production"
+    }
   }
+}
