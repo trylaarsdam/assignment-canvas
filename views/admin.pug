@@ -108,7 +108,23 @@ p Pressing this button will toggle all users access to assignment canvas.
 <form onsubmit="toggleService('#{databaseUUID}'); return false">
     |<button type="submit" class="downloadbtn" value="submit">Toggle Access</button>
 </form>
-
+h2 Set Statuspage Status
+<h3> <a href="https://toddrylaarsdam.statuspage.io">https://toddrylaarsdam.statuspage.io</a> </h3>
+<form onsubmit="setStatus('#{databaseUUID}, operational'); return false">
+    |<button type="submit" class="downloadbtn" style="background-color: green;" value="Operational">Operational</button>
+</form>
+<form onsubmit="setStatus('#{databaseUUID}, degraded'); return false">
+    |<button type="submit" class="downloadbtn" style="background-color: yellow;" value="Degraded">Degraded Performance</button>
+</form>
+<form onsubmit="setStatus('#{databaseUUID}, maintenance'); return false">
+    |<button type="submit" class="downloadbtn" style="background-color: lightblue;"  value="Maintenance">Under Maintenance</button>
+</form>
+<form onsubmit="setStatus('#{databaseUUID}, minor'); return false">
+    |<button type="submit" class="downloadbtn" style="background-color: orange;" value="Minor">Minor Outage</button>
+</form>
+<form onsubmit="setStatus('#{databaseUUID}, major'); return false">
+    |<button type="submit" class="downloadbtn" style="background-color: red;" value="Major">Major Outage</button>
+</form>
 </div>
 
 
