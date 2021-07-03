@@ -93,6 +93,8 @@ app.get("/auth/logout", (req, res) => {
 
 app.get("/user", async (req, res) => {
   var toggleVar = await db.getFile('auth', 'admin', { id: "completeServiceToggle" });
+  console.log(toggleVar);
+  console.log(toggleVar[0]);
   if (toggleVar[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
