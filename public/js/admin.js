@@ -27,6 +27,17 @@ window.onload = function () {
   }
 }
 
+async function toggleService(databaseUUID) {
+  console.log(databaseUUID);
+  await fetch("https://canvas.toddr.org/api/admin/" + databaseUUID, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: JSON.stringify({ uuid: databaseUUID, canvas: "" })
+  })
+}
+
 async function addadmin(databaseUUID) {
   //var xhttp = new XMLHttpRequest();
   console.log(databaseUUID);

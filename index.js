@@ -237,6 +237,33 @@ app.post("/api/admin/addadmin/:uuid/:user", async (req, res) => {
   }
 })
 
+app.post('/api/admin/toggle/:uuid', async (req, res) => {
+  if (typeof (req.user.id).toString() == "undefined") {
+    return res.render('error', { errorText: "You aren't authorized to access this API endpoint." })
+  }
+  else if (req.user.id == req.params.uuid) {
+    console.log('REQUEST BODY ' + req.body);
+    console.log("uuid from api " + req.params.uuid)
+
+    var dbFile = await db.getFile('auth', 'users', { id: req.params.uuid })
+    console.log("dbFile + " + dbFile)
+    if (dbFile.length == 1) {
+      console.log("dbFile length was 1")
+      if (dbFile[0].admin == false) {
+        return res.render('error', { errorText: "You aren't authorized to use this API endpoint." })
+      }
+      else {
+        if (dbFile[0].admin == true) {
+          var userEntry = await db.getFile('auth', 'admin', { id: "completeServiceToggle" });
+          userEntry[0].toggle = !userEntry[0].toggle;
+          await db.updateFile('auth', 'admin', userEntry[0], userEntry[0].id);
+          return res.send({ status: "toggledService" })
+        }
+      }
+    }
+  }
+})
+
 app.post("/api/admin/remadmin/:uuid/:user", async (req, res) => {
   if (typeof (req.user.id).toString() == "undefined") {
     return res.render('error', { errorText: "You aren't authorized to access this API endpoint." })
