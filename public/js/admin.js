@@ -29,7 +29,6 @@ window.onload = function () {
 
 async function toggleService(databaseUUID) {
   console.log(databaseUUID);
-  modal.style.display = "block";
   await fetch("https://canvas.toddr.org/api/admin/toggle/" + databaseUUID, {
     method: "POST",
     headers: {
@@ -37,7 +36,7 @@ async function toggleService(databaseUUID) {
     },
     body: JSON.stringify({ uuid: databaseUUID, canvas: "" })
   })
-
+  modal.style.display = "block";
 }
 
 async function addadmin(databaseUUID) {

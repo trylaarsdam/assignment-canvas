@@ -105,7 +105,7 @@ h3 Revoke Administrator Permissions
 </form>
 h2 Disable Assignment Canvas
 p Pressing this button will toggle all users access to assignment canvas.
-<form onsubmit="toggleService('#{databaseUUID}');">
+<form onsubmit="toggleService('#{databaseUUID}'); return false">
     |<button type="submit" class="downloadbtn" value="submit">Toggle Access</button>
 </form>
 
