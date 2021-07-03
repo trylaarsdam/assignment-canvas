@@ -8,60 +8,69 @@ title User | #{name}
 
 <style>
     |.image-cropper {
-    |width: 40px;
-    |height: 40px;
-    |position: relative;
-    |overflow: hidden;
-    |border-radius: 50%;
+    |      width: 40px;
+    |      height: 40px;
+    |      position: relative;
+    |      overflow: hidden;
+    |      border-radius: 50%;
     |}
     |
     |img {
-    |display: inline;
-    |margin: 0 auto;
-    |height: 100%;
-    |width: auto;
-    |float: right;
+    |      display: inline;
+    |      margin: 0 auto;
+    |      height: 100%;
+    |      width: auto;
+    |      float: right;
     |}
     |
     |h1 {
-    |font-family: Arial, Helvetica, sans-serif; 
-    |float:left;
+    |      font-family: Arial, Helvetica, sans-serif; 
+    |      float:left;
     |}
     |p {
-    |font-family: Arial, Helvetica, sans-serif;    
+    |      font-family: Arial, Helvetica, sans-serif;    
     |}
     |h2 {
-    |font-family: Arial, Helvetica, sans-serif;    
+    |      font-family: Arial, Helvetica, sans-serif;    
     |}
     |h3 {
-    |font-family: Arial, Helvetica, sans-serif;    
+    |      font-family: Arial, Helvetica, sans-serif;    
     |}
     |button {
     |      border-radius: 4px;
-    |background-color: #ff0000;
-    |border: none;
-    |color: #FFFFFF;
-    |text-align: center;
-    |font-size: 17px;
-    |padding: 10px;
-    |width: 100px;
-    |cursor: pointer;
-    |margin: 5px;
+    |      background-color: #ff0000;
+    |      border: none;
+    |      color: #FFFFFF;
+    |      text-align: center;
+    |      font-size: 17px;
+    |      padding: 10px;
+    |      width: 100px;
+    |      cursor: pointer;
+    |      margin: 5px;
     |}
     |button.right{
-    |float:right;
+    |     float:right;
     |}
     |table{
-    |width: 100%
+    |     width: 100%
     |}
     |input[type=text] {
-    |width: 30%;
-    |padding: 12px 20px;
-    |margin: 8px 0;
-    |box-sizing: border-box;
+    |     width: 30%;
+    |     padding: 12px 20px;
+    |     margin: 8px 0;
+    |     box-sizing: border-box;
     |}
     |input:invalid {
     |    border: 1px solid red;
+    |}
+    |.footer {
+    |    position: fixed;
+    |    left: 0;
+    |    bottom: 0;
+    |    width: 100%;
+    |    background-color: red;
+    |    color: white;
+    |    text-align: center;
     |}
 </style>
 
@@ -122,6 +131,9 @@ p There is a downloadable desktop program with the same functionality and layout
       <h3></h3>
     </div>
   </div>
+  <div class="footer">
+    <p>User UUID: #{databaseUUID}</p>
+  </div>
 </div>
-<p>User UUID: #{databaseUUID}</p>
+
 <script src="https://5h2k01hs2jbw.statuspage.io/embed/script.js"></script>
