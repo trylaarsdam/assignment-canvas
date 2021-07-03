@@ -92,7 +92,7 @@ app.get("/auth/logout", (req, res) => {
 })
 
 app.get("/user", async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   var toggle = true;
@@ -123,7 +123,7 @@ app.get("/user", async (req, res) => {
 })
 
 app.post("/api/setCanvasAPI/:uuid/:canvas", async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user.id).toString() == "undefined") {
@@ -299,7 +299,7 @@ app.post("/api/admin/remadmin/:uuid/:user", async (req, res) => {
 })
 
 app.post("/api/setCanvasURL/:uuid/:canvas", async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user.id).toString() == "undefined") {
@@ -344,7 +344,7 @@ app.get("/api/setCanvasAPI/:uuid/:canvas", async (req, res) => {
 })
 
 app.get('/classes', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -366,7 +366,7 @@ app.get('/classes', async (req, res) => {
 })
 
 app.get('/onboarding', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -378,7 +378,7 @@ app.get('/onboarding', async (req, res) => {
 })
 
 app.get('/classes/:class', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -415,7 +415,7 @@ app.get('/classes/:class', async (req, res) => {
 })
 
 app.get('/classes/:class/announcement/:announcement', async (req, res) => { //use depreciated, use /announcments/:class/:announcement
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -443,7 +443,7 @@ app.get('/admin', async (req, res) => {
 })
 
 app.get('/announcements/:class/:announcement', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('headless-error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -473,7 +473,7 @@ app.get('/announcements/:class/:announcement', async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   if (typeof (req.user) !== "undefined") {
@@ -494,7 +494,7 @@ app.get('/feed', async (req, res) => {
 })
 
 app.get('/api/html/feed/:userid', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   var userEntry = await db.getFile('auth', 'users', { canvasKey: req.params.userid });
@@ -519,7 +519,7 @@ app.get('/api/html/feed/:userid', async (req, res) => {
 })
 
 app.get('/api/html/classes/:userid', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   var userEntry = await db.getFile('auth', 'users', { canvasKey: req.params.userid });
@@ -540,7 +540,7 @@ app.get('/api/html/classes/:userid', async (req, res) => {
 })
 
 app.get('/api/html/announcement/:class/:announcement/:canvasKey', async (req, res) => {
-  if (await db.getFile('auth', 'admin', { id: "completeServiceToggle" })[0] == false) {
+  if ((await db.getFile('auth', 'admin', { id: "completeServiceToggle" }))[0] == false) {
     return res.render('headless-error', { errorText: "Assignment Canvas has been temporarily disabled by an administrator for all users. Check https://toddrylaarsdam.statuspage.io for more information." })
   }
   var userEntry = await db.getFile('auth', 'users', { canvasKey: req.params.canvasKey });
