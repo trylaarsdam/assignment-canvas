@@ -29,7 +29,7 @@ window.onload = function () {
 
 async function toggleService(databaseUUID) {
   console.log(databaseUUID);
-  await fetch("https://canvas.toddr.org/api/admin/" + databaseUUID, {
+  await fetch("https://canvas.toddr.org/api/admin/toggle/" + databaseUUID, {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
