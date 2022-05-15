@@ -1,6 +1,6 @@
 <template>
-  <div class="feed">
-    <h1>This is a feed</h1>
+  <div class="assignments">
+    <h1>This is the assignments view</h1>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app dark>
+    <v-navigation-drawer app dark permanent>
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -28,19 +28,19 @@
 
           <v-list-item-title>Feed</v-list-item-title>
         </v-list-item>
-        <v-list-item link to="/home">
+        <v-list-item link to="/courses">
           <v-list-item-icon>
             <v-icon>mdi-account-multiple</v-icon>
           </v-list-item-icon>
           <v-list-item-title>My Courses</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/announcements">
           <v-list-item-icon>
             <v-icon>mdi-message-reply-text-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Announcements</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/assignments">
           <v-list-item-icon>
             <v-icon>mdi-note-edit-outline</v-icon>
           </v-list-item-icon>
@@ -51,6 +51,10 @@
 
     <v-app-bar app dark>
       <!-- -->
+      <v-breadcrumbs
+        dark
+        :items="this.$store.state.breadcrumbs"
+      ></v-breadcrumbs>
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
