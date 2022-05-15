@@ -37,12 +37,18 @@
       </v-toolbar>
       <div class="assignmentContainer">
         <div
-          v-for="assignment in assignments"
-          :key="assignment.id"
+          v-for="item in data"
+          :key="JSON.stringify(item)"
           class="assignmentCardContainer"
         >
           <AssignmentCard
-            :assignment="assignment"
+            v-if="item.discussion_type == undefined"
+            :assignment="item"
+            style="padding-bottom: 10px"
+          />
+          <AnnouncementCard
+            v-else
+            :announcement="item"
             style="padding-bottom: 10px"
           />
         </div>
@@ -61,11 +67,13 @@
 <script>
 const axios = require("axios").default;
 import AssignmentCard from "../components/AssignmentCard.vue";
+import AnnouncementCard from "../components/AnnouncementCard.vue";
 
 export default {
   name: "CourseView",
   components: {
     AssignmentCard,
+    AnnouncementCard,
   },
   data() {
     return {
@@ -77,16 +85,49 @@ export default {
         assignments: true,
         announcements: true,
       },
+      data: [],
       assignments: [],
       announcements: [],
     };
   },
   methods: {
     assignmentClick() {
+      let newData = [];
+
       this.filter.assignments = !this.filter.assignments;
+      if (this.filter.assignments) {
+        this.data.push(...this.assignments);
+      } else {
+        for (var item in this.data) {
+          if (this.data[item].discussion_type) {
+            newData.push(this.data[item]);
+          }
+        }
+        this.data = newData;
+      }
+      this.data.sort((a, b) =>
+        new Date(a.created_at) > new Date(b.created_at) ? -1 : 1
+      );
+      return;
     },
     announcementClick() {
+      let newData = [];
+
       this.filter.announcements = !this.filter.announcements;
+      if (this.filter.announcements) {
+        this.data.push(...this.announcements);
+      } else {
+        for (var item in this.data) {
+          if (!this.data[item].discussion_type) {
+            newData.push(this.data[item]);
+          }
+        }
+        this.data = newData;
+      }
+      this.data.sort((a, b) =>
+        new Date(a.created_at) > new Date(b.created_at) ? -1 : 1
+      );
+      return;
     },
   },
   async created() {
@@ -121,9 +162,32 @@ export default {
       );
       console.log("Response: ", response.data.data);
       this.assignments = response.data.data;
+      this.data.push(...this.assignments);
     } catch (error) {
       console.error(error);
     }
+    try {
+      const response = await axios.get(
+        "http://10.128.1.199:7001/api/courses/" +
+          this.$route.params.id +
+          "/announcements",
+        {
+          auth: {
+            username: "trylaarsdam",
+            password: "test12345",
+          },
+        }
+      );
+      console.log("Response: ", response.data.data);
+      this.announcements = response.data.data;
+      this.data.push(...this.announcements);
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.data.sort((a, b) =>
+      new Date(a.created_at) > new Date(b.created_at) ? -1 : 1
+    );
 
     this.$store.commit("SET_BREADCRUMBS", [
       {
