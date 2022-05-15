@@ -14,8 +14,7 @@ export default {
         text: "Announcements",
         disabled: false,
         href: "/announcements",
-        // to: "announcements",
-        link: true,
+        // to: "/announcements",
         exact: true,
       },
     ]);
