@@ -1,7 +1,10 @@
 <template>
   <div class="AssignmentCard">
     <v-card color="#272727" dark>
-      <v-card-title class="text-h6"> {{ this.assignment.name }} </v-card-title>
+      <v-card-title class="text-h6">
+        <v-icon class="iconButtonPadding"> mdi-note-edit-outline </v-icon
+        >{{ this.assignment.name }}
+      </v-card-title>
 
       <v-card-subtitle
         class="assignmentContent"

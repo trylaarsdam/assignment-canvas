@@ -52,4 +52,7 @@ h2 {
 h1 {
   color: white;
 }
+.courseContainer {
+  padding: 10px;
+}
 </style>
