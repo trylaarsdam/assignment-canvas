@@ -1,17 +1,15 @@
 <template>
-  <div class="home">
-    <AppBar />
-  </div>
+  <hello-world />
 </template>
 
 <script>
-// @ is an alias to /src
-import AppBar from "@/components/AppBar.vue";
+import HelloWorld from "../components/HelloWorld";
 
 export default {
   name: "HomeView",
+
   components: {
-    AppBar,
+    HelloWorld,
   },
 };
 </script>
