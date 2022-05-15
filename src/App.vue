@@ -58,7 +58,7 @@
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
-    <v-main>
+    <v-main style="background-color: #111">
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
@@ -95,5 +95,8 @@ export default {
   position: fixed !important;
   bottom: 0 !important;
   width: 100%;
+}
+html {
+  background-color: #111;
 }
 </style>

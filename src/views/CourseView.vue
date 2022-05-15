@@ -1,6 +1,16 @@
 <template>
   <div class="courseContainer" v-if="!loading">
     <h1>{{ this.course.name }}</h1>
+    <div class="assignmentContainer">
+      <h2>Assignments</h2>
+      <div
+        v-for="assignment in assignments"
+        :key="assignment.id"
+        class="assignmentCardContainer"
+      >
+        <AssignmentCard :assignment="assignment" style="padding-bottom: 10px" />
+      </div>
+    </div>
   </div>
   <div class="loading" v-else>
     <v-progress-circular
@@ -13,9 +23,13 @@
 
 <script>
 const axios = require("axios").default;
+import AssignmentCard from "../components/AssignmentCard.vue";
 
 export default {
   name: "CourseView",
+  components: {
+    AssignmentCard,
+  },
   data() {
     return {
       loading: true,
@@ -89,5 +103,11 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+h2 {
+  color: white;
+}
+h1 {
+  color: white;
 }
 </style>

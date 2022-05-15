@@ -44,3 +44,12 @@ export default {
   },
 };
 </script>
+
+<style local>
+h2 {
+  color: white;
+}
+h1 {
+  color: white;
+}
+</style>
