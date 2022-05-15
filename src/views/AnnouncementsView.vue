@@ -13,7 +13,10 @@ export default {
       {
         text: "Announcements",
         disabled: false,
-        href: "announcements",
+        href: "/announcements",
+        // to: "announcements",
+        link: true,
+        exact: true,
       },
     ]);
   },
