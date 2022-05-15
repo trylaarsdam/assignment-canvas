@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: "AnnouncementsView",
+  name: "AssignmentsView",
   created() {
     // console.log("Setting breadcrumbs from announcements");
     this.$store.commit("SET_BREADCRUMBS", [
       {
-        text: "Announcements",
+        text: "Assignments",
         disabled: false,
-        href: "announcements",
+        href: "assignments",
       },
     ]);
   },
