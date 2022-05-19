@@ -25,7 +25,11 @@
           <v-icon class="iconButtonPadding"> mdi-note-edit-outline </v-icon>
           Assignments
         </v-btn>
-        <v-btn v-click="" class="buttonPadding" flat>
+        <v-btn
+          :to="'/course/' + this.$route.params.id + '/roster'"
+          class="buttonPadding"
+          flat
+        >
           <v-icon class="iconButtonPadding">mdi-account-group</v-icon>
           Roster
         </v-btn>

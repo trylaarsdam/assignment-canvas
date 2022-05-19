@@ -47,6 +47,20 @@
           <v-list-item-title>Assignments</v-list-item-title>
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+        <v-list nav dense>
+          <v-list-item link to="/profile">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item>
+        </v-list>
+
+        <div class="pa-2">
+          <v-btn block> Logout </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar app dark>
@@ -93,5 +107,10 @@ export default {
 }
 html {
   background-color: #111;
+  overscroll-behavior-y: none;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
 }
 </style>
