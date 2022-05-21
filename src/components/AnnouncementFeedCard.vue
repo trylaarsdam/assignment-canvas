@@ -1,32 +1,25 @@
 <template>
-  <div class="AnnouncementContent">
-    <v-card color="#272727" dark>
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div
-            class="text-overline mb-4"
-            v-html="this.announcement.course.name"
-          ></div>
-          <v-card-title class="text-h6">
-            <v-icon class="iconButtonPadding">
-              mdi-message-reply-text-outline </v-icon
-            >{{ this.announcement.title }}
-          </v-card-title>
-          <v-card-subtitle
-            class="announcementContent"
-            v-html="this.announcement.message"
-          ></v-card-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-card-actions>
-        <v-btn text :to="'/announcement/' + parseInt(this.announcement.id)">
-          View
-        </v-btn>
-        <!-- <v-btn text> Open in Canvas </v-btn> -->
-      </v-card-actions>
-    </v-card>
-  </div>
+  <v-card class="mx-auto" dark>
+    <v-list-item>
+      <v-list-item-content>
+        <div class="text-overline mb-4">
+          {{ this.announcement.course.name }}
+        </div>
+        <v-list-item-title class="text-h5 mb-1">
+          {{ this.announcement.title }}
+        </v-list-item-title>
+        <v-list-item-subtitle
+          class="announcementContent"
+          v-html="this.announcement.message"
+        ></v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+    <v-card-actions>
+      <v-btn text :to="'/announcement/' + parseInt(this.announcement.id)">
+        View
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
