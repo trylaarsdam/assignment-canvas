@@ -2,11 +2,19 @@
   <v-card class="mx-auto" dark>
     <v-list-item>
       <v-list-item-content>
-        <div class="text-overline mb-4">
-          {{ this.announcement.course.name }}
-        </div>
         <v-list-item-title class="text-h5 mb-1">
           {{ this.announcement.title }}
+          <router-link
+            :to="'/course/' + parseInt(this.announcement.course.id)"
+            style="text-decoration: none; padding: 0.5rem"
+          >
+            <v-chip color="primary" style="cursor: pointer">{{
+              this.announcement.course.name
+            }}</v-chip>
+          </router-link>
+          <v-chip color="secondary">{{
+            this.announcement.author.display_name
+          }}</v-chip>
         </v-list-item-title>
         <v-list-item-subtitle
           class="announcementContent"
@@ -36,8 +44,8 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
-  line-clamp: 3;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 </style>
