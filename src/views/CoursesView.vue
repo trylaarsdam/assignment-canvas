@@ -53,6 +53,7 @@ h1 {
   color: white;
 }
 .courseContainer {
-  padding: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 </style>

@@ -26,12 +26,18 @@
           Assignments
         </v-btn>
         <v-btn
+          :to="'/course/' + this.$route.params.id + '/syllabus'"
+          class="buttonPadding"
+          flat
+        >
+          <v-icon>mdi-notebook</v-icon>
+        </v-btn>
+        <v-btn
           :to="'/course/' + this.$route.params.id + '/roster'"
           class="buttonPadding"
           flat
         >
-          <v-icon class="iconButtonPadding">mdi-account-group</v-icon>
-          Roster
+          <v-icon>mdi-account-group</v-icon>
         </v-btn>
 
         <v-btn flat>
