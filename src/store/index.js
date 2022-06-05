@@ -12,6 +12,13 @@ export default new Vuex.Store({
       //   href: 'breadcrumbs_dashboard',
       // },
     ],
+    user: {
+      id: "d596285e-0327-40fd-94f7-77c0ed5b630f",
+      name: "Todd Rylaarsdam",
+      email: "trylaarsdam22@georgefox.edu",
+      password: "test13245",
+      username: "trylaarsdam"
+    }
   },
   getters: {
   },

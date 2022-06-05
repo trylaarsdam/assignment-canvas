@@ -114,3 +114,15 @@ html {
   -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
 }
 </style>
+
+<style>
+h2 {
+  color: white;
+}
+h1 {
+  color: white;
+}
+p {
+  color: white;
+}
+</style>
