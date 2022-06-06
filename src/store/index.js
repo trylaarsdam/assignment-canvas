@@ -16,8 +16,11 @@ export default new Vuex.Store({
       id: "d596285e-0327-40fd-94f7-77c0ed5b630f",
       name: "Todd Rylaarsdam",
       email: "trylaarsdam22@georgefox.edu",
+      role: "Administrator",
       password: "test13245",
-      username: "trylaarsdam"
+      username: "trylaarsdam",
+      apiKeyConfigured: true,
+      canvasURL: "https://georgefox.instructure.com",
     }
   },
   getters: {
@@ -32,6 +35,9 @@ export default new Vuex.Store({
     },
     POP_BREADCRUMB(state) {
       state.breadcrumbs.pop()
+    },
+    SET_USER(state, user) {
+      state.user = user
     }
   },
   actions: {
