@@ -74,8 +74,8 @@ export default {
           "/users",
         {
           auth: {
-            username: "trylaarsdam",
-            password: "test12345",
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
           },
         }
       );
