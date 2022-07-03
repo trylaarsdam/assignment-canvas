@@ -308,7 +308,7 @@ export default {
       }
       try {
         const response = await axios.get(
-          "http://10.128.1.166:7001/internal/users/test?canvasURL=" +
+          "http://api.canvas.toddr.org/internal/users/test?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
             this.canvasKey,
@@ -324,7 +324,8 @@ export default {
         }
 
         const emailResponse = await axios.get(
-          "http://10.128.1.166:7001/internal/users/check?email=" + this.email,
+          "http://api.canvas.toddr.org/internal/users/check?email=" +
+            this.email,
           {
             auth: {
               username: this.$store.state.user.email,
@@ -347,7 +348,7 @@ export default {
       this.creatingAccount = true;
       try {
         const response = await axios.post(
-          "http://10.128.1.166:7001/internal/users/new?canvasURL=" +
+          "http://api.canvas.toddr.org/internal/users/new?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
             this.canvasKey +
