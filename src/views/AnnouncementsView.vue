@@ -47,7 +47,7 @@ export default {
 
     try {
       const response = await axios.get(
-        "http://10.128.1.166:7001/api/announcements",
+        "http://api.canvas.toddr.org/api/announcements",
         {
           auth: {
             username: this.$store.state.user.email,

@@ -30,12 +30,15 @@ export default {
     ]);
 
     try {
-      const response = await axios.get("http://10.128.1.166:7001/api/courses", {
-        auth: {
-          username: this.$store.state.user.email,
-          password: this.$store.state.user.password,
-        },
-      });
+      const response = await axios.get(
+        "http://api.canvas.toddr.org/api/courses",
+        {
+          auth: {
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
+          },
+        }
+      );
       console.log("Response: ", response.data.data);
       this.courses = response.data.data;
     } catch (error) {
