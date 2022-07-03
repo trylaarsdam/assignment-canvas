@@ -30,7 +30,7 @@ export default {
     ]);
 
     try {
-      const response = await axios.get("http://10.128.1.199:7001/api/courses", {
+      const response = await axios.get("http://10.128.1.166:7001/api/courses", {
         auth: {
           username: "trylaarsdam",
           password: "test12345",
