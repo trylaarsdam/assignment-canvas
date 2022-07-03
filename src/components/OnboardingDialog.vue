@@ -209,11 +209,15 @@
                         valid and works correctly. To create your account,
                         simply press "Create Account" and you'll be all setup.
                       </p>
-                      <p v-else>
+                      <p v-if="confirmationStatus == 'error'">
                         Your Canvas URL and/or Canvas API key were invalid.
                         Please double check that those values are both valid. If
                         you need more help, contact
                         <a href="mailto:todd@toddr.org">todd@toddr.org</a>
+                      </p>
+                      <p v-if="confirmationStatus == 'taken'">
+                        The email you entered is already in use by another
+                        account. Please go back and use a different email.
                       </p>
                     </div>
                   </v-col>
@@ -292,6 +296,7 @@ export default {
   methods: {
     async checkData() {
       this.checkingData = true;
+      this.confirmationStatus = "checking";
       this.e1 = 3;
 
       try {
@@ -307,10 +312,24 @@ export default {
             },
           }
         );
-        if (response.data.status == "success") {
-          this.confirmationStatus = "success";
-        } else {
+        if (response.data.status != "success") {
           this.confirmationStatus = "error";
+        }
+
+        const emailResponse = await axios.get(
+          "http://10.128.1.166:7001/internal/users/check?email=" + this.email,
+          {
+            auth: {
+              username: "trylaarsdam",
+              password: "test12345",
+            },
+          }
+        );
+        if (emailResponse.data.status != "unique") {
+          this.confirmationStatus = "taken";
+        }
+        if (this.confirmationStatus == "checking") {
+          this.confirmationStatus = "success";
         }
         this.checkingData = false;
       } catch (error) {
