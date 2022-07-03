@@ -58,7 +58,7 @@
         </v-list>
 
         <div class="pa-2">
-          <v-btn block> Logout </v-btn>
+          <v-btn block @click="logout"> Logout </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -76,7 +76,7 @@
       <!-- Provides the application the proper gutter -->
       <v-container fluid v-if="this.$store.state.showAppBar">
         <!-- If using vue-router -->
-        <router-view>
+        <router-view v-if="showRouter">
           <nav>
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>
@@ -89,13 +89,58 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
 
   data() {
     return {
       right: null,
+      showRouter: false,
     };
+  },
+  methods: {
+    logout() {
+      this.$store.commit("SET_USER", {});
+      this.$cookies.remove("email");
+      this.$cookies.remove("password");
+      this.$router.push("/");
+    },
+  },
+  async created() {
+    let email = this.$cookies.get("email");
+    let password = this.$cookies.get("password");
+    console.log("Trying login with: ", email, password);
+    if (email != undefined && password != undefined) {
+      try {
+        const response = await axios.get(
+          "http://10.128.1.166:7001/internal/login?email=" +
+            email +
+            "&password=" +
+            password,
+          {}
+        );
+        if (response.data.status == "success") {
+          this.$store.commit("SET_USER", response.data.user);
+          this.$store.commit("SET_APP_BAR", true);
+          this.$cookies.set("email", email);
+          this.$cookies.set("password", password);
+          console.log(this.$router.currentRoute.name);
+          if (
+            this.$router.currentRoute.name == "/" ||
+            this.$router.currentRoute.name == "home"
+          ) {
+            console.log("redirecting to feed");
+            this.$router.push("/feed");
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        this.invalid = true;
+      }
+    }
+    this.showRouter = true;
   },
 };
 </script>

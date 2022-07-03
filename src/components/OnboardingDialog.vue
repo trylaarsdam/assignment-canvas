@@ -307,8 +307,8 @@ export default {
             this.canvasKey,
           {
             auth: {
-              username: "trylaarsdam",
-              password: "test12345",
+              username: this.$store.state.user.email,
+              password: this.$store.state.user.password,
             },
           }
         );
@@ -320,8 +320,8 @@ export default {
           "http://10.128.1.166:7001/internal/users/check?email=" + this.email,
           {
             auth: {
-              username: "trylaarsdam",
-              password: "test12345",
+              username: this.$store.state.user.email,
+              password: this.$store.state.user.password,
             },
           }
         );
@@ -354,8 +354,8 @@ export default {
             (await hash(this.password)),
           {
             auth: {
-              username: "trylaarsdam",
-              password: "test12345",
+              username: this.$store.state.user.email,
+              password: this.$store.state.user.password,
             },
           }
         );

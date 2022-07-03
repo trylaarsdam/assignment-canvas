@@ -155,8 +155,8 @@ export default {
         "http://10.128.1.166:7001/api/courses/" + this.$route.params.id,
         {
           auth: {
-            username: "trylaarsdam",
-            password: "test12345",
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
           },
         }
       );
@@ -172,8 +172,8 @@ export default {
           "/assignments",
         {
           auth: {
-            username: "trylaarsdam",
-            password: "test12345",
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
           },
         }
       );
@@ -190,8 +190,8 @@ export default {
           "/announcements",
         {
           auth: {
-            username: "trylaarsdam",
-            password: "test12345",
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
           },
         }
       );

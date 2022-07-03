@@ -66,6 +66,8 @@ export default {
           this.$store.commit("SET_USER", response.data.user);
           this.$store.commit("SET_APP_BAR", true);
           this.$router.push("/feed");
+          this.$cookies.set("email", this.email);
+          this.$cookies.set("password", this.password);
         }
       } catch (error) {
         console.error(error);

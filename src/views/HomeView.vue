@@ -79,7 +79,7 @@
                     <div class="headline text-xs-center">Easily Sharable</div>
                   </v-card-title>
                   <v-card-text>
-                    Assignment Canvas uses Canvas' ID global system, so you can
+                    Assignment Canvas uses Canvas' global ID system, so you can
                     share an Assignment Canvas link with someone else, and if
                     they have access to that same canvas course, it will work
                     right out of the box for them.

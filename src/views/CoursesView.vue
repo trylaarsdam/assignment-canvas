@@ -32,8 +32,8 @@ export default {
     try {
       const response = await axios.get("http://10.128.1.166:7001/api/courses", {
         auth: {
-          username: "trylaarsdam",
-          password: "test12345",
+          username: this.$store.state.user.email,
+          password: this.$store.state.user.password,
         },
       });
       console.log("Response: ", response.data.data);
