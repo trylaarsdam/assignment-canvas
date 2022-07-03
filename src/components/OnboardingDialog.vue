@@ -181,14 +181,9 @@
                   <v-spacer />
                   <v-btn
                     color="primary"
-                    @click="e1 = 3"
+                    @click="checkData"
                     v-if="
-                      this.password.length >= 8 &&
-                      this.rules.email(this.email) == true &&
-                      this.first.length > 0 &&
-                      this.last.length > 0 &&
-                      this.canvasKey.length == 70 &&
-                      this.canvasURL.length > 0
+                      this.canvasKey.length == 70 && this.canvasURL.length > 0
                     "
                   >
                     Continue
@@ -208,12 +203,32 @@
                 <v-row>
                   <v-col align-self>
                     <v-progress-circular v-if="checkingData" indeterminate />
+                    <div v-else>
+                      <p v-if="confirmationStatus == 'success'">
+                        Congratulations, the Canvas information you entered was
+                        valid and works correctly. To create your account,
+                        simply press "Create Account" and you'll be all setup.
+                      </p>
+                      <p v-else>
+                        Your Canvas URL and/or Canvas API key were invalid.
+                        Please double check that those values are both valid. If
+                        you need more help, contact
+                        <a href="mailto:todd@toddr.org">todd@toddr.org</a>
+                      </p>
+                    </div>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-btn color="primary" @click="e1 = 1"> Back </v-btn>
+                  <v-btn color="primary" @click="e1 = 2"> Back </v-btn>
                   <v-spacer />
-                  <v-btn color="green" @click="e1 = 1" disabled>
+                  <v-btn
+                    color="green"
+                    @click="createAccount"
+                    v-if="confirmationStatus == 'success'"
+                  >
+                    Complete Setup
+                  </v-btn>
+                  <v-btn color="primary" @click="e1 = 2" v-else disabled>
                     Complete Setup
                   </v-btn>
                 </v-row>
@@ -222,6 +237,9 @@
           </v-stepper-items>
         </v-stepper>
       </v-card>
+      <v-overlay :value="creatingAccount">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
     </v-dialog>
   </v-row>
 </template>
@@ -237,7 +255,7 @@ export default {
       notifications: false,
       sound: true,
       widgets: false,
-      e1: 3, //TODO CHANGE THIS BACK TO 1
+      e1: 1,
       email: "",
       first: "",
       last: "",
@@ -246,6 +264,7 @@ export default {
       password: "",
       checkingData: true,
       confirmationStatus: "checking",
+      creatingAccount: false,
       show1: false,
       rules: {
         required: (value) => !!value || "Required Field",
@@ -263,11 +282,11 @@ export default {
   methods: {
     async checkData() {
       this.checkingData = true;
-      this.el = 3;
+      this.e1 = 3;
 
       try {
         const response = await axios.get(
-          "http://10.128.1.166:7001/api/internal/users/test?canvasURL" +
+          "http://10.128.1.166:7001/internal/users/test?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
             this.canvasKey,
@@ -283,6 +302,40 @@ export default {
         } else {
           this.confirmationStatus = "error";
         }
+        this.checkingData = false;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createAccount() {
+      this.creatingAccount = true;
+      try {
+        const response = await axios.get(
+          "http://10.128.1.166:7001/internal/users/new?canvasURL=" +
+            this.canvasURL +
+            "&canvasKey=" +
+            this.canvasKey +
+            "&email=" +
+            this.email +
+            "&name=" +
+            this.first +
+            " " +
+            this.last +
+            "&password=" +
+            crypto.createHash("sha256").update(this.password).digest("hex"),
+          {
+            auth: {
+              username: "trylaarsdam",
+              password: "test12345",
+            },
+          }
+        );
+        if (response.data.status == "success") {
+          this.creatingAccount = false;
+        } else {
+          this.creatingAccount = false;
+        }
+        this.checkingData = false;
       } catch (error) {
         console.error(error);
       }
