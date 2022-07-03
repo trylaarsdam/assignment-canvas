@@ -248,6 +248,16 @@
 // const crypto = require("crypto");
 const axios = require("axios");
 
+async function hash(string) {
+  const msgUint8 = new TextEncoder().encode(string); // encode as (utf-8) Uint8Array
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8); // hash the message
+  const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join(""); // convert bytes to hex string
+  return hashHex;
+}
+
 export default {
   data() {
     return {
@@ -310,7 +320,7 @@ export default {
     async createAccount() {
       this.creatingAccount = true;
       try {
-        const response = await axios.get(
+        const response = await axios.post(
           "http://10.128.1.166:7001/internal/users/new?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
@@ -322,7 +332,7 @@ export default {
             " " +
             this.last +
             "&password=" +
-            crypto.createHash("sha256").update(this.password).digest("hex"),
+            (await hash(this.password)),
           {
             auth: {
               username: "trylaarsdam",
