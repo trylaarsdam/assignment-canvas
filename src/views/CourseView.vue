@@ -40,7 +40,14 @@
           <v-icon>mdi-account-group</v-icon>
         </v-btn>
 
-        <v-btn flat>
+        <v-btn
+          flat
+          :href="
+            this.$store.state.user.canvasURL +
+            '/courses/' +
+            parseInt(this.course.id)
+          "
+        >
           <v-icon class="iconButtonPadding">mdi-share</v-icon>
           Open Canvas
         </v-btn>
