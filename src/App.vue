@@ -115,7 +115,7 @@ export default {
     if (email != undefined && password != undefined) {
       try {
         const response = await axios.get(
-          "https://api.canvas.toddr.org/internal/login?email=" +
+          "https://canvasapi.toddr.org/internal/login?email=" +
             email +
             "&password=" +
             password,

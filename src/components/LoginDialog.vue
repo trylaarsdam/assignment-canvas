@@ -53,7 +53,7 @@ export default {
       this.loggingIn = true;
       try {
         const response = await axios.get(
-          "https://api.canvas.toddr.org/internal/login?email=" +
+          "https://canvasapi.toddr.org/internal/login?email=" +
             this.email +
             "&password=" +
             this.password,
