@@ -152,7 +152,7 @@ export default {
     console.log("course id", this.id);
     try {
       const response = await axios.get(
-        "http://api.canvas.toddr.org/api/courses/" + this.$route.params.id,
+        "https://canvasapi.toddr.org/api/courses/" + this.$route.params.id,
         {
           auth: {
             username: this.$store.state.user.email,
@@ -167,7 +167,7 @@ export default {
     }
     try {
       const response = await axios.get(
-        "http://api.canvas.toddr.org/api/courses/" +
+        "https://canvasapi.toddr.org/api/courses/" +
           this.$route.params.id +
           "/assignments",
         {
@@ -185,7 +185,7 @@ export default {
     }
     try {
       const response = await axios.get(
-        "http://api.canvas.toddr.org/api/courses/" +
+        "https://canvasapi.toddr.org/api/courses/" +
           this.$route.params.id +
           "/announcements",
         {
