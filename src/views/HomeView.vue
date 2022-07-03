@@ -10,11 +10,11 @@
 
         <v-spacer></v-spacer>
         <v-btn color="green" style="margin-right: 1rem" @click="login">
-          <v-icon>mdi-arrow-right</v-icon>
+          <v-icon style="margin-right: 0.5rem">mdi-login-variant</v-icon>
           Login
         </v-btn>
         <v-btn color="blue" style="margin-right: 1rem" @click="onboarding">
-          <v-icon>mdi-arrow-right</v-icon>
+          <v-icon style="margin-right: 0.5rem">mdi-arrow-right</v-icon>
           Get Started
         </v-btn>
       </v-app-bar>
@@ -79,7 +79,7 @@
                     <div class="headline text-xs-center">Easily Sharable</div>
                   </v-card-title>
                   <v-card-text>
-                    Assignment Canvas uses Canvas' IDs natively, so you can
+                    Assignment Canvas uses Canvas' ID global system, so you can
                     share an Assignment Canvas link with someone else, and if
                     they have access to that same canvas course, it will work
                     right out of the box for them.
@@ -106,23 +106,28 @@
       </v-footer>
     </template>
     <OnboardingDialog v-if="onboardingOpen" />
+    <v-dialog v-model="dialog" width="500"><LoginDialog /></v-dialog>
   </div>
 </template>
 
 <script>
 import OnboardingDialog from "../components/OnboardingDialog.vue";
+import LoginDialog from "../components/LoginDialog.vue";
 export default {
   name: "HomeView",
   components: {
+    LoginDialog,
     OnboardingDialog,
   },
   data: () => ({
     onboardingOpen: false,
+    dialog: false,
   }),
   methods: {
     login() {
-      this.$store.commit("SET_APP_BAR", true);
-      this.$router.push("/feed");
+      this.dialog = true;
+      // this.$store.commit("SET_APP_BAR", true);
+      // this.$router.push("/feed");
     },
     onboarding() {
       this.onboardingOpen = true;
