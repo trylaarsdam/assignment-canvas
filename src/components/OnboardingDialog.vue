@@ -308,7 +308,7 @@ export default {
       }
       try {
         const response = await axios.get(
-          "http://api.canvas.toddr.org/internal/users/test?canvasURL=" +
+          "https://api.canvas.toddr.org/internal/users/test?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
             this.canvasKey,
@@ -324,7 +324,7 @@ export default {
         }
 
         const emailResponse = await axios.get(
-          "http://api.canvas.toddr.org/internal/users/check?email=" +
+          "https://api.canvas.toddr.org/internal/users/check?email=" +
             this.email,
           {
             auth: {
@@ -348,7 +348,7 @@ export default {
       this.creatingAccount = true;
       try {
         const response = await axios.post(
-          "http://api.canvas.toddr.org/internal/users/new?canvasURL=" +
+          "https://api.canvas.toddr.org/internal/users/new?canvasURL=" +
             this.canvasURL +
             "&canvasKey=" +
             this.canvasKey +

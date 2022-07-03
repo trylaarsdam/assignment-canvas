@@ -54,7 +54,7 @@ export default {
     // console.log("Setting breadcrumbs from announcements");
     try {
       const response = await axios.get(
-        "http://api.canvas.toddr.org/api/courses/" + this.$route.params.id,
+        "https://api.canvas.toddr.org/api/courses/" + this.$route.params.id,
         {
           auth: {
             username: this.$store.state.user.email,
@@ -69,7 +69,7 @@ export default {
     }
     try {
       const response = await axios.get(
-        "http://api.canvas.toddr.org/api/courses/" +
+        "https://api.canvas.toddr.org/api/courses/" +
           this.$route.params.id +
           "/users",
         {
