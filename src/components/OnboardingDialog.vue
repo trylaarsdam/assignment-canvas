@@ -128,7 +128,7 @@
                       is hosted. This is usually
                       "[institution].instructure.com". If you are at George Fox
                       University, your URL is <i>georgefox.instructure.com</i>.
-                      Do not include https:// or anything after the domain.
+                      Do not include anything after the domain.
                     </p>
                     <v-col cols="12" sm="12">
                       <v-text-field
@@ -298,7 +298,14 @@ export default {
       this.checkingData = true;
       this.confirmationStatus = "checking";
       this.e1 = 3;
-
+      if (
+        !(
+          this.canvasURL.startsWith("https://") ||
+          this.canvasURL.startsWith("http://")
+        )
+      ) {
+        this.canvasURL = "https://" + this.canvasURL;
+      }
       try {
         const response = await axios.get(
           "http://10.128.1.166:7001/internal/users/test?canvasURL=" +
@@ -361,6 +368,10 @@ export default {
         );
         if (response.data.status == "success") {
           this.creatingAccount = false;
+          this.$store.commit("SET_USER", response.data.user);
+          this.$cookies.set("email", response.data.user.email);
+          this.$cookies.set("password", response.data.user.password);
+          this.$router.push("/feed");
         } else {
           this.creatingAccount = false;
         }
