@@ -227,6 +227,9 @@
 </template>
 
 <script>
+// const crypto = require("crypto");
+const axios = require("axios");
+
 export default {
   data() {
     return {
@@ -242,6 +245,7 @@ export default {
       canvasURL: "",
       password: "",
       checkingData: true,
+      confirmationStatus: "checking",
       show1: false,
       rules: {
         required: (value) => !!value || "Required Field",
@@ -260,6 +264,28 @@ export default {
     async checkData() {
       this.checkingData = true;
       this.el = 3;
+
+      try {
+        const response = await axios.get(
+          "http://10.128.1.166:7001/api/internal/users/test?canvasURL" +
+            this.canvasURL +
+            "&canvasKey=" +
+            this.canvasKey,
+          {
+            auth: {
+              username: "trylaarsdam",
+              password: "test12345",
+            },
+          }
+        );
+        if (response.data.status == "success") {
+          this.confirmationStatus = "success";
+        } else {
+          this.confirmationStatus = "error";
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
