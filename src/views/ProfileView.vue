@@ -39,7 +39,7 @@
         <v-container>
           <v-row no-gutters dark>
             <v-col cols="12" sm="6" md="8">
-              <v-card class="pa-2" tile dark>
+              <v-card class="pa-2" tile dark flat>
                 <p>
                   If your canvas API key has changed, or you need to change
                   other account information, you can redo the onboarding
@@ -48,14 +48,14 @@
               </v-card>
             </v-col>
             <v-col cols="6" md="4" dark>
-              <v-card class="pa-2" tile dark>
+              <v-card class="pa-2" tile dark flat>
                 <v-btn color="primary" elevation="2">Restart Onboarding</v-btn>
               </v-card>
             </v-col>
           </v-row>
           <v-row no-gutters dark>
             <v-col cols="12" sm="6" md="8">
-              <v-card class="pa-2" tile dark>
+              <v-card class="pa-2" tile dark flat>
                 <p>
                   If you want to delete your account, or want to make other
                   changes (like your email address/name, etc) to your account,
@@ -64,7 +64,7 @@
               </v-card>
             </v-col>
             <v-col cols="6" md="4" dark>
-              <v-card class="pa-2" tile dark>
+              <v-card class="pa-2" tile dark flat>
                 <v-btn
                   color="primary"
                   elevation="2"

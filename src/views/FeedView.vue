@@ -16,6 +16,7 @@ export default {
         href: "feed",
       },
     ]);
+    this.$store.commit("SET_APP_BAR", true);
   },
 };
 </script>

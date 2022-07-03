@@ -21,7 +21,8 @@ export default new Vuex.Store({
       username: "trylaarsdam",
       apiKeyConfigured: true,
       canvasURL: "https://georgefox.instructure.com",
-    }
+    },
+    showAppBar: true,
   },
   getters: {
   },
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user
+    },
+    SET_APP_BAR(state, showAppBar) {
+      state.showAppBar = showAppBar
     }
   },
   actions: {

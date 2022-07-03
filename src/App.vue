@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app dark permanent>
+    <v-navigation-drawer app dark permanent v-if="this.$store.state.showAppBar">
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -63,7 +63,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-app-bar app dark>
+    <v-app-bar app dark v-if="this.$store.state.showAppBar">
       <!-- -->
       <v-breadcrumbs
         dark
@@ -74,7 +74,7 @@
     <!-- Sizes your content based upon application components -->
     <v-main style="background-color: #111">
       <!-- Provides the application the proper gutter -->
-      <v-container fluid>
+      <v-container fluid v-if="this.$store.state.showAppBar">
         <!-- If using vue-router -->
         <router-view>
           <nav>
@@ -83,6 +83,7 @@
           </nav>
         </router-view>
       </v-container>
+      <router-view v-else> </router-view>
     </v-main>
   </v-app>
 </template>
