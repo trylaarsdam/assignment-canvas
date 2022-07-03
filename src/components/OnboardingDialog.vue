@@ -201,13 +201,23 @@
             </v-stepper-content>
 
             <v-stepper-content step="3">
-              <v-card
-                class="mb-12"
-                color="grey lighten-1"
-                height="100%"
-              ></v-card>
-
-              <v-btn @click="e1 = 1"> Continue </v-btn>
+              <v-container>
+                <v-row>
+                  <h1>Confirmation</h1>
+                </v-row>
+                <v-row>
+                  <v-col align-self>
+                    <v-progress-circular v-if="checkingData" indeterminate />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-btn color="primary" @click="e1 = 1"> Back </v-btn>
+                  <v-spacer />
+                  <v-btn color="green" @click="e1 = 1" disabled>
+                    Complete Setup
+                  </v-btn>
+                </v-row>
+              </v-container>
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
@@ -224,13 +234,14 @@ export default {
       notifications: false,
       sound: true,
       widgets: false,
-      e1: 1,
+      e1: 3, //TODO CHANGE THIS BACK TO 1
       email: "",
       first: "",
       last: "",
       canvasKey: "",
       canvasURL: "",
       password: "",
+      checkingData: true,
       show1: false,
       rules: {
         required: (value) => !!value || "Required Field",
@@ -244,6 +255,12 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    async checkData() {
+      this.checkingData = true;
+      this.el = 3;
+    },
   },
 };
 </script>
