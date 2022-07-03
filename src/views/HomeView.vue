@@ -13,7 +13,7 @@
           <v-icon>mdi-arrow-right</v-icon>
           Login
         </v-btn>
-        <v-btn color="blue" style="margin-right: 1rem">
+        <v-btn color="blue" style="margin-right: 1rem" @click="onboarding">
           <v-icon>mdi-arrow-right</v-icon>
           Get Started
         </v-btn>
@@ -105,16 +105,27 @@
         </v-row>
       </v-footer>
     </template>
+    <OnboardingDialog v-if="onboardingOpen" />
   </div>
 </template>
 
 <script>
+import OnboardingDialog from "../components/OnboardingDialog.vue";
 export default {
   name: "HomeView",
+  components: {
+    OnboardingDialog,
+  },
+  data: () => ({
+    onboardingOpen: false,
+  }),
   methods: {
     login() {
       this.$store.commit("SET_APP_BAR", true);
       this.$router.push("/feed");
+    },
+    onboarding() {
+      this.onboardingOpen = true;
     },
   },
   mounted: function () {
