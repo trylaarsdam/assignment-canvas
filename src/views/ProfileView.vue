@@ -26,7 +26,7 @@
         <p>
           Canvas API Key:
           <strong>
-            {{ user.canvasKey.length == 70 ? "Configured" : "Not configured" }}
+            {{ user.canvasKey.length >= 0 ? "Configured" : "Not configured" }}
           </strong>
           <br />
           Canvas URL: <strong>{{ user.canvasURL }}</strong>
