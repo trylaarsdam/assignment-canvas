@@ -86,7 +86,7 @@ export default {
       rules: {
         required: (value) => !!value || "Required Field",
         min: (v) => v.length >= 8 || "Min 8 characters",
-        canvasKey: (v) => v.length == 70 || "Not a valid canvas API key format",
+        canvasKey: (v) => v.length >= 1 || "Not a valid canvas API key format",
         emailMatch: () => `The email and password you entered don't match`,
         email: (value) => {
           const pattern =
