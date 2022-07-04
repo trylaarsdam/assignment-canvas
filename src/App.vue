@@ -139,6 +139,8 @@ export default {
         console.error(error);
         this.invalid = true;
       }
+    } else {
+      this.$router.push("/");
     }
     this.showRouter = true;
   },
