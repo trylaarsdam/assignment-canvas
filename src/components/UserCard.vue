@@ -1,6 +1,6 @@
 <template>
   <div class="UserCard">
-    <v-card color="#272727" dark>
+    <v-card dark>
       <v-card-title class="text-h6">
         <v-icon class="iconButtonPadding"> mdi-account </v-icon
         >{{ this.user.name }}
@@ -10,11 +10,10 @@
         class="userContent"
         v-html="this.user.email"
       ></v-card-subtitle>
-
-      <!-- <v-card-actions>
-        <v-btn text :to="'/user/' + parseInt(this.user.id)"> View </v-btn>
-         <v-btn text> Open in Canvas </v-btn> -->
-      <!-- </v-card-actions> -->
+      
+      <v-card-actions>
+        <v-btn :to="'/user/' + this.user.id"> Edit </v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -24,6 +23,7 @@ export default {
   name: "UserCard",
   props: {
     user: Object,
+    admin: Boolean
   },
 };
 </script>
