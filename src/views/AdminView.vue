@@ -45,7 +45,7 @@
             <template >
               <v-list-item-content dark v-for="error in errors" :key="error.id">
                 <v-list-item-title dark>Error ID: {{error.id}} | User ID: {{error.userID}}</v-list-item-title>
-                <v-list-item-subtitle dark>{{error.error}}</v-list-item-subtitle>
+                <v-list-item-subtitle dark>{{JSON.stringify(error.error)}}</v-list-item-subtitle>
               </v-list-item-content>
             </template>
           </v-list>
