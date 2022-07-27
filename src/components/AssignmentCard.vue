@@ -43,5 +43,6 @@ export default {
   -webkit-line-clamp: 3; /* number of lines to show */
   line-clamp: 3;
   -webkit-box-orient: vertical;
+  max-height: 180px;
 }
 </style>
