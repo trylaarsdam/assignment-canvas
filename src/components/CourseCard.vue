@@ -1,9 +1,6 @@
 <template>
   <div class="CourseCard">
     <v-card
-      :color="
-        this.course.course_color == null ? '#1876D1' : this.course.course_color
-      "
       dark
     >
       <v-card-title class="text-h5"> {{ this.course.name }} </v-card-title>

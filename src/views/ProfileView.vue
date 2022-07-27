@@ -87,6 +87,9 @@ import AdminProfileOptions from "../components/AdminProfileOptions.vue";
 export default {
   name: "ProfileView",
   created() {
+    if(this.$store.state.user.banned) {
+      this.$router.push("/auth/banned")
+    }
     // console.log("Setting breadcrumbs from announcements");
     this.$store.commit("SET_BREADCRUMBS", [
       {

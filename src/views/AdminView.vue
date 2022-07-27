@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-panel">
+  <div class="admin-panel" v-if="this.$store.state.user.role == `Administrator`">
     <v-toolbar dark dense>
       <v-tabs
         v-model="tab"
@@ -53,6 +53,13 @@
       </v-tab-item>
     </v-tabs-items>
   </div>
+  <v-alert
+    dark
+    v-else
+    type="error"
+  >
+    You do not have authorization to view this panel.
+  </v-alert>
 </template>
 
 <script>
@@ -63,6 +70,9 @@ import UserCard from "../components/UserCard.vue"
 export default {
   name: "AdminView",
   async created() {
+    if(this.$store.state.user.banned) {
+      this.$router.push("/auth/banned")
+    }
     // console.log("Setting breadcrumbs from announcements");
     this.$store.commit("SET_BREADCRUMBS", [
       {

@@ -148,6 +148,9 @@ export default {
     },
   },
   async created() {
+    if(this.$store.state.user.banned) {
+      this.$router.push("/auth/banned")
+    }
     // console.log("Setting breadcrumbs from announcements");
     console.log("course id", this.id);
     try {

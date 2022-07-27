@@ -1,9 +1,16 @@
 <template>
-  <div class="courses">
+  <div class="courses" v-if="!loading">
     <h1>All Courses</h1>
     <div class="courseContainer" v-for="item in courses" :key="item.id">
       <CourseCard :course="item" />
     </div>
+  </div>
+  <div class="loading" v-else>
+    <v-progress-circular
+      :size="50"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
   </div>
 </template>
 
@@ -15,11 +22,15 @@ export default {
   name: "CoursesView",
   data: () => ({
     courses: [],
+    loading: true
   }),
   components: {
     CourseCard,
   },
   async created() {
+    if(this.$store.state.user.banned) {
+      this.$router.push("/auth/banned")
+    }
     // console.log("Setting breadcrumbs from announcements");
     this.$store.commit("SET_BREADCRUMBS", [
       {
@@ -44,6 +55,7 @@ export default {
     } catch (error) {
       console.error(error);
     }
+    this.loading = false;
   },
 };
 </script>
@@ -58,5 +70,12 @@ h1 {
 .courseContainer {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.loading {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

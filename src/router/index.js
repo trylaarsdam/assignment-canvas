@@ -57,6 +57,15 @@ const routes = [
     path: "/admin",
     name: "admin-panel",
     component: () => import(/* webpackChunkName: "admin-panel" */ "../views/AdminView.vue")
+  },
+  {
+    path: "/user/:id",
+    name: "user-manager"
+  },
+  {
+    path: "/auth/banned",
+    name: "banned",
+    component: () => import(/* webpackChunkName: "admin-panel" */ "../views/AuthBannedView.vue")
   }
 ]
 

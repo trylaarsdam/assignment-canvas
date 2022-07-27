@@ -132,7 +132,11 @@ export default {
             this.$router.currentRoute.name == "home"
           ) {
             console.log("redirecting to feed");
-            this.$router.push("/feed");
+            if(response.data.user.banned) {
+              this.$router.push("/auth/banned")
+            } else {
+              this.$router.push("/feed");
+            }
           }
         }
       } catch (error) {
