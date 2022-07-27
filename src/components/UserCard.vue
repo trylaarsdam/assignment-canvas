@@ -11,8 +11,9 @@
         v-html="this.user.email"
       ></v-card-subtitle>
       
-      <v-card-actions>
-        <v-btn :to="'/user/' + this.user.id"> Edit </v-btn>
+      <v-card-actions v-if="admin">
+        <v-btn :to="'/user/' + this.user.id" > Edit </v-btn>
+        <v-btn v-if="user.banned" color="red"> Banned </v-btn>
       </v-card-actions>
     </v-card>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="admin-panel">
-    <v-toolbar dark>
+    <v-toolbar dark dense>
       <v-tabs
         v-model="tab"
         fixed-tabs
@@ -24,7 +24,7 @@
       >
         <v-card dark>
           <v-list>
-            <UserCard v-for="aUser in users" :key="aUser.id" :user="aUser" :admin="true" />
+            <UserCard v-for="aUser in users" :key="aUser.id" :user="aUser" :admin="true"/>
           </v-list>
         </v-card>
       </v-tab-item>
@@ -41,7 +41,14 @@
         :value="`tab-Errors`"
       >
         <v-card dark>
-          <v-card-text dark>THIS IS SOME TEXT <br/> <br/><br/>errors</v-card-text>
+          <v-list three-line style="padding: 1rem;">
+            <template >
+              <v-list-item-content dark v-for="error in errors" :key="error.id">
+                <v-list-item-title dark>Error ID: {{error.id}} | User ID: {{error.userID}}</v-list-item-title>
+                <v-list-item-subtitle dark>{{error.error}}</v-list-item-subtitle>
+              </v-list-item-content>
+            </template>
+          </v-list>
         </v-card>
       </v-tab-item>
     </v-tabs-items>
@@ -77,6 +84,18 @@ export default {
       );
       console.log("Response: ", response.data.users);
       this.users = response.data.users;
+
+      const errorResponse = await axios.get(
+        "https://canvasapi.toddr.org/internal/errors",
+        {
+          auth: {
+            username: this.$store.state.user.email,
+            password: this.$store.state.user.password,
+          },
+        }
+      );
+      console.log("Response: ", errorResponse.data.users);
+      this.errors = errorResponse.data.users;
     } catch (error) {
       console.error(error);
     }
@@ -88,6 +107,7 @@ export default {
     return {
       tab: "2",
       users: [],
+      errors: [],
       tabs: [
         "Users", "System", "Errors"
       ],
