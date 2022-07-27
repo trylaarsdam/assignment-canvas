@@ -123,10 +123,12 @@ export default {
   },
   async created() {
     // console.log("Setting breadcrumbs from announcements");
+    await this.$store.commit("SET_APP_BAR", true);
+
     if(this.$store.state.user.banned) {
       this.$router.push("/auth/banned")
     }
-    
+
     try {
       const response = await axios.get(
         "https://canvasapi.toddr.org/api/assignments",
