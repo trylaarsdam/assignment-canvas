@@ -13,7 +13,7 @@
             <v-list-item-title class="text-h6">
               Assignment Canvas
             </v-list-item-title>
-            <v-list-item-subtitle>v2.3.0b</v-list-item-subtitle>
+            <v-list-item-subtitle>v2.4.0b</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>

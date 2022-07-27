@@ -1,6 +1,6 @@
 {
   "name": "assignment-canvas",
-  "version": "2.3.0b",
+  "version": "2.4.0b",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
