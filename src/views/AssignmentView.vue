@@ -1,5 +1,17 @@
 <template>
-<h1>{{assignment.name}}</h1>
+  <div>
+    <v-row no-gutters>
+      <v-col cols="12" sm="8">
+        <h1>{{assignment.name}}</h1>
+      </v-col>
+      <v-col cols="12" sm="4" style="margin: auto;">
+        <p v-if="assignment.due_at">Due: {{assignment.due_at}}</p>
+        <p>Points: {{assignment.points_possible}}</p>
+      </v-col>
+    </v-row>
+    <v-divider dark style="padding: 0.5rem;" />
+    <p v-html="assignment.description" />
+  </div>
 </template>
 
 <script>
