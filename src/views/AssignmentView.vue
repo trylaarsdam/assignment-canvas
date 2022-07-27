@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <v-row no-gutters>
       <v-col cols="12" sm="8">
         <h1>{{assignment.name}}</h1>
@@ -11,6 +11,13 @@
     </v-row>
     <v-divider dark style="padding: 0.5rem;" />
     <p v-html="assignment.description" />
+  </div>
+  <div class="loading" v-else>
+    <v-progress-circular
+      :size="50"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
   </div>
 </template>
 
@@ -74,7 +81,7 @@ export default {
         // to: "/announcements",
       },
       {
-        text: `Assignment ${this.assignment.id}`,
+        text: `${this.assignment.name.substring(0, 30)}`,
         disabled: false,
         href: `/assignment/${this.$route.params.courseID}/${this.$route.params.assignmentID}`
       }
@@ -83,3 +90,13 @@ export default {
   },
 };
 </script>
+
+<style local>
+.loading {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
