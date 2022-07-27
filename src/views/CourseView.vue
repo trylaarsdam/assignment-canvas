@@ -196,6 +196,7 @@ export default {
         }
       );
       console.log("Response: ", response.data.data);
+      
       this.announcements = response.data.data;
       this.data.push(...this.announcements);
     } catch (error) {

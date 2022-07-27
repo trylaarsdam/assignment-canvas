@@ -12,7 +12,7 @@
       ></v-card-subtitle>
 
       <v-card-actions>
-        <v-btn text :to="'/assignment/' + parseInt(this.assignment.id)">
+        <v-btn text :to="`/assignment/${parseInt(this.assignment.course.id)}/${parseInt(this.assignment.id)}`">
           View
         </v-btn>
         <!-- <v-btn text> Open in Canvas </v-btn> -->

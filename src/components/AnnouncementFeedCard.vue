@@ -23,7 +23,7 @@
       </v-list-item-content>
     </v-list-item>
     <v-card-actions>
-      <v-btn text :to="'/announcement/' + parseInt(this.announcement.id)">
+      <v-btn text :to="'/announcement/' + parseInt(this.announcement.course.id) + '/' + parseInt(this.announcement.id)">
         View
       </v-btn>
     </v-card-actions>
