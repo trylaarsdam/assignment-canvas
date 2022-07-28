@@ -11,6 +11,24 @@
     </v-row>
     <v-divider dark style="padding: 0.5rem;" />
     <p v-html="announcement.message" />
+    <v-divider dark style="padding: 0.5rem;" />
+    <div class="reply" v-for="reply in announcement.replies" :key="reply.id">
+      <v-card color="#272727" dark>
+        <v-card-title class="text-h6" v-if="reply.deleted != true">
+          {{ reply.user_id }}
+        </v-card-title>
+
+        <v-card-subtitle
+          class="announcementContent"
+          v-html="reply.message"
+          v-if="reply.deleted != true"
+        >
+        </v-card-subtitle>
+        <v-card-subtitle v-else>
+          Deleted Reply
+        </v-card-subtitle>
+      </v-card>
+    </div>
   </div>
   <div class="loading" v-else>
     <v-progress-circular
@@ -101,5 +119,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.reply {
+  padding-bottom: 1rem;
 }
 </style>
