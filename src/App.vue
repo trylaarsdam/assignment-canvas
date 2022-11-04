@@ -4,7 +4,7 @@
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
-            <v-img src="https://cdn.toddr.org/assets/images/t-logo.png"></v-img>
+            <v-img src="https://toddr.org/assets/images/t-logo.png"></v-img>
           </v-list-item-avatar>
         </v-list-item>
 
