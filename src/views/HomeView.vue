@@ -3,7 +3,7 @@
     <v-card class="overflow-hidden no-padding" dark>
       <v-app-bar dark>
         <v-img
-          src="https://cdn.toddr.org/assets/images/t-logo.png"
+          src="https://toddr.org/assets/images/t-logo.png"
           max-height="40"
           max-width="40"
         />
