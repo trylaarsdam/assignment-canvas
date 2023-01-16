@@ -1,6 +1,6 @@
 # Assignment Canvas
 
-Assignment Canvas (AC) is a webapp (and possibly android/iOS app coming soon) that accesses Instructure's Canvas API and displays data from it in a way that is in my humble opinion a little more intuitive. You can make an account at [https://canvas.toddr.org](https://canvas.toddr.org).
+Assignment Canvas (AC) is a webapp ([and android app](https://play.google.com/store/apps/details?id=com.trylaarsdam.assignmentcanvas)) that accesses Instructure's Canvas API and displays data from it in a way that is in my humble opinion a little more intuitive. You can make an account at [https://canvas.toddr.org](https://canvas.toddr.org).
 
 All data retrieved from the Canvas API is requested only when a user requests it, and is never stored on our servers. Only your Canvas API key and URL are stored by AC and are encrypted at rest.
 
